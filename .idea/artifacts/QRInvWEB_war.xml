@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="QRInvWEB:war">
+    <output-path>$PROJECT_DIR$/QRInvWEB/target</output-path>
+    <root id="archive" name="qrinvwebapp.war">
+      <element id="artifact" artifact-name="QRInvWEB:war exploded" />
+    </root>
+  </artifact>
+</component>

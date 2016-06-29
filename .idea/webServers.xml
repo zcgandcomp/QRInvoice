@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d7c9cdcf-f72d-45a7-a210-05415722dc66" name="openshift" url="http://jbosswildfly-qrinvoice.rhcloud.com">
+        <fileTransfer host="jbosswildfly-qrinvoice.rhcloud.com" port="22" privateKey="C:\Users\zcg\.ssh\id_rsa" rootFolder="/var/lib/openshift/576860390c1e66a49f0000db" accessType="SFTP" username="576860390c1e66a49f0000db" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
