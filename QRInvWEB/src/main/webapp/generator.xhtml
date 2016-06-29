@@ -6,216 +6,251 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
 
+<!--
 
-<link id="responsive-style-css" media="all" type="text/css"
-      href="http://qr-faktura.cz/wp-content/themes/responsive/core/css/style.css?ver=1.9.7.8" rel="stylesheet"/>
-<link id="responsive-media-queries-css" media="all" type="text/css"
-      href="http://qr-faktura.cz/wp-content/themes/responsive/core/css/responsive.css?ver=1.9.7.8" rel="stylesheet"/>
+-->
+<h:head>
+    <link id="responsive-style-css" media="all" type="text/css"
+          href="http://qr-faktura.cz/wp-content/themes/responsive/core/css/style.css?ver=1.9.7.8" rel="stylesheet"/>
+    <link id="responsive-media-queries-css" media="all" type="text/css"
+          href="http://qr-faktura.cz/wp-content/themes/responsive/core/css/responsive.css?ver=1.9.7.8"
+          rel="stylesheet"/>
+
+    <title>QR Faktura</title>
+
+</h:head>
+<f:view>
+    <h:body>
+        <div id="container" class="hfeed">
+            <div id="wrapper" class="clearfix">
+                <div id="content-full" class="grid col-940">
+                    <div class="page type-page status-publish hentry">
+
+                        <h:outputLabel styleClass="entry-title post-title" value="QR faktura"/>
+                        <p>generování QR kódu faktury</p>
+                        <h:form>
+                            <div>
+
+                                <div class="widget-wrapper widget_text" style="width: 310px; float: left">
+
+                                    <p:commandButton value="Generuj"
+                                                     actionListener="#{generatorController.generate}"
+                                                     styleClass="ui-priority-primary" update="growl" ajax="false"/>
+                                    <div>
+                                        Číslo účtu:
+                                        <span style="color: #ff4444;">*</span>
+                                    </div>
+                                    <div>
+                                        <p:inputText size="6" id="acc1"/> - <p:inputText id="acc2" size="10"/> /
+                                        <p:inputText
+                                                size="4"
+                                                id="bic" value="#{invoiceModel.BIC}"/>
+                                    </div>
+                                    <div>
+                                        Částka a měna:
+                                    </div>
+                                    <div>
+                                        <p:inputNumber id="am" decimalPlaces="2" maxValue="999999999999999"/>
+                                        <p:selectOneMenu id="cc" value="#{invoiceModel.currencyCode}">
+                                            <f:selectItem itemValue="CZK" itemLabel="CZK"/>
+                                            <f:selectItem itemValue="EUR" itemLabel="EUR"/>
+                                            <f:selectItem itemValue="USD" itemLabel="USD"/>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <div>
+                                        VS:
+                                    </div>
+
+                                    <div>
+                                        <p:inputText id="vs" size="10"/>
+                                    </div>
+
+                                    <div>
+                                        Datum splatnosti celkové částky:
+                                    </div>
+                                    <div>
+                                        <p:calendar id="dt"/>
+                                    </div>
+                                    <div>
+                                        Zpráva pro příjemce / Textový popis předmětu fakturace:
+                                    </div>
+                                    <div>
+                                        <p:inputTextarea rows="4" cols="10" id="msg"/>
+                                    </div>
+                                    <div>
+                                        Jednoznačné označení dokladu:
+                                    </div>
+                                    <div>
+                                        <p:inputText id="id" size="40"/>
+                                    </div>
+                                    <div>
+                                        Datum vystavení dokladu:
+                                    </div>
+                                    <div>
+                                        <p:calendar id="dd"/>
+                                    </div>
+                                    <div>
+                                        Identifikace typu daňového plnění:
+                                    </div>
+                                    <div>
+                                        <p:selectOneMenu id="tp">
+                                            <f:selectItem itemValue="0" itemLabel="běžný typ plnění"/>
+                                            <f:selectItem itemValue="1" itemLabel="RPDP"/>
+                                            <f:selectItem itemValue="2" itemLabel="smíšený"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div>
+                                        Identifikace typu dokladu:
+                                    </div>
+                                    <div>
+                                        <p:selectOneMenu id="td">
+                                            <f:selectItem itemValue="0" itemLabel="nedaňový doklad "/>
+                                            <f:selectItem itemValue="1" itemLabel="opravný daňový doklad"/>
+                                            <f:selectItem itemValue="2" itemLabel="doklad k přijaté platbě"/>
+                                            <f:selectItem itemValue="3" itemLabel="splátkový kalendář"/>
+                                            <f:selectItem itemValue="4" itemLabel="platební kalendář"/>
+                                            <f:selectItem itemValue="5" itemLabel="souhrnný daňový doklad"/>
+                                            <f:selectItem itemValue="9" itemLabel="ostatní daňové doklady"/>
+                                        </p:selectOneMenu>
 
 
-<div id="container" class="hfeed">
-    <div id="wrapper" class="clearfix">
-        <div id="content-full" class="grid col-940">
-            <div id="post-18" class="post-18 page type-page status-publish hentry">
-                <h:outputLabel styleClass="entry-title post-title" value="QR faktura"/>
-                <h:form>
-                    <div>
-                        Číslo účtu:
-                        <span style="color: #ff4444;">*</span>
-                    </div>
-                    <div>
-                        <p:inputText size="6" id="acc1"/> - <p:inputText id="acc2" size="10"/> / <p:inputText size="4"
-                                                                                                              id="bic"/>
-                    </div>
-                    <div>
-                        Částka a měna:
-                    </div>
-                    <div>
-                        <p:inputNumber id="am" decimalPlaces="2" maxValue="999999999999999"/>
-                        <p:selectOneMenu id="cc">
-                            <f:selectItem itemValue="CZK" itemLabel="CZK"/>
-                            <f:selectItem itemValue="EUR" itemLabel="EUR"/>
-                            <f:selectItem itemValue="USD" itemLabel="USD"/>
-                        </p:selectOneMenu>
-                    </div>
+                                    </div>
+                                    <div>
+                                        Příznak, který rozlišuje, zda faktura obsahuje zúčtování záloh:
+                                    </div>
+                                    <div>
 
-                    <div>
-                        VS:
-                    </div>
-
-                    <div>
-                        <p:inputText id="vs" size="10"/>
-                    </div>
-
-                    <div>
-                        Datum splatnosti celkové částky:
-                    </div>
-                    <div>
-                        <p:calendar id="dt"/>
-                    </div>
-                    <div>
-                        Zpráva pro příjemce / Textový popis předmětu fakturace:
-                    </div>
-                    <div>
-                        <p:inputTextarea rows="4" cols="10" id="msg"/>
-                    </div>
-                    <div>
-                        Jednoznačné označení dokladu:
-                    </div>
-                    <div>
-                        <p:inputText id="id" size="40"/>
-                    </div>
-                    <div>
-                        Datum vystavení dokladu:
-                    </div>
-                    <div>
-                        <p:calendar id="dd"/>
-                    </div>
-                    <div>
-                        Identifikace typu daňového plnění:
-                    </div>
-                    <div>
-                        <p:selectOneMenu id="tp">
-                            <f:selectItem itemValue="0" itemLabel="běžný typ plnění"/>
-                            <f:selectItem itemValue="1" itemLabel="RPDP"/>
-                            <f:selectItem itemValue="2" itemLabel="smíšený"/>
-                        </p:selectOneMenu>
-                    </div>
-                    <div>
-                        Identifikace typu dokladu:
-                    </div>
-                    <div>
-                        <p:selectOneMenu id="td">
-                            <f:selectItem itemValue="0" itemLabel="nedaňový doklad "/>
-                            <f:selectItem itemValue="1" itemLabel="opravný daňový doklad"/>
-                            <f:selectItem itemValue="2" itemLabel="doklad k přijaté platbě"/>
-                            <f:selectItem itemValue="3" itemLabel="splátkový kalendář"/>
-                            <f:selectItem itemValue="4" itemLabel="platební kalendář"/>
-                            <f:selectItem itemValue="5" itemLabel="souhrnný daňový doklad"/>
-                            <f:selectItem itemValue="9" itemLabel="ostatní daňové doklady"/>
-                        </p:selectOneMenu>
+                                        <p:selectOneMenu id="sa">
+                                            <f:selectItem itemValue="0" itemLabel="faktura neobsahuje zúčtování záloh"/>
+                                            <f:selectItem itemValue="1" itemLabel="faktura obsahuje zúčtování záloh"/>
+                                        </p:selectOneMenu>
 
 
-                    </div>
-                    <div>
-                        Příznak, který rozlišuje, zda faktura obsahuje zúčtování záloh:
-                    </div>
-                    <div>
+                                    </div>
+                                    <div>
+                                        Číslo (označení) objednávky, k níž se vztahuje tento účetní doklad:
+                                    </div>
+                                    <div>
+                                        <p:inputText id="on" size="20"/>
+                                    </div>
+                                    <div>
+                                        DIČ výstavce:
+                                    </div>
+                                    <div>
+                                        <p:inputText size="14" id="vii"/>
+                                    </div>
+                                    <div>
+                                        IČO výstavce:
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="ini"/>
+                                    </div>
+                                    <div>
+                                        DIČ příjemce:
+                                    </div>
+                                    <div>
+                                        <p:inputText size="14" id="vir"/>
+                                    </div>
+                                    <div>
+                                        IČO příjemce:
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="inr"/>
+                                    </div>
+                                    <div>
+                                        Datum uskutečnění zdanitelného plnění:
+                                    </div>
+                                    <div>
+                                        <p:calendar id="duzp"/>
+                                    </div>
+                                    <div>
+                                        Datum povinnosti přiznat daň:
+                                    </div>
+                                    <div>
+                                        <p:calendar id="dppd"/>
+                                    </div>
+                                    <div>
+                                        Částka základu daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb0"/>
 
-                        <p:selectOneMenu id="sa">
-                            <f:selectItem itemValue="0" itemLabel="faktura neobsahuje zúčtování záloh"/>
-                            <f:selectItem itemValue="1" itemLabel="faktura obsahuje zúčtování záloh"/>
-                        </p:selectOneMenu>
+                                    </div>
+                                    <div>
+                                        Částka daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb1"/>
+                                    </div>
+                                    <div>
+                                        Částka daně v první snížené daňové sazbě v CZK včetně haléřového vyrovnání:
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t1"/>
+                                    </div>
+                                    <div>
+                                        Částka základu daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání:
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb2"/>
+                                    </div>
+                                    <div>
+                                        Částka daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání.
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t2"/>
+                                    </div>
+                                    <div>
+                                        Částka osvobozených plnění, plnění mimo předmět DPH, plnění neplátců DPH v CZK včetně haléřového vyrovnání. V případě kladné hodnoty bez znaménka, záporná hodnota se znaménkem. Znaménko vždy explicitně určuje směr toku peněz bez ohledu na jiné atributy:
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="ntb"/>
+                                    </div>
+                                    <div>
+                                        Směnný kurz mezi CZK a měnou celkové částky:
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="fx"/>
+                                    </div>
+                                    <div>
+                                        Počet jednotek cizí měny pro přepočet pomocí klíče FX:
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="0" maxValue="99999" id="fxa"/>
+                                    </div>
+                                    <div>
+                                        Označení účetního software, ve kterém byl řetězec QR Faktury (faktura) vytvořen:
+                                    </div>
+                                    <div>
+                                        <p:inputText id="x-sw"/>
+                                    </div>
+                                    <div>
+                                        Údaje pro získání účetních údajů (případně faktury) ve strukturovaném formátu z on-line uložiště:
+                                    </div>
+                                    <div>
+                                        <p:inputText id="x-url"/>
+                                    </div>
 
+                                    <p:commandButton value="Generuj"
+                                                     actionListener="#{generatorController.generate}"
+                                                     styleClass="ui-priority-primary" update="growl"/>
+                                </div>
+
+                                <div class="widget-wrapper widget_text"
+                                     style="width: 500px; margin-left: 20px; float: right; height: 500px; background-color: white;">
+                                    <p:growl id="growl" life="2000"/>
+                                    <p:barcode value="#{generatorController.qrString}" type="qr"/>
+                                    <p:outputLabel value="#{generatorController.qrString}"></p:outputLabel>
+                                </div>
+
+                            </div>
+                        </h:form>
 
                     </div>
-                    <div>
-                        Číslo (označení) objednávky, k níž se vztahuje tento účetní doklad:
-                    </div>
-                    <div>
-                        <p:inputText id="on" size="20"/>
-                    </div>
-                    <div>
-                        DIČ výstavce:
-                    </div>
-                    <div>
-                        <p:inputText size="14" id="vii"/>
-                    </div>
-                    <div>
-                        IČO výstavce:
-                    </div>
-                    <div>
-                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="ini"/>
-                    </div>
-                    <div>
-                        DIČ příjemce:
-                    </div>
-                    <div>
-                        <p:inputText size="14" id="vir"/>
-                    </div>
-                    <div>
-                        IČO příjemce:
-                    </div>
-                    <div>
-                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="inr"/>
-                    </div>
-                    <div>
-                        Datum uskutečnění zdanitelného plnění:
-                    </div>
-                    <div>
-                        <p:calendar id="duzp"/>
-                    </div>
-                    <div>
-                        Datum povinnosti přiznat daň:
-                    </div>
-                    <div>
-                        <p:calendar id="dppd"/>
-                    </div>
-                    <div>
-                        Částka základu daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:
-                    </div>
-                    <div>
-                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb0"/>
-
-                    </div>
-                    <div>
-                        Částka daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:
-                    </div>
-                    <div>
-                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb1"/>
-                    </div>
-                    <div>
-                        Částka daně v první snížené daňové sazbě v CZK včetně haléřového vyrovnání:
-                    </div>
-                    <div>
-                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t1"/>
-                    </div>
-                    <div>
-                        Částka základu daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání:
-                    </div>
-                    <div>
-                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb2"/>
-                    </div>
-                    <div>
-                        Částka daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání.
-                    </div>
-                    <div>
-                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t2"/>
-                    </div>
-                    <div>
-                        Částka osvobozených plnění, plnění mimo předmět DPH, plnění neplátců DPH v CZK včetně haléřového vyrovnání. V případě kladné hodnoty bez znaménka, záporná hodnota se znaménkem. Znaménko vždy explicitně určuje směr toku peněz bez ohledu na jiné atributy:
-                    </div>
-                    <div>
-                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="ntb"/>
-                    </div>
-                    <div>
-                        Směnný kurz mezi CZK a měnou celkové částky:
-                    </div>
-                    <div>
-                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="fx"/>
-                    </div>
-                    <div>
-                        Počet jednotek cizí měny pro přepočet pomocí klíče FX:
-                    </div>
-                    <div>
-                        <p:inputNumber decimalPlaces="0" maxValue="99999" id="fxa"/>
-                    </div>
-                    <div>
-                        Označení účetního software, ve kterém byl řetězec QR Faktury (faktura) vytvořen:
-                    </div>
-                    <div>
-                        <p:inputText id="x-sw"/>
-                    </div>
-                    <div>
-                        Údaje pro získání účetních údajů (případně faktury) ve strukturovaném formátu z on-line uložiště:
-                    </div>
-                    <div>
-                        <p:inputText id="x-url"/>
-                    </div>
-                </h:form>
-
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </h:body>
+</f:view>
 </html>

@@ -2,7 +2,8 @@ package org.qrinvoice.gui;
 
 import org.qrinvoice.domain.DateParam;
 
-import javax.annotation.ManagedBean;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,7 +13,8 @@ import java.math.BigDecimal;
 /**
  * Created by zcg on 27.6.2016.
  */
-@ManagedBean
+@Named("invoiceModel")
+@RequestScoped
 public class InvoiceModel {
 
 
