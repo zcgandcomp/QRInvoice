@@ -22,7 +22,7 @@ public class AccountNumber {
 
     }
 
-    public AccountNumber(String accountPrefix, String accountBase, String bankCode) {
+    public AccountNumber(String accountPrefix, String accountBase, String bankCode) throws AccountNotValidException {
 
         if (isAccountNumberValid(accountPrefix, accountBase, bankCode)) {
 
@@ -40,7 +40,7 @@ public class AccountNumber {
 
         } else {
 
-            throw new IllegalStateException("invalid account number");
+            throw new AccountNotValidException("invalid account number");
 
         }
 

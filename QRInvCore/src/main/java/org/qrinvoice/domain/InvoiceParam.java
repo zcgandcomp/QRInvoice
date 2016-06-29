@@ -16,6 +16,7 @@ import static org.qrinvoice.constants.InvoiceAttributes.*;
  * Created by zcg on 5.6.2016.
  * holder for invoice data
  */
+
 public class InvoiceParam {
 
     //ID
@@ -50,6 +51,17 @@ public class InvoiceParam {
     @FormParam(value = "SA")
     @Digits(integer = 1, fraction = 0)
     private Byte taxDeposit;
+
+    //MSG
+    @FormParam(value = "MSG")
+    @Size(max = 40)
+    private String message;
+
+    //ON
+    @FormParam(value = "ON")
+    @Size(max = 20)
+    private String orderNumber;
+
 
     //VS
     @FormParam(value = "VA")
@@ -169,7 +181,7 @@ public class InvoiceParam {
      * @param value
      * @param code
      */
-    private void getValueCodePair(Object value, String code) {
+    private void setValueCodePair(Object value, String code) {
 
         if (value != null) {
             paramMap.put(code, value);
@@ -183,7 +195,7 @@ public class InvoiceParam {
 
     public void setCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
-        getValueCodePair(currencyCode, CC);
+        setValueCodePair(currencyCode, CC);
     }
 
 
@@ -193,7 +205,7 @@ public class InvoiceParam {
 
     public void setDateOfDue(DateParam dateOfDue) {
         this.dateOfDue = dateOfDue;
-        getValueCodePair(dateOfDue, DT);
+        setValueCodePair(dateOfDue, DT);
     }
 
 
@@ -203,7 +215,7 @@ public class InvoiceParam {
 
     public void setDateOfIssue(DateParam dateOfIssue) {
         this.dateOfIssue = dateOfIssue;
-        getValueCodePair(dateOfIssue, DT);
+        setValueCodePair(dateOfIssue, DT);
     }
 
 
@@ -213,7 +225,7 @@ public class InvoiceParam {
 
     public void setDateOfTax(DateParam dateOfTax) {
         this.dateOfTax = dateOfTax;
-        getValueCodePair(dateOfTax, DUZP);
+        setValueCodePair(dateOfTax, DUZP);
     }
 
 
@@ -224,7 +236,7 @@ public class InvoiceParam {
 
     public void setDateOfTaxDuty(DateParam dateOfTaxDuty) {
         this.dateOfTaxDuty = dateOfTaxDuty;
-        getValueCodePair(dateOfTaxDuty, DPPD);
+        setValueCodePair(dateOfTaxDuty, DPPD);
     }
 
 
@@ -234,7 +246,7 @@ public class InvoiceParam {
 
     public void setDentificationNumberBene(String dentificationNumberBene) {
         this.identificationNumberBene = dentificationNumberBene;
-        getValueCodePair(identificationNumberBene, INR);
+        setValueCodePair(identificationNumberBene, INR);
     }
 
 
@@ -244,7 +256,7 @@ public class InvoiceParam {
 
     public void setExchangeRate(BigDecimal exchangeRate) {
         this.exchangeRate = exchangeRate;
-        getValueCodePair(exchangeRate, FX);
+        setValueCodePair(exchangeRate, FX);
     }
 
 
@@ -254,7 +266,7 @@ public class InvoiceParam {
 
     public void setExchangeUnits(BigDecimal exchangeUnits) {
         this.exchangeUnits = exchangeUnits;
-        getValueCodePair(exchangeUnits, FXA);
+        setValueCodePair(exchangeUnits, FXA);
     }
 
 
@@ -265,9 +277,9 @@ public class InvoiceParam {
     public void setBIC(String BIC) {
         this.BIC = BIC;
         if (getIBAN() != null) {
-            getValueCodePair(getIBAN() + "+" + BIC, ACC);
+            setValueCodePair(getIBAN() + "+" + BIC, ACC);
         } else {
-            getValueCodePair(BIC, ACC);
+            setValueCodePair(BIC, ACC);
         }
 
 
@@ -281,9 +293,9 @@ public class InvoiceParam {
     public void setIBAN(String IBAN) {
         this.IBAN = IBAN;
         if (getBIC() != null) {
-            getValueCodePair(getIBAN() + "+" + getBIC(), ACC);
+            setValueCodePair(getIBAN() + "+" + getBIC(), ACC);
         } else {
-            getValueCodePair(IBAN, ACC);
+            setValueCodePair(IBAN, ACC);
         }
 
     }
@@ -295,7 +307,7 @@ public class InvoiceParam {
 
     public void setId(String id) {
         this.id = id;
-        getValueCodePair(id, ID);
+        setValueCodePair(id, ID);
     }
 
 
@@ -305,7 +317,7 @@ public class InvoiceParam {
 
     public void setIdentificationNumberDrawer(String identificationNumberDrawer) {
         this.identificationNumberDrawer = identificationNumberDrawer;
-        getValueCodePair(identificationNumberDrawer, INI);
+        setValueCodePair(identificationNumberDrawer, INI);
     }
 
     public BigDecimal getNonTaxAmount() {
@@ -314,7 +326,7 @@ public class InvoiceParam {
 
     public void setNonTaxAmount(BigDecimal nonTaxAmount) {
         this.nonTaxAmount = nonTaxAmount;
-        getValueCodePair(nonTaxAmount, NTB);
+        setValueCodePair(nonTaxAmount, NTB);
     }
 
 
@@ -324,7 +336,7 @@ public class InvoiceParam {
 
     public void setSoftwareOrigin(String softwareOrigin) {
         this.softwareOrigin = softwareOrigin;
-        getValueCodePair(softwareOrigin, X_SW);
+        setValueCodePair(softwareOrigin, X_SW);
     }
 
 
@@ -334,7 +346,7 @@ public class InvoiceParam {
 
     public void setTaxAmount(BigDecimal taxAmount) {
         this.taxAmount = taxAmount;
-        getValueCodePair(taxAmount, T0);
+        setValueCodePair(taxAmount, T0);
     }
 
 
@@ -344,7 +356,7 @@ public class InvoiceParam {
 
     public void setTaxBaseAmount(BigDecimal taxBaseAmount) {
         this.taxBaseAmount = taxBaseAmount;
-        getValueCodePair(taxBaseAmount, TB0);
+        setValueCodePair(taxBaseAmount, TB0);
     }
 
 
@@ -354,7 +366,7 @@ public class InvoiceParam {
 
     public void setTaxBaseReduced1Amount(BigDecimal taxBaseReduced1Amount) {
         this.taxBaseReduced1Amount = taxBaseReduced1Amount;
-        getValueCodePair(taxBaseReduced1Amount, TB1);
+        setValueCodePair(taxBaseReduced1Amount, TB1);
     }
 
 
@@ -364,7 +376,7 @@ public class InvoiceParam {
 
     public void setTaxBaseReduced2Amount(BigDecimal taxBaseReduced2Amount) {
         this.taxBaseReduced2Amount = taxBaseReduced2Amount;
-        getValueCodePair(taxBaseReduced2Amount, T2);
+        setValueCodePair(taxBaseReduced2Amount, T2);
     }
 
     public Byte getTaxDeposit() {
@@ -373,7 +385,7 @@ public class InvoiceParam {
 
     public void setTaxDeposit(Byte taxDeposit) {
         this.taxDeposit = taxDeposit;
-        getValueCodePair(taxDeposit, SA);
+        setValueCodePair(taxDeposit, SA);
     }
 
 
@@ -383,7 +395,7 @@ public class InvoiceParam {
 
     public void setTaxIdentificationNumberBene(String taxIdentificationNumberBene) {
         this.taxIdentificationNumberBene = taxIdentificationNumberBene;
-        getValueCodePair(taxIdentificationNumberBene, VIR);
+        setValueCodePair(taxIdentificationNumberBene, VIR);
     }
 
 
@@ -393,7 +405,7 @@ public class InvoiceParam {
 
     public void setTaxIdentificationNumberDrawer(String taxIdentificationNumberDrawer) {
         this.taxIdentificationNumberDrawer = taxIdentificationNumberDrawer;
-        getValueCodePair(taxIdentificationNumberDrawer, VII);
+        setValueCodePair(taxIdentificationNumberDrawer, VII);
     }
 
     public BigDecimal getTaxReduced1Amount() {
@@ -402,7 +414,7 @@ public class InvoiceParam {
 
     public void setTaxReduced1Amount(BigDecimal taxReduced1Amount) {
         this.taxReduced1Amount = taxReduced1Amount;
-        getValueCodePair(taxReduced1Amount, T1);
+        setValueCodePair(taxReduced1Amount, T1);
     }
 
     public BigDecimal getTaxReduced2Amount() {
@@ -411,7 +423,7 @@ public class InvoiceParam {
 
     public void setTaxReduced2Amount(BigDecimal taxReduced2Amount) {
         this.taxReduced2Amount = taxReduced2Amount;
-        getValueCodePair(taxReduced2Amount, T2);
+        setValueCodePair(taxReduced2Amount, T2);
     }
 
     public BigDecimal getTotalAmount() {
@@ -420,7 +432,7 @@ public class InvoiceParam {
 
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
-        getValueCodePair(totalAmount, AM);
+        setValueCodePair(totalAmount, AM);
     }
 
 
@@ -430,7 +442,7 @@ public class InvoiceParam {
 
     public void setTypeOfIdentification(Byte typeOfIdentification) {
         this.typeOfIdentification = typeOfIdentification;
-        getValueCodePair(typeOfIdentification, TD);
+        setValueCodePair(typeOfIdentification, TD);
     }
 
     public Byte getTypeOfTax() {
@@ -439,7 +451,7 @@ public class InvoiceParam {
 
     public void setTypeOfTax(Byte typeOfTax) {
         this.typeOfTax = typeOfTax;
-        getValueCodePair(typeOfTax, TP);
+        setValueCodePair(typeOfTax, TP);
     }
 
     public String getUrl() {
@@ -448,7 +460,7 @@ public class InvoiceParam {
 
     public void setUrl(String url) {
         this.url = url;
-        getValueCodePair(url, X_URL);
+        setValueCodePair(url, X_URL);
     }
 
     public String getVariableString() {
@@ -457,7 +469,17 @@ public class InvoiceParam {
 
     public void setVariableString(String variableString) {
         this.variableString = variableString;
-        getValueCodePair(variableString, VS);
+        setValueCodePair(variableString, VS);
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+
+        this.message = message;
+        setValueCodePair(message, MSG);
     }
 
     public Map<String, Object> getParamMap() {

@@ -126,6 +126,8 @@ public class Generator {
 
         Map<String, Object> attributes = invoice.getParamMap();
 
+        // TODO validate account
+
         // TODO make position in QR string static ?
         for (Map.Entry<String, Object> entry : attributes.entrySet()) {
             if (entry.getValue() instanceof String) {

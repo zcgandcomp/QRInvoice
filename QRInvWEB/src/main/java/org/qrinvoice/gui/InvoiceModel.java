@@ -24,7 +24,8 @@ public class InvoiceModel {
     @NotNull
     @Size(max = 40)
     private String id;
-    // @Size(max = 8, min = 8)
+
+
     //DD
     @FormParam(value = "DD")
     @NotNull
@@ -50,6 +51,32 @@ public class InvoiceModel {
     @FormParam(value = "SA")
     @Digits(integer = 1, fraction = 0)
     private Byte taxDeposit;
+
+    //MSG
+    @FormParam(value = "MSG")
+    @Size(max = 40)
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    //ON
+    @FormParam(value = "ON")
+    @Size(max = 20)
+    private String orderNumber;
 
     //VS
     @FormParam(value = "VA")
@@ -141,6 +168,20 @@ public class InvoiceModel {
     private BigDecimal exchangeUnits;
 
     // special attributes
+
+    @FormParam(value = "accountPrefix")
+    @Size(max = 6)
+    private String accountPrefix;
+
+    @FormParam(value = "accountNumber")
+    @Size(max = 10)
+    private String accountNumber;
+
+
+    @FormParam(value = "bankCode")
+    @Size(max = 4)
+    private String bankCode;
+
     //ACC
     @FormParam(value = "ACC")
     @Size(max = 34)
@@ -383,5 +424,29 @@ public class InvoiceModel {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getAccountPrefix() {
+        return accountPrefix;
+    }
+
+    public void setAccountPrefix(String accountPrefix) {
+        this.accountPrefix = accountPrefix;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getBankCode() {
+        return bankCode;
+    }
+
+    public void setBankCode(String bankCode) {
+        this.bankCode = bankCode;
     }
 }

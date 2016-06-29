@@ -30,6 +30,10 @@ public class InvoiceAttributes {
 
     public static final String SA = "SA";
 
+    public static final String MSG = "MSG";
+
+    public static final String ON = "ON";
+
     public static final String VS = "VS";
 
     public static final String VII = "VII";

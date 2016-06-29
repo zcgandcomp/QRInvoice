@@ -33,24 +33,38 @@
 
                                 <div class="widget-wrapper widget_text" style="width: 310px; float: left">
 
-                                    <p:commandButton value="Generuj"
-                                                     actionListener="#{generatorController.generate}"
-                                                     styleClass="ui-priority-primary" update="growl" ajax="false"/>
+                                    <p:commandButton value="Generuj" actionListener="#{generatorController.generate}"
+                                                     update="growl" ajax="true"/>
+
+                                    <div>
+                                        Jednoznačné označení dokladu:
+                                        <span style="color: #ff4444;">*</span>
+                                        <p:messages autoUpdate="true" for="id"/>
+
+                                    </div>
+                                    <div>
+                                        <p:inputText id="id" size="40" value="#{invoiceModel.id}"/>
+                                    </div>
+
                                     <div>
                                         Číslo účtu:
                                         <span style="color: #ff4444;">*</span>
+                                        <p:messages autoUpdate="true" for="acc1"/>
+                                        <p:messages autoUpdate="true" for="acc2"/>
+                                        <p:messages autoUpdate="true" for="bic"/>
                                     </div>
                                     <div>
-                                        <p:inputText size="6" id="acc1"/> - <p:inputText id="acc2" size="10"/> /
+                                        <p:inputText size="6" id="acc1" value="#{invoiceModel.accountPrefix}"/> - <p:inputText id="acc2" size="10" value="#{invoiceModel.accountNumber}"/> /
                                         <p:inputText
                                                 size="4"
-                                                id="bic" value="#{invoiceModel.BIC}"/>
+                                                id="bic" value="#{invoiceModel.bankCode}"/>
                                     </div>
                                     <div>
                                         Částka a měna:
+                                        <p:messages autoUpdate="true" for="am"/>
                                     </div>
                                     <div>
-                                        <p:inputNumber id="am" decimalPlaces="2" maxValue="999999999999999"/>
+                                        <p:inputNumber id="am" decimalPlaces="2" maxValue="999999999999999" value="#{invoiceModel.totalAmount}"/>
                                         <p:selectOneMenu id="cc" value="#{invoiceModel.currencyCode}">
                                             <f:selectItem itemValue="CZK" itemLabel="CZK"/>
                                             <f:selectItem itemValue="EUR" itemLabel="EUR"/>
@@ -60,41 +74,47 @@
 
                                     <div>
                                         VS:
+                                        <p:messages autoUpdate="true" for="vs" />
+
+
                                     </div>
 
                                     <div>
-                                        <p:inputText id="vs" size="10"/>
+                                        <p:inputText id="vs" size="10" value="#{invoiceModel.variableString}" />
                                     </div>
 
                                     <div>
                                         Datum splatnosti celkové částky:
+                                        <p:messages autoUpdate="true" for="dt" />
+
                                     </div>
                                     <div>
-                                        <p:calendar id="dt"/>
+                                        <p:calendar id="dt" value="#{invoiceModel.dateOfDue}"/>
                                     </div>
                                     <div>
                                         Zpráva pro příjemce / Textový popis předmětu fakturace:
+                                        <p:messages autoUpdate="true" for="msg"/>
+
                                     </div>
                                     <div>
-                                        <p:inputTextarea rows="4" cols="10" id="msg"/>
+                                        <p:inputTextarea rows="4" cols="10" id="msg" value="#{invoiceModel.message}"/>
                                     </div>
-                                    <div>
-                                        Jednoznačné označení dokladu:
-                                    </div>
-                                    <div>
-                                        <p:inputText id="id" size="40"/>
-                                    </div>
+
                                     <div>
                                         Datum vystavení dokladu:
+                                        <p:messages autoUpdate="true" for="dd"/>
+
                                     </div>
                                     <div>
-                                        <p:calendar id="dd"/>
+                                        <p:calendar id="dd" value="#{invoiceModel.dateOfDue}"/>
                                     </div>
                                     <div>
                                         Identifikace typu daňového plnění:
+                                        <p:messages autoUpdate="true" for="tp"/>
+
                                     </div>
                                     <div>
-                                        <p:selectOneMenu id="tp">
+                                        <p:selectOneMenu id="tp" value="#{invoiceModel.typeOfTax}">
                                             <f:selectItem itemValue="0" itemLabel="běžný typ plnění"/>
                                             <f:selectItem itemValue="1" itemLabel="RPDP"/>
                                             <f:selectItem itemValue="2" itemLabel="smíšený"/>
@@ -102,9 +122,11 @@
                                     </div>
                                     <div>
                                         Identifikace typu dokladu:
+                                        <p:messages autoUpdate="true" for="td"/>
+
                                     </div>
                                     <div>
-                                        <p:selectOneMenu id="td">
+                                        <p:selectOneMenu id="td" value="#{invoiceModel.typeOfIdentification}">
                                             <f:selectItem itemValue="0" itemLabel="nedaňový doklad "/>
                                             <f:selectItem itemValue="1" itemLabel="opravný daňový doklad"/>
                                             <f:selectItem itemValue="2" itemLabel="doklad k přijaté platbě"/>
@@ -118,10 +140,12 @@
                                     </div>
                                     <div>
                                         Příznak, který rozlišuje, zda faktura obsahuje zúčtování záloh:
+                                        <p:messages autoUpdate="true" for="sa"/>
+
                                     </div>
                                     <div>
 
-                                        <p:selectOneMenu id="sa">
+                                        <p:selectOneMenu id="sa" value="#{invoiceModel.taxDeposit}">
                                             <f:selectItem itemValue="0" itemLabel="faktura neobsahuje zúčtování záloh"/>
                                             <f:selectItem itemValue="1" itemLabel="faktura obsahuje zúčtování záloh"/>
                                         </p:selectOneMenu>
@@ -130,115 +154,151 @@
                                     </div>
                                     <div>
                                         Číslo (označení) objednávky, k níž se vztahuje tento účetní doklad:
+                                        <p:messages autoUpdate="true" for="on"/>
+
                                     </div>
                                     <div>
-                                        <p:inputText id="on" size="20"/>
+                                        <p:inputText id="on" size="20" value="#{invoiceModel.orderNumber}"/>
                                     </div>
                                     <div>
                                         DIČ výstavce:
+                                        <p:messages autoUpdate="true" for="vii"/>
+
                                     </div>
                                     <div>
-                                        <p:inputText size="14" id="vii"/>
+
+                                        <p:inputText size="14" id="vii" value="#{invoiceModel.taxIdentificationNumberDrawer}"/>
                                     </div>
                                     <div>
                                         IČO výstavce:
+                                        <p:messages autoUpdate="true" for="ini"/>
+
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="ini"/>
+                                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="ini" value="#{invoiceModel.identificationNumberDrawer}"/>
                                     </div>
                                     <div>
                                         DIČ příjemce:
+                                        <p:messages autoUpdate="true" for="vir"/>
+
                                     </div>
                                     <div>
-                                        <p:inputText size="14" id="vir"/>
+                                        <p:inputText size="14" id="vir" value="#{invoiceModel.taxIdentificationNumberBene}"/>
                                     </div>
                                     <div>
                                         IČO příjemce:
+                                        <p:messages autoUpdate="true" for="inr"/>
+
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="inr"/>
+                                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="inr" value="#{invoiceModel.identificationNumberBene}"/>
                                     </div>
                                     <div>
                                         Datum uskutečnění zdanitelného plnění:
+                                        <p:messages autoUpdate="true" for="duzp"/>
+
                                     </div>
                                     <div>
-                                        <p:calendar id="duzp"/>
+                                        <p:calendar id="duzp" value="#{invoiceModel.dateOfTax}"/>
                                     </div>
                                     <div>
                                         Datum povinnosti přiznat daň:
+                                        <p:messages autoUpdate="true" for="dppd"/>
+
                                     </div>
                                     <div>
-                                        <p:calendar id="dppd"/>
+                                        <p:calendar id="dppd" value="#{invoiceModel.dateOfTaxDuty}"/>
                                     </div>
                                     <div>
                                         Částka základu daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:
+                                        <p:messages autoUpdate="true" for="tb0"/>
+
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb0"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb0" value="#{invoiceModel.taxBaseAmount}"/>
 
                                     </div>
                                     <div>
                                         Částka daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:
+                                        <p:messages autoUpdate="true" for="tb1"/>
+
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb1"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb1" value="#{invoiceModel.taxBaseReduced1Amount}"/>
                                     </div>
                                     <div>
                                         Částka daně v první snížené daňové sazbě v CZK včetně haléřového vyrovnání:
+                                        <p:messages autoUpdate="true" for="t1"/>
+
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t1"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t1" value="#{invoiceModel.taxReduced1Amount}"/>
                                     </div>
                                     <div>
                                         Částka základu daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání:
+                                        <p:messages autoUpdate="true" for="tb2" />
+
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb2"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb2" value="#{invoiceModel.taxBaseReduced2Amount}"/>
                                     </div>
                                     <div>
                                         Částka daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání.
+                                        <p:messages autoUpdate="true" for="t2"/>
+
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t2"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t2" value="#{invoiceModel.taxReduced2Amount}"/>
                                     </div>
                                     <div>
                                         Částka osvobozených plnění, plnění mimo předmět DPH, plnění neplátců DPH v CZK včetně haléřového vyrovnání. V případě kladné hodnoty bez znaménka, záporná hodnota se znaménkem. Znaménko vždy explicitně určuje směr toku peněz bez ohledu na jiné atributy:
+                                        <p:messages autoUpdate="true" for="ntb"/>
+
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="ntb"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="ntb" value="#{invoiceModel.nonTaxAmount}"/>
                                     </div>
                                     <div>
                                         Směnný kurz mezi CZK a měnou celkové částky:
+                                        <p:messages autoUpdate="true" for="fx"/>
+
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="fx"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="fx" value="#{invoiceModel.exchangeRate}"/>
                                     </div>
                                     <div>
                                         Počet jednotek cizí měny pro přepočet pomocí klíče FX:
+                                        <p:messages autoUpdate="true" for="fxa"/>
+
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="0" maxValue="99999" id="fxa"/>
+                                        <p:inputNumber decimalPlaces="0" maxValue="99999" id="fxa" value="#{invoiceModel.exchangeUnits}"/>
                                     </div>
                                     <div>
                                         Označení účetního software, ve kterém byl řetězec QR Faktury (faktura) vytvořen:
+                                        <p:messages autoUpdate="true" for="x-sw"/>
+
                                     </div>
                                     <div>
-                                        <p:inputText id="x-sw"/>
+                                        <p:inputText id="x-sw" value="#{invoiceModel.softwareOrigin}"/>
                                     </div>
                                     <div>
                                         Údaje pro získání účetních údajů (případně faktury) ve strukturovaném formátu z on-line uložiště:
+                                        <p:messages autoUpdate="true" for="x-url"/>
+
                                     </div>
                                     <div>
-                                        <p:inputText id="x-url"/>
+                                        <p:inputText id="x-url" value="#{invoiceModel.url}"/>
                                     </div>
 
                                     <p:commandButton value="Generuj"
                                                      actionListener="#{generatorController.generate}"
-                                                     styleClass="ui-priority-primary" update="growl"/>
+                                                     styleClass="ui-priority-primary" update="growl" ajax="true"/>
                                 </div>
 
                                 <div class="widget-wrapper widget_text"
                                      style="width: 500px; margin-left: 20px; float: right; height: 500px; background-color: white;">
+                                    <p:messages autoUpdate="true"/>
                                     <p:growl id="growl" life="2000"/>
                                     <p:barcode value="#{generatorController.qrString}" type="qr"/>
                                     <p:outputLabel value="#{generatorController.qrString}"></p:outputLabel>
