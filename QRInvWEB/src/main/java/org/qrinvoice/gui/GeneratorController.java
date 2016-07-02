@@ -2,7 +2,7 @@ package org.qrinvoice.gui;
 
 
 import org.qrinvoice.core.AccountNotValidException;
-import org.qrinvoice.core.AccountNumber;
+import org.qrinvoice.core.AccountNumberImpl;
 import org.qrinvoice.core.Generator;
 import org.qrinvoice.domain.InvoiceParam;
 
@@ -46,7 +46,9 @@ public class GeneratorController implements Serializable {
 
         try {
 
-            AccountNumber accNum = new AccountNumber(model.getAccountPrefix(),model.getAccountNumber(),model.getBankCode());
+            AccountNumberImpl accNum = new AccountNumberImpl(model.getAccountNumber().getAccountPrefix(), model.getAccountNumber().getAccountBase(), model.getAccountNumber().getBankCode());
+
+            param.setIBAN(accNum.computeIBAN());
 
             String qrString = generator.getInvoiceString(param, true);
 

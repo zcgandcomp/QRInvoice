@@ -1,5 +1,6 @@
 package org.qrinvoice.gui;
 
+import org.qrinvoice.core.CheckAccountNumber;
 import org.qrinvoice.domain.DateParam;
 
 import javax.enterprise.context.RequestScoped;
@@ -169,18 +170,9 @@ public class InvoiceModel {
 
     // special attributes
 
-    @FormParam(value = "accountPrefix")
-    @Size(max = 6)
-    private String accountPrefix;
+    @CheckAccountNumber
+    private AccountNumberModel mAccountNumber;
 
-    @FormParam(value = "accountNumber")
-    @Size(max = 10)
-    private String accountNumber;
-
-
-    @FormParam(value = "bankCode")
-    @Size(max = 4)
-    private String bankCode;
 
     //ACC
     @FormParam(value = "ACC")
@@ -426,27 +418,12 @@ public class InvoiceModel {
         this.url = url;
     }
 
-    public String getAccountPrefix() {
-        return accountPrefix;
+
+    public AccountNumberModel getAccountNumber() {
+        return mAccountNumber;
     }
 
-    public void setAccountPrefix(String accountPrefix) {
-        this.accountPrefix = accountPrefix;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public String getBankCode() {
-        return bankCode;
-    }
-
-    public void setBankCode(String bankCode) {
-        this.bankCode = bankCode;
+    public void setAccountNumber(AccountNumberModel accountNumber) {
+        this.mAccountNumber = accountNumber;
     }
 }

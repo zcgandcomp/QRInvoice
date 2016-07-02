@@ -19,7 +19,7 @@
     <title>QR Faktura</title>
 
 </h:head>
-<f:view>
+<f:view locale="cz">
     <h:body>
         <div id="container" class="hfeed">
             <div id="wrapper" class="clearfix">
@@ -54,17 +54,22 @@
                                         <p:messages autoUpdate="true" for="bic"/>
                                     </div>
                                     <div>
-                                        <p:inputText size="6" id="acc1" value="#{invoiceModel.accountPrefix}"/> - <p:inputText id="acc2" size="10" value="#{invoiceModel.accountNumber}"/> /
+                                        <p:inputText size="6" id="acc1"
+                                                     value="#{invoiceModel.accountNumber.accountPrefix}"/> -
+                                        <p:inputText id="acc2" size="10"
+                                                     value="#{invoiceModel.accountNumber.accountBase}"/> /
                                         <p:inputText
                                                 size="4"
-                                                id="bic" value="#{invoiceModel.bankCode}"/>
+                                                id="bic" value="#{invoiceModel.accountNumber.bankCode}"/>
                                     </div>
                                     <div>
                                         Částka a měna:
                                         <p:messages autoUpdate="true" for="am"/>
                                     </div>
                                     <div>
-                                        <p:inputNumber id="am" decimalPlaces="2" maxValue="999999999999999" value="#{invoiceModel.totalAmount}"/>
+                                        <p:inputNumber id="am" decimalPlaces="2" maxValue="999999999999999"
+                                                       value="#{invoiceModel.totalAmount}" thousandSeparator=" "
+                                                       decimalSeparator=","/>
                                         <p:selectOneMenu id="cc" value="#{invoiceModel.currencyCode}">
                                             <f:selectItem itemValue="CZK" itemLabel="CZK"/>
                                             <f:selectItem itemValue="EUR" itemLabel="EUR"/>
@@ -74,18 +79,18 @@
 
                                     <div>
                                         VS:
-                                        <p:messages autoUpdate="true" for="vs" />
+                                        <p:messages autoUpdate="true" for="vs"/>
 
 
                                     </div>
 
                                     <div>
-                                        <p:inputText id="vs" size="10" value="#{invoiceModel.variableString}" />
+                                        <p:inputText id="vs" size="10" value="#{invoiceModel.variableString}"/>
                                     </div>
 
                                     <div>
                                         Datum splatnosti celkové částky:
-                                        <p:messages autoUpdate="true" for="dt" />
+                                        <p:messages autoUpdate="true" for="dt"/>
 
                                     </div>
                                     <div>
@@ -167,7 +172,8 @@
                                     </div>
                                     <div>
 
-                                        <p:inputText size="14" id="vii" value="#{invoiceModel.taxIdentificationNumberDrawer}"/>
+                                        <p:inputText size="14" id="vii"
+                                                     value="#{invoiceModel.taxIdentificationNumberDrawer}"/>
                                     </div>
                                     <div>
                                         IČO výstavce:
@@ -175,7 +181,9 @@
 
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="ini" value="#{invoiceModel.identificationNumberDrawer}"/>
+                                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="ini"
+                                                       value="#{invoiceModel.identificationNumberDrawer}"
+                                                       thousandSeparator=""/>
                                     </div>
                                     <div>
                                         DIČ příjemce:
@@ -183,7 +191,8 @@
 
                                     </div>
                                     <div>
-                                        <p:inputText size="14" id="vir" value="#{invoiceModel.taxIdentificationNumberBene}"/>
+                                        <p:inputText size="14" id="vir"
+                                                     value="#{invoiceModel.taxIdentificationNumberBene}"/>
                                     </div>
                                     <div>
                                         IČO příjemce:
@@ -191,7 +200,9 @@
 
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="inr" value="#{invoiceModel.identificationNumberBene}"/>
+                                        <p:inputNumber decimalPlaces="0" maxValue="99999999" id="inr"
+                                                       value="#{invoiceModel.identificationNumberBene}"
+                                                       thousandSeparator=""/>
                                     </div>
                                     <div>
                                         Datum uskutečnění zdanitelného plnění:
@@ -215,7 +226,9 @@
 
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb0" value="#{invoiceModel.taxBaseAmount}"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb0"
+                                                       value="#{invoiceModel.taxBaseAmount}" thousandSeparator=" "
+                                                       decimalSeparator=","/>
 
                                     </div>
                                     <div>
@@ -224,7 +237,9 @@
 
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb1" value="#{invoiceModel.taxBaseReduced1Amount}"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb1"
+                                                       value="#{invoiceModel.taxBaseReduced1Amount}"
+                                                       thousandSeparator=" " decimalSeparator=","/>
                                     </div>
                                     <div>
                                         Částka daně v první snížené daňové sazbě v CZK včetně haléřového vyrovnání:
@@ -232,15 +247,19 @@
 
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t1" value="#{invoiceModel.taxReduced1Amount}"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t1"
+                                                       value="#{invoiceModel.taxReduced1Amount}" thousandSeparator=" "
+                                                       decimalSeparator=","/>
                                     </div>
                                     <div>
                                         Částka základu daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání:
-                                        <p:messages autoUpdate="true" for="tb2" />
+                                        <p:messages autoUpdate="true" for="tb2"/>
 
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb2" value="#{invoiceModel.taxBaseReduced2Amount}"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb2"
+                                                       value="#{invoiceModel.taxBaseReduced2Amount}"
+                                                       thousandSeparator=" " decimalSeparator=","/>
                                     </div>
                                     <div>
                                         Částka daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání.
@@ -248,7 +267,9 @@
 
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t2" value="#{invoiceModel.taxReduced2Amount}"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t2"
+                                                       value="#{invoiceModel.taxReduced2Amount}" thousandSeparator=" "
+                                                       decimalSeparator=","/>
                                     </div>
                                     <div>
                                         Částka osvobozených plnění, plnění mimo předmět DPH, plnění neplátců DPH v CZK včetně haléřového vyrovnání. V případě kladné hodnoty bez znaménka, záporná hodnota se znaménkem. Znaménko vždy explicitně určuje směr toku peněz bez ohledu na jiné atributy:
@@ -256,7 +277,9 @@
 
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="ntb" value="#{invoiceModel.nonTaxAmount}"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="ntb"
+                                                       value="#{invoiceModel.nonTaxAmount}" thousandSeparator=" "
+                                                       decimalSeparator=","/>
                                     </div>
                                     <div>
                                         Směnný kurz mezi CZK a měnou celkové částky:
@@ -264,7 +287,9 @@
 
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="fx" value="#{invoiceModel.exchangeRate}"/>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="fx"
+                                                       value="#{invoiceModel.exchangeRate}" thousandSeparator=" "
+                                                       decimalSeparator=","/>
                                     </div>
                                     <div>
                                         Počet jednotek cizí měny pro přepočet pomocí klíče FX:
@@ -272,7 +297,9 @@
 
                                     </div>
                                     <div>
-                                        <p:inputNumber decimalPlaces="0" maxValue="99999" id="fxa" value="#{invoiceModel.exchangeUnits}"/>
+                                        <p:inputNumber decimalPlaces="0" maxValue="99999" id="fxa"
+                                                       value="#{invoiceModel.exchangeUnits}" thousandSeparator=" "
+                                                       decimalSeparator=","/>
                                     </div>
                                     <div>
                                         Označení účetního software, ve kterém byl řetězec QR Faktury (faktura) vytvořen:

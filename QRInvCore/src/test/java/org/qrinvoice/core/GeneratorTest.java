@@ -24,7 +24,7 @@ public class GeneratorTest {
 
         InvoiceParam invoice = new InvoiceParam();
 
-        AccountNumber number = new AccountNumber("19", "1007001", "3030");
+        AccountNumberImpl number = new AccountNumberImpl("19", "1007001", "3030");
 
         invoice.setIBAN(number.computeIBAN());
 
@@ -43,7 +43,7 @@ public class GeneratorTest {
 
         InvoiceParam invoice = new InvoiceParam();
 
-        AccountNumber number = new AccountNumber("19", "1007001", "3030");
+        AccountNumberImpl number = new AccountNumberImpl("19", "1007001", "3030");
 
         //invoice.setCurrencyCode("CZK");
 
