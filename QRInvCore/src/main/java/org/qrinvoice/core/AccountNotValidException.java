@@ -2,10 +2,9 @@ package org.qrinvoice.core;
 
 /**
  * Created by zcg on 11.6.2016.
+ * exception if account format is not valid czech bank account number
  */
 public class AccountNotValidException extends Exception {
-    public AccountNotValidException() {
-    }
 
     public AccountNotValidException(Throwable cause) {
         super(cause);

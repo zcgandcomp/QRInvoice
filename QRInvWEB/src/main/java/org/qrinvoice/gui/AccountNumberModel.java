@@ -23,32 +23,32 @@ public class AccountNumberModel implements AccountNumber {
     private String bankCode;
 
     @Override
-    public String getAccountBase() {
-        return null;
-    }
-
-    @Override
-    public void setAccountBase(String accountBase) {
-
-    }
-
-    @Override
     public String getAccountPrefix() {
-        return null;
+        return accountPrefix;
     }
 
     @Override
     public void setAccountPrefix(String accountPrefix) {
+        this.accountPrefix = accountPrefix;
+    }
 
+    @Override
+    public String getAccountBase() {
+        return accountBase;
+    }
+
+    @Override
+    public void setAccountBase(String accountBase) {
+        this.accountBase = accountBase;
     }
 
     @Override
     public String getBankCode() {
-        return null;
+        return bankCode;
     }
 
     @Override
     public void setBankCode(String bankCode) {
-
+        this.bankCode = bankCode;
     }
 }

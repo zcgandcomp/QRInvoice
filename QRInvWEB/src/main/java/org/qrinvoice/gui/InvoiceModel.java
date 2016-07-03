@@ -1,5 +1,6 @@
 package org.qrinvoice.gui;
 
+import org.qrinvoice.core.AccountNumber;
 import org.qrinvoice.core.CheckAccountNumber;
 import org.qrinvoice.domain.DateParam;
 
@@ -85,24 +86,26 @@ public class InvoiceModel {
     private String variableString;
 
     // VII
-    // TODO validation
     @FormParam(value = "VII")
+    @Size(max = 14)
     private String taxIdentificationNumberDrawer;
 
     // INI
-//TODO validation
+
     @FormParam(value = "INI")
-    private String identificationNumberDrawer;
+    @Digits(integer = 8, fraction = 0)
+    private BigDecimal identificationNumberDrawer;
 
     //VIR
-    //TODO validation
     @FormParam(value = "VIR")
+    @Size(max = 14)
     private String taxIdentificationNumberBene;
 
     //INR
-    //TODO validation
+
     @FormParam(value = "INR")
-    private String identificationNumberBene;
+    @Digits(integer = 8, fraction = 0)
+    private BigDecimal identificationNumberBene;
 
     //DUZP
     @FormParam(value = "DUZP")
@@ -114,7 +117,6 @@ public class InvoiceModel {
     private DateParam dateOfTaxDuty;
 
     //DT
-    //TODO validation
     @FormParam(value = "DT")
     private DateParam dateOfDue;
 
@@ -171,7 +173,7 @@ public class InvoiceModel {
     // special attributes
 
     @CheckAccountNumber
-    private AccountNumberModel mAccountNumber;
+    private AccountNumber accountNumber = new AccountNumberModel();
 
 
     //ACC
@@ -258,11 +260,11 @@ public class InvoiceModel {
         this.taxIdentificationNumberDrawer = taxIdentificationNumberDrawer;
     }
 
-    public String getIdentificationNumberDrawer() {
+    public BigDecimal getIdentificationNumberDrawer() {
         return identificationNumberDrawer;
     }
 
-    public void setIdentificationNumberDrawer(String identificationNumberDrawer) {
+    public void setIdentificationNumberDrawer(BigDecimal identificationNumberDrawer) {
         this.identificationNumberDrawer = identificationNumberDrawer;
     }
 
@@ -274,11 +276,11 @@ public class InvoiceModel {
         this.taxIdentificationNumberBene = taxIdentificationNumberBene;
     }
 
-    public String getIdentificationNumberBene() {
+    public BigDecimal getIdentificationNumberBene() {
         return identificationNumberBene;
     }
 
-    public void setIdentificationNumberBene(String identificationNumberBene) {
+    public void setIdentificationNumberBene(BigDecimal identificationNumberBene) {
         this.identificationNumberBene = identificationNumberBene;
     }
 
@@ -419,11 +421,11 @@ public class InvoiceModel {
     }
 
 
-    public AccountNumberModel getAccountNumber() {
-        return mAccountNumber;
+    public AccountNumber getAccountNumber() {
+        return accountNumber;
     }
 
-    public void setAccountNumber(AccountNumberModel accountNumber) {
-        this.mAccountNumber = accountNumber;
+    public void setAccountNumber(AccountNumber accountNumber) {
+        this.accountNumber = accountNumber;
     }
 }

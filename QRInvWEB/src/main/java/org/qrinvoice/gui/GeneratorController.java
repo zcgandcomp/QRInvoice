@@ -1,10 +1,13 @@
 package org.qrinvoice.gui;
 
 
+import org.apache.log4j.Logger;
 import org.qrinvoice.core.AccountNotValidException;
 import org.qrinvoice.core.AccountNumberImpl;
+import org.qrinvoice.core.AccountNumberValidator;
 import org.qrinvoice.core.Generator;
 import org.qrinvoice.domain.InvoiceParam;
+import org.qrinvoice.helper.InvoiceMapper;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -15,6 +18,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by zcg on 27.6.2016.
@@ -24,6 +28,7 @@ import java.io.Serializable;
 @ManagedBean
 public class GeneratorController implements Serializable {
 
+    static Logger log = Logger.getLogger(GeneratorController.class.getName());
     private String qrString;
 
 
@@ -34,16 +39,18 @@ public class GeneratorController implements Serializable {
 
     public void generate(ActionEvent actionEvent) {
 
+        log.info("generate:" + model);
 
         Generator generator = new Generator();
 
-        InvoiceParam param = new InvoiceParam();
+        InvoiceParam param = InvoiceMapper.INSTANCE.invoiceModelToInvoiceParam( model );
 
         param.setCurrencyCode(model.getCurrencyCode());
 
-        // TODO mapstruct
 
 
+
+        // TODO clear QR string in case of error
         try {
 
             AccountNumberImpl accNum = new AccountNumberImpl(model.getAccountNumber().getAccountPrefix(), model.getAccountNumber().getAccountBase(), model.getAccountNumber().getBankCode());
@@ -52,26 +59,29 @@ public class GeneratorController implements Serializable {
 
             String qrString = generator.getInvoiceString(param, true);
 
-            setQrString(qrString);
-        } catch (IOException e) {
+            log.info("QR string:"+ qrString);
 
+            setQrString(qrString);
+        } catch (UnsupportedEncodingException e) {
+            log.fatal("error generating QR code",e);
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Chyba při generování", null);
             FacesContext.getCurrentInstance().addMessage(null, message);
 
         } catch (AccountNotValidException e) {
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Číslo účtu není validní", null);
+            log.fatal("error account number not valid",e);
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Číslo účtu není validní", null);
             FacesContext.getCurrentInstance().addMessage("acc1", message);
         }
-
-// todo display accuall generated QR code
-
     }
 
     public String getQrString() {
+        log.debug("getQrString:" + qrString);
         return qrString;
     }
 
     public void setQrString(String qrString) {
+
+        log.debug("setQrString:" + qrString);
         this.qrString = qrString;
     }
 

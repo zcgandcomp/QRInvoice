@@ -3,13 +3,14 @@ package org.qrinvoice.core;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.Writer;
+import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.google.zxing.qrcode.encoder.Encoder;
 import com.google.zxing.qrcode.encoder.QRCode;
-import com.sun.media.sound.InvalidFormatException;
 import net.sf.junidecode.Junidecode;
+import org.apache.log4j.Logger;
 import org.qrinvoice.constants.Constants;
 import org.qrinvoice.domain.InvoiceParam;
 
@@ -28,8 +29,9 @@ import static org.qrinvoice.constants.InvoiceAttributes.*;
  */
 public class Generator {
 
+    static Logger log = Logger.getLogger(Generator.class.getName());
 
-    public BufferedImage getQRCode(Integer size, String invoiceData) throws IOException {
+    public BufferedImage getQRCode(Integer size, String invoiceData) throws IOException,WriterException {
         if (size == null) {
             size = Constants.DEF_QR_SIZE;
         } else if (size < Constants.MIN_QR_SIZE) {
@@ -50,12 +52,13 @@ public class Generator {
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
             barsize = size / (code.getMatrix().getWidth() + 8);
             matrix = writer.encode(invoiceData, com.google.zxing.BarcodeFormat.QR_CODE, w, h, hints);
-        } catch (com.google.zxing.WriterException e) {
-            System.out.println(e.getMessage());
+        } catch (WriterException e) {
+            log.fatal("error generating QR code",e);
+            throw e;
         }
 
         if (matrix == null || barsize < 0) {
-            throw new InvalidFormatException();
+            throw new IOException("invalid format");
         }
 
         BufferedImage image = MatrixToImageWriter.toBufferedImage(matrix);

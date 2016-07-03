@@ -6,11 +6,11 @@ package org.qrinvoice.core;
  */
 public class AccountNumberImpl implements AccountNumber {
 
-    private String mAccountPrefix;
+    private String accountPrefix;
 
-    private String mAccountBase;
+    private String accountBase;
 
-    private String mBankCode;
+    private String bankCode;
 
     public AccountNumberImpl() {
         // default constructor
@@ -18,7 +18,7 @@ public class AccountNumberImpl implements AccountNumber {
 
     public boolean isEmpty() {
 
-        return (mAccountPrefix == null && mAccountBase == null && mBankCode == null);
+        return accountPrefix == null && accountBase == null && bankCode == null;
 
     }
 
@@ -30,14 +30,14 @@ public class AccountNumberImpl implements AccountNumber {
 
 
             if (accountPrefix != null) {
-                mAccountPrefix = String.format("%06d", Long.valueOf(accountPrefix));
+                this.accountPrefix = String.format("%06d", Long.valueOf(accountPrefix));
             }
 
             if (accountBase != null) {
-                mAccountBase = String.format("%010d", Long.valueOf(accountBase));
+                this.accountBase = String.format("%010d", Long.valueOf(accountBase));
             }
             if (bankCode != null) {
-                mBankCode = String.format("%04d", Long.valueOf(bankCode));
+                this.bankCode = String.format("%04d", Long.valueOf(bankCode));
             }
 
         } else {
@@ -62,8 +62,21 @@ public class AccountNumberImpl implements AccountNumber {
             throw new AccountNotValidException("Illegal acc number:" + getFormatedAccNumber());
         }
 
+        // if no attributes are filled return null
+        if (bankCode == null && accountBase == null && accountPrefix == null) {
+            return null;
+        }
+
         // calculate the check sum
-        String buf = mBankCode + mAccountPrefix + mAccountBase + "123500";
+        StringBuilder buf = new StringBuilder();
+
+        buf.append(bankCode);
+        if (accountPrefix != null) {
+            buf.append(accountPrefix);
+        }
+        buf.append(accountBase);
+        buf.append("123500");
+
         int index = 0;
         String dividend;
         int pz = -1;
@@ -86,38 +99,43 @@ public class AccountNumberImpl implements AccountNumber {
         String checksum = String.format("%02d", pz);
 
         // build the IBAN number
-        return "CZ" + checksum + mBankCode + mAccountPrefix + mAccountBase;
+        return "CZ" + checksum + bankCode + accountPrefix + accountBase;
     }
 
-
+    @Override
     public String getAccountBase() {
-        return mAccountBase;
+        return accountBase;
     }
 
+    @Override
     public void setAccountBase(String accountBase) {
 
-        this.mAccountBase = (accountBase != null) ? String.format("%010d", Long.valueOf(accountBase)) : null;
+        this.accountBase = (accountBase != null) ? String.format("%010d", Long.valueOf(accountBase)) : null;
     }
 
+    @Override
     public String getAccountPrefix() {
-        return mAccountPrefix;
+        return accountPrefix;
     }
 
+    @Override
     public void setAccountPrefix(String accountPrefix) {
 
 
-        this.mAccountPrefix = (accountPrefix != null) ? String.format("%06d", Long.valueOf(accountPrefix)) : null;
+        this.accountPrefix = (accountPrefix != null) ? String.format("%06d", Long.valueOf(accountPrefix)) : null;
     }
 
+    @Override
     public String getBankCode() {
-        return mBankCode;
+        return bankCode;
     }
 
+    @Override
     public void setBankCode(String bankCode) {
-        this.mBankCode = (bankCode != null) ? String.format("%04d", Long.valueOf(bankCode)) : null;
+        this.bankCode = (bankCode != null) ? String.format("%04d", Long.valueOf(bankCode)) : null;
     }
 
     public String getFormatedAccNumber() {
-        return mAccountPrefix + "-" + mAccountBase + "/" + mBankCode;
+        return accountPrefix + "-" + accountBase + "/" + bankCode;
     }
 }

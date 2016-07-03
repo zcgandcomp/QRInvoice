@@ -21,145 +21,135 @@ public class InvoiceParam {
 
     //ID
 
-    @FormParam(value = "id")
+
     @NotNull
     @Size(max = 40)
     private String id;
-    // @Size(max = 8, min = 8)
+
     //DD
-    @FormParam(value = "DD")
-    @NotNull
     private DateParam dateOfIssue;
 
     //AM
-    @FormParam(value = "AM")
+
     @Digits(integer = 15, fraction = 2)
     @NotNull
     private BigDecimal totalAmount;
 
     //TP
-    @FormParam(value = "TP")
+
     @Digits(integer = 1, fraction = 0)
     private Byte typeOfTax;
 
     //TD
-    @FormParam(value = "TD")
     @Digits(integer = 1, fraction = 0)
     private Byte typeOfIdentification;
 
     //SA
-    @FormParam(value = "SA")
     @Digits(integer = 1, fraction = 0)
     private Byte taxDeposit;
 
     //MSG
-    @FormParam(value = "MSG")
     @Size(max = 40)
     private String message;
 
     //ON
-    @FormParam(value = "ON")
     @Size(max = 20)
     private String orderNumber;
 
 
     //VS
-    @FormParam(value = "VA")
     @Size(max = 10)
     private String variableString;
 
     // VII
-    // TODO validation
-    @FormParam(value = "VII")
+    @Size(max = 14)
     private String taxIdentificationNumberDrawer;
 
     // INI
-//TODO validation
-    @FormParam(value = "INI")
-    private String identificationNumberDrawer;
+
+    @Digits(integer = 8, fraction = 0)
+    private BigDecimal identificationNumberDrawer;
 
     //VIR
-    //TODO validation
-    @FormParam(value = "VIR")
+
+    @Size(max = 14)
     private String taxIdentificationNumberBene;
 
     //INR
-    //TODO validation
-    @FormParam(value = "INR")
-    private String identificationNumberBene;
+
+    @Digits(integer = 8, fraction = 0)
+    private BigDecimal identificationNumberBene;
 
     //DUZP
-    @FormParam(value = "DUZP")
+
     private DateParam dateOfTax;
 
     //DPPD
-    //TODO validation
-    @FormParam(value = "DPPD")
+
     private DateParam dateOfTaxDuty;
 
     //DT
-    //TODO validation
-    @FormParam(value = "DT")
+
     private DateParam dateOfDue;
 
     //TB0
-    @FormParam(value = "TB0")
+
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxBaseAmount;
 
     // T0
-    @FormParam(value = "T0")
+
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxAmount;
 
     //TB1
-    @FormParam(value = "TB1")
+
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxBaseReduced1Amount;
 
     //T1
-    @FormParam(value = "T1")
+
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxReduced1Amount;
 
     //TB2
-    @FormParam(value = "TB2")
+
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxBaseReduced2Amount;
 
     //T2
-    @FormParam(value = "T2")
+
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxReduced2Amount;
 
     //NTB
-    @FormParam(value = "NTB")
+
     @Digits(integer = 15, fraction = 2)
     private BigDecimal nonTaxAmount;
 
     //CC
-    @FormParam(value = "CC")
+
     @Size(max = 3)
     private String currencyCode;
 
     //FX
-    @FormParam(value = "FX")
+
     @Digits(integer = 15, fraction = 2)
     private BigDecimal exchangeRate;
 
     //FXA
-    @FormParam(value = "FXA")
+
     @Digits(integer = 5, fraction = 0)
     private BigDecimal exchangeUnits;
 
     // special attributes
     //ACC
-    @FormParam(value = "ACC")
+
     @Size(max = 34)
     private String IBAN;
 
     // no code
-    @FormParam(value = "BIC")
+
     @Size(max = 11)
     private String BIC;
 
@@ -240,11 +230,11 @@ public class InvoiceParam {
     }
 
 
-    public String getDentificationNumberBene() {
+    public BigDecimal getIdentificationNumberBene() {
         return identificationNumberBene;
     }
 
-    public void setDentificationNumberBene(String dentificationNumberBene) {
+    public void setIdentificationNumberBene(BigDecimal dentificationNumberBene) {
         this.identificationNumberBene = dentificationNumberBene;
         setValueCodePair(identificationNumberBene, INR);
     }
@@ -311,11 +301,11 @@ public class InvoiceParam {
     }
 
 
-    public String getIdentificationNumberDrawer() {
+    public BigDecimal getIdentificationNumberDrawer() {
         return identificationNumberDrawer;
     }
 
-    public void setIdentificationNumberDrawer(String identificationNumberDrawer) {
+    public void setIdentificationNumberDrawer(BigDecimal identificationNumberDrawer) {
         this.identificationNumberDrawer = identificationNumberDrawer;
         setValueCodePair(identificationNumberDrawer, INI);
     }
@@ -480,6 +470,15 @@ public class InvoiceParam {
 
         this.message = message;
         setValueCodePair(message, MSG);
+    }
+
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public Map<String, Object> getParamMap() {

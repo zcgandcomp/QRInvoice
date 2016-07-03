@@ -1,5 +1,7 @@
 package org.qrinvoice.core;
 
+import org.apache.log4j.Logger;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -9,9 +11,11 @@ import javax.validation.ConstraintValidatorContext;
 
 public class AccountNumberValidator implements ConstraintValidator<CheckAccountNumber, AccountNumber> {
 
+    static Logger log = Logger.getLogger(AccountNumberValidator.class.getName());
+
     @Override
     public void initialize(CheckAccountNumber constraintAnnotation) {
-
+        // empty initialization
     }
 
 
@@ -26,7 +30,7 @@ public class AccountNumberValidator implements ConstraintValidator<CheckAccountN
      */
     private Boolean checkWeight(String numberPart, Integer[] weights) {
 
-        Boolean result = true;
+        Boolean result;
         int sum = 0;
         // count shift so we can loop string backwards and count weights in each position
         int shift = weights.length - numberPart.length();
@@ -52,7 +56,7 @@ public class AccountNumberValidator implements ConstraintValidator<CheckAccountN
      */
     private Boolean validateAccountPrefix(String accountPrefix) {
 
-        Boolean result = true;
+        Boolean result;
 
         // prefix is optional so if is ommited it's fine
         if (accountPrefix == null) {
@@ -126,6 +130,7 @@ public class AccountNumberValidator implements ConstraintValidator<CheckAccountN
      */
     public Boolean isAccountNumberValid(String accountPrefix, String accountBase, String bankCode) {
 
+
         Boolean result = true;
 
         // everything empty is valid
@@ -160,6 +165,8 @@ public class AccountNumberValidator implements ConstraintValidator<CheckAccountN
 
     @Override
     public boolean isValid(AccountNumber value, ConstraintValidatorContext context) {
+
+        log.info("isValid:" + value + " context:" + context);
 
         if (value == null) {
             return true;

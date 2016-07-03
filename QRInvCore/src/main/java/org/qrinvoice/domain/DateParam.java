@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by zcg on 14.6.2016.
  * special type for conversion to DATE param
  */
-public class DateParam {
+public class DateParam extends Date{
 
 
     // Declare the date format for the parsing to be correct
@@ -22,22 +22,16 @@ public class DateParam {
      * @param dateStr string for date creation it will be parsed by yyyyMMdd format
      * @throws ParseException if string cannot be parset into Date
      */
-    // TODO throw business exception if parsing Exception ocurrs
+    // TODO throw business exception if parsing Exception occurs
     public DateParam(String dateStr) throws ParseException {
 
         date = new Date(df.parse(dateStr).getTime());
 
     }
 
-
-    public Date getDate() {
-        return date;
-    }
-
     @Override
     public String toString() {
         if (date != null) {
-
             return df.format(date);
         } else {
             return "";

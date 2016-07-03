@@ -70,6 +70,8 @@ public class InvoiceAttributes {
     public static final String X_URL = "X-URL";
 
     //MIME-type: application/x-shortinvoicedescriptor
+    // hidden default constructor
+    private InvoiceAttributes() {}
 
 
 }
