@@ -11,8 +11,6 @@ import com.google.zxing.qrcode.encoder.Encoder;
 import com.google.zxing.qrcode.encoder.QRCode;
 import net.sf.junidecode.Junidecode;
 import org.apache.log4j.Logger;
-import org.qrinvoice.constants.Constants;
-import org.qrinvoice.domain.InvoiceParam;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -21,7 +19,7 @@ import java.net.URLEncoder;
 import java.util.EnumMap;
 import java.util.Map;
 
-import static org.qrinvoice.constants.InvoiceAttributes.*;
+import static org.qrinvoice.core.InvoiceAttributesConstants.*;
 
 /**
  * Created by zcg on 29.5.2016.
@@ -117,7 +115,7 @@ public class Generator {
     }
 
 
-    public String getInvoiceString(InvoiceParam invoice, boolean transliterate) throws UnsupportedEncodingException {
+    public String getInvoiceString(InvoiceParamDomain invoice, boolean transliterate) throws UnsupportedEncodingException {
 
         StringBuffer buf = new StringBuffer();
 

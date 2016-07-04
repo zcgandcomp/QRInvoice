@@ -4,9 +4,8 @@ package org.qrinvoice.gui;
 import org.apache.log4j.Logger;
 import org.qrinvoice.core.AccountNotValidException;
 import org.qrinvoice.core.AccountNumberImpl;
-import org.qrinvoice.core.AccountNumberValidator;
 import org.qrinvoice.core.Generator;
-import org.qrinvoice.domain.InvoiceParam;
+import org.qrinvoice.core.InvoiceParamDomain;
 import org.qrinvoice.helper.InvoiceMapper;
 
 import javax.enterprise.context.SessionScoped;
@@ -16,7 +15,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 
@@ -43,14 +41,14 @@ public class GeneratorController implements Serializable {
 
         Generator generator = new Generator();
 
-        InvoiceParam param = InvoiceMapper.INSTANCE.invoiceModelToInvoiceParam( model );
+        InvoiceParamDomain param = InvoiceMapper.INSTANCE.invoiceModelToInvoiceParam( model );
 
         param.setCurrencyCode(model.getCurrencyCode());
 
 
 
 
-        // TODO clear QR string in case of error
+
         try {
 
             AccountNumberImpl accNum = new AccountNumberImpl(model.getAccountNumber().getAccountPrefix(), model.getAccountNumber().getAccountBase(), model.getAccountNumber().getBankCode());

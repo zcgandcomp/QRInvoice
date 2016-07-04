@@ -1,7 +1,7 @@
 package org.qrinvoice.gui;
 
 import org.apache.log4j.Logger;
-import org.qrinvoice.domain.DateParam;
+import org.qrinvoice.core.DateParam;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

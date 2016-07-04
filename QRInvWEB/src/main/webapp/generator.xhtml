@@ -25,53 +25,60 @@
             <div id="wrapper" class="clearfix">
                 <div id="content-full" class="grid col-940">
                     <div class="page type-page status-publish hentry">
-
                         <h:outputLabel styleClass="entry-title post-title" value="QR faktura"/>
                         <p>generování QR kódu faktury</p>
                         <h:form id="mainform">
                             <div>
                                 <div class="widget-wrapper widget_text" style="width: 310px; float: left">
-                                    <p:commandButton value="Generuj" actionListener="#{generatorController.generate}"
-                                                     ajax="false"/>
+                                    <button type="reset" value="Reset"
+                                            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                                        <span class="ui-button-text ui-c">
+                                        Smaž
+                                    </span>
+                                    </button>
+
+                                    <p:commandButton value="Generovat QR Fakturu"
+                                                     actionListener="#{generatorController.generate}"
+                                                     ajax="false" update="mainform"/>
                                     <div>
-                                        Jednoznačné označení dokladu:
-                                        <span style="color: #ff4444;">*</span>
-                                        <p:messages autoUpdate="true" for="id"/>
+                                        <p:outputLabel value="Jednoznačné označení dokladu:" for="idx"/>
+
+                                        <p:messages for="idx" display="text"/>
                                     </div>
                                     <div>
-                                        <p:inputText id="id" size="40" value="#{invoiceModel.id}"/>
+                                        <p:inputText id="idx" size="40" value="#{invoiceModel.id}"/>
                                     </div>
                                     <div>
-                                        Číslo účtu:
-                                        <span style="color: #ff4444;">*</span>
+                                        <p:outputLabel value="Číslo účtu:" for="acc2"/>
+
                                         <p:messages autoUpdate="true" for="acc1"/>
                                         <p:messages autoUpdate="true" for="acc2"/>
                                         <p:messages autoUpdate="true" for="bic"/>
                                     </div>
                                     <div>
                                         <div style="float: left">
-                                        <p:inputText size="6" id="acc1"
-                                                     value="#{invoiceModel.accountNumber.accountPrefix}"/> -
+                                            <p:inputText size="6" id="acc1"
+                                                         value="#{invoiceModel.accountNumber.accountPrefix}"/> -
                                         </div>
                                         <div style="float: left">
-                                        <p:inputText id="acc2" size="10"
-                                                     value="#{invoiceModel.accountNumber.accountBase}"/> /
+                                            <p:inputText id="acc2" size="10"
+                                                         value="#{invoiceModel.accountNumber.accountBase}"/> /
                                         </div>
                                         <div style="float: right">
-                                        <p:inputText
-                                                size="4"
-                                                id="bic" value="#{invoiceModel.accountNumber.bankCode}"/>
+                                            <p:inputText
+                                                    size="4"
+                                                    id="bic" value="#{invoiceModel.accountNumber.bankCode}"/>
                                         </div>
                                     </div>
                                     <div>
-                                        Částka a měna:
+                                        <p:outputLabel value="Částka a měna:" for="am"/>
                                         <p:messages autoUpdate="true" for="am"/>
                                     </div>
                                     <div>
                                         <div style="float: left">
-                                        <p:inputNumber id="am" decimalPlaces="2" maxValue="999999999999999"
-                                                       value="#{invoiceModel.totalAmount}" thousandSeparator=" "
-                                                       decimalSeparator=","/>
+                                            <p:inputNumber id="am" decimalPlaces="2" maxValue="999999999999999"
+                                                           value="#{invoiceModel.totalAmount}" thousandSeparator=" "
+                                                           decimalSeparator=","/>
                                         </div>
                                         <p:selectOneMenu id="cc" value="#{invoiceModel.currencyCode}">
                                             <f:selectItem itemValue="CZK" itemLabel="CZK"/>
@@ -80,7 +87,7 @@
                                         </p:selectOneMenu>
                                     </div>
                                     <div>
-                                        Datum vystavení dokladu:
+                                        <p:outputLabel value="Datum vystavení dokladu:" for="dd"/>
                                         <p:messages autoUpdate="true" for="dd"/>
                                     </div>
                                     <div>
@@ -90,14 +97,14 @@
                                         </p:calendar>
                                     </div>
                                     <div>
-                                        VS:
+                                        <p:outputLabel value="VS:" for="vs"/>
                                         <p:messages autoUpdate="true" for="vs"/>
                                     </div>
                                     <div>
                                         <p:inputText id="vs" size="10" value="#{invoiceModel.variableString}"/>
                                     </div>
                                     <div>
-                                        Datum splatnosti celkové částky:
+                                        <p:outputLabel value="Datum splatnosti celkové částky:" for="dt"/>
                                         <p:messages autoUpdate="true" for="dt"/>
                                     </div>
                                     <div>
@@ -106,7 +113,8 @@
                                                 converterId="org.qrinvoice.gui.DateParamConverter"/> </p:calendar>
                                     </div>
                                     <div>
-                                        Zpráva pro příjemce / Textový popis předmětu fakturace:
+                                        <p:outputLabel value="Zpráva pro příjemce / Textový popis předmětu fakturace:"
+                                                       for="msg"/>
                                         <p:messages autoUpdate="true" for="msg"/>
                                     </div>
                                     <div>
@@ -114,7 +122,7 @@
                                     </div>
 
                                     <div>
-                                        Identifikace typu daňového plnění:
+                                        <p:outputLabel value="Identifikace typu daňového plnění:" for="tp"/>
                                         <p:messages autoUpdate="true" for="tp"/>
                                     </div>
                                     <div>
@@ -126,7 +134,7 @@
                                         </p:selectOneMenu>
                                     </div>
                                     <div>
-                                        Identifikace typu dokladu:
+                                        <p:outputLabel value="Identifikace typu dokladu:" for="td"/>
                                         <p:messages autoUpdate="true" for="td"/>
                                     </div>
                                     <div>
@@ -142,7 +150,9 @@
                                         </p:selectOneMenu>
                                     </div>
                                     <div>
-                                        Příznak, který rozlišuje, zda faktura obsahuje zúčtování záloh:
+                                        <p:outputLabel
+                                                value="Příznak, který rozlišuje, zda faktura obsahuje zúčtování záloh:"
+                                                for="sa"/>
                                         <p:messages autoUpdate="true" for="sa"/>
                                     </div>
                                     <div>
@@ -153,14 +163,16 @@
                                         </p:selectOneMenu>
                                     </div>
                                     <div>
-                                        Číslo (označení) objednávky, k níž se vztahuje tento účetní doklad:
+                                        <p:outputLabel
+                                                value="Číslo (označení) objednávky, k níž se vztahuje tento účetní doklad:"
+                                                for="on"/>
                                         <p:messages autoUpdate="true" for="on"/>
                                     </div>
                                     <div>
                                         <p:inputText id="on" size="20" value="#{invoiceModel.orderNumber}"/>
                                     </div>
                                     <div>
-                                        DIČ výstavce:
+                                        <p:outputLabel value="DIČ výstavce:" for="vii"/>
                                         <p:messages autoUpdate="true" for="vii"/>
                                     </div>
                                     <div>
@@ -168,7 +180,7 @@
                                                      value="#{invoiceModel.taxIdentificationNumberDrawer}"/>
                                     </div>
                                     <div>
-                                        IČO výstavce:
+                                        <p:outputLabel value="IČO výstavce:" for="ini"/>
                                         <p:messages autoUpdate="true" for="ini"/>
                                     </div>
                                     <div>
@@ -177,7 +189,7 @@
                                                        thousandSeparator=""/>
                                     </div>
                                     <div>
-                                        DIČ příjemce:
+                                        <p:outputLabel value="DIČ příjemce:" for="vir"/>
                                         <p:messages autoUpdate="true" for="vir"/>
                                     </div>
                                     <div>
@@ -185,7 +197,7 @@
                                                      value="#{invoiceModel.taxIdentificationNumberBene}"/>
                                     </div>
                                     <div>
-                                        IČO příjemce:
+                                        <p:outputLabel value="IČO příjemce:" for="inr"/>
                                         <p:messages autoUpdate="true" for="inr"/>
                                     </div>
                                     <div>
@@ -194,7 +206,7 @@
                                                        thousandSeparator=""/>
                                     </div>
                                     <div>
-                                        Datum uskutečnění zdanitelného plnění:
+                                        <p:outputLabel value="Datum uskutečnění zdanitelného plnění:" for="duzp"/>
                                         <p:messages autoUpdate="true" for="duzp"/>
                                     </div>
                                     <div>
@@ -203,7 +215,7 @@
                                                 converterId="org.qrinvoice.gui.DateParamConverter"/></p:calendar>
                                     </div>
                                     <div>
-                                        Datum povinnosti přiznat daň:
+                                        <p:outputLabel value="Datum povinnosti přiznat daň:" for="dppd"/>
                                         <p:messages autoUpdate="true" for="dppd"/>
                                     </div>
                                     <div>
@@ -212,7 +224,9 @@
                                                 converterId="org.qrinvoice.gui.DateParamConverter"/></p:calendar>
                                     </div>
                                     <div>
-                                        Částka základu daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:
+                                        <p:outputLabel
+                                                value="Částka základu daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:"
+                                                for="tb0"/>
                                         <p:messages autoUpdate="true" for="tb0"/>
                                     </div>
                                     <div>
@@ -222,7 +236,9 @@
 
                                     </div>
                                     <div>
-                                        Částka daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:
+                                        <p:outputLabel
+                                                value="Částka daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:"
+                                                for="tb1"/>
                                         <p:messages autoUpdate="true" for="tb1"/>
                                     </div>
                                     <div>
@@ -231,7 +247,9 @@
                                                        thousandSeparator=" " decimalSeparator=","/>
                                     </div>
                                     <div>
-                                        Částka daně v první snížené daňové sazbě v CZK včetně haléřového vyrovnání:
+                                        <p:outputLabel
+                                                value="Částka daně v první snížené daňové sazbě v CZK včetně haléřového vyrovnání:"
+                                                for="t1"/>
                                         <p:messages autoUpdate="true" for="t1"/>
                                     </div>
                                     <div>
@@ -240,7 +258,9 @@
                                                        decimalSeparator=","/>
                                     </div>
                                     <div>
-                                        Částka základu daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání:
+                                        <p:outputLabel
+                                                value="Částka základu daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání:"
+                                                for="tb2"/>
                                         <p:messages autoUpdate="true" for="tb2"/>
                                     </div>
                                     <div>
@@ -249,7 +269,9 @@
                                                        thousandSeparator=" " decimalSeparator=","/>
                                     </div>
                                     <div>
-                                        Částka daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání.
+                                        <p:outputLabel
+                                                value="Částka daně ve druhé snížené daňové sazbě v CZK včetně haléřového vyrovnání."
+                                                for="t2"/>
                                         <p:messages autoUpdate="true" for="t2"/>
                                     </div>
                                     <div>
@@ -258,7 +280,9 @@
                                                        decimalSeparator=","/>
                                     </div>
                                     <div>
-                                        Částka osvobozených plnění, plnění mimo předmět DPH, plnění neplátců DPH v CZK včetně haléřového vyrovnání. V případě kladné hodnoty bez znaménka, záporná hodnota se znaménkem. Znaménko vždy explicitně určuje směr toku peněz bez ohledu na jiné atributy:
+                                        <p:outputLabel
+                                                value="Částka osvobozených plnění, plnění mimo předmět DPH, plnění neplátců DPH v CZK včetně haléřového vyrovnání. V případě kladné hodnoty bez znaménka, záporná hodnota se znaménkem. Znaménko vždy explicitně určuje směr toku peněz bez ohledu na jiné atributy:"
+                                                for="ntb"/>
                                         <p:messages autoUpdate="true" for="ntb"/>
                                     </div>
                                     <div>
@@ -267,7 +291,7 @@
                                                        decimalSeparator=","/>
                                     </div>
                                     <div>
-                                        Směnný kurz mezi CZK a měnou celkové částky:
+                                        <p:outputLabel value="Směnný kurz mezi CZK a měnou celkové částky:" for="fx"/>
                                         <p:messages autoUpdate="true" for="fx"/>
                                     </div>
                                     <div>
@@ -276,7 +300,8 @@
                                                        decimalSeparator=","/>
                                     </div>
                                     <div>
-                                        Počet jednotek cizí měny pro přepočet pomocí klíče FX:
+                                        <p:outputLabel value="Počet jednotek cizí měny pro přepočet pomocí klíče FX:"
+                                                       for="fxa"/>
                                         <p:messages autoUpdate="true" for="fxa"/>
                                     </div>
                                     <div>
@@ -285,35 +310,41 @@
                                                        decimalSeparator=","/>
                                     </div>
                                     <div>
-                                        Označení účetního software, ve kterém byl řetězec QR Faktury (faktura) vytvořen:
+                                        <p:outputLabel
+                                                value="Označení účetního software, ve kterém byl řetězec QR Faktury (faktura) vytvořen:"
+                                                for="x-sw"/>
                                         <p:messages autoUpdate="true" for="x-sw"/>
                                     </div>
                                     <div>
                                         <p:inputText id="x-sw" value="#{invoiceModel.softwareOrigin}"/>
                                     </div>
                                     <div>
-                                        Údaje pro získání účetních údajů (případně faktury) ve strukturovaném formátu z on-line uložiště:
+                                        <p:outputLabel
+                                                value="Údaje pro získání účetních údajů (případně faktury) ve strukturovaném formátu z on-line uložiště:"
+                                                for="x-url"/>
                                         <p:messages autoUpdate="true" for="x-url"/>
                                     </div>
                                     <div>
                                         <p:inputText id="x-url" value="#{invoiceModel.url}"/>
                                     </div>
-                                    <p:commandButton value="Generuj"
+                                    <p:commandButton value="Generovat QR Fakturu"
                                                      actionListener="#{generatorController.generate}"
                                                      styleClass="ui-priority-primary"
                                                      ajax="false"/>
                                 </div>
                                 <div class="widget-wrapper widget_text"
                                      style="width: 500px; margin-left: 20px; float: right; height: 500px; background-color: white;">
-                                    <p:messages autoUpdate="true"/>
+                                    <p:messages autoUpdate="true" closable="true"/>
                                     <p:barcode value="#{generatorController.qrString}" type="qr" id="qrcode"/>
                                     <p:outputLabel value="#{generatorController.qrString}" id="qrstring"/>
                                     <div style="text-align: center; margin-top: 20px" id="welcomediv">
                                         <em>
-                                            Zadejte fakturační údaje do formuláře a klikněte na tlačítko
-                                        <br/>
-                                        <strong>Generovat QR Fakturu</strong>
-                                        .
+                                            <p:outputLabel
+                                                    value="Zadejte fakturační údaje do formuláře a klikněte na tlačítko"/>
+                                            <br/>
+                                            <p:outputLabel
+                                                    value="Generovat QR Fakturu"/>
+                                            .
                                         </em>
                                     </div>
                                 </div>

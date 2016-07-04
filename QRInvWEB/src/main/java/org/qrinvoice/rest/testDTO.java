@@ -1,6 +1,6 @@
 package org.qrinvoice.rest;
 
-import org.qrinvoice.domain.DateParam;
+import org.qrinvoice.core.DateParam;
 
 import javax.ws.rs.FormParam;
 import java.math.BigDecimal;

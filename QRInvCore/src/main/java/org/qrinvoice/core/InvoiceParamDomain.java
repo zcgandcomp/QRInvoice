@@ -1,4 +1,4 @@
-package org.qrinvoice.domain;
+package org.qrinvoice.core;
 
 
 import javax.validation.constraints.Digits;
@@ -10,14 +10,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.qrinvoice.constants.InvoiceAttributes.*;
+import static org.qrinvoice.core.InvoiceAttributesConstants.*;
 
 /**
  * Created by zcg on 5.6.2016.
  * holder for invoice data
  */
 
-public class InvoiceParam {
+public class InvoiceParamDomain {
 
     //ID
 

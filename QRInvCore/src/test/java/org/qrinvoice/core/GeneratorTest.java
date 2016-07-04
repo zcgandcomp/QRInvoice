@@ -2,8 +2,6 @@ package org.qrinvoice.core;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
-import org.qrinvoice.domain.DateParam;
-import org.qrinvoice.domain.InvoiceParam;
 
 import java.io.UnsupportedEncodingException;
 
@@ -22,7 +20,7 @@ public class GeneratorTest {
         Generator generator = new Generator();
 
 
-        InvoiceParam invoice = new InvoiceParam();
+        InvoiceParamDomain invoice = new InvoiceParamDomain();
 
         AccountNumberImpl number = new AccountNumberImpl("19", "1007001", "3030");
 
@@ -41,7 +39,7 @@ public class GeneratorTest {
 
         Generator generator = new Generator();
 
-        InvoiceParam invoice = new InvoiceParam();
+        InvoiceParamDomain invoice = new InvoiceParamDomain();
 
         AccountNumberImpl number = new AccountNumberImpl("19", "1007001", "3030");
 

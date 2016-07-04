@@ -3,7 +3,7 @@ package org.qrinvoice.rest;
 import org.apache.log4j.Logger;
 import org.jboss.resteasy.annotations.Form;
 import org.qrinvoice.core.Generator;
-import org.qrinvoice.domain.InvoiceParam;
+import org.qrinvoice.core.InvoiceParamDomain;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -33,12 +33,13 @@ public class QRInvoiceGeneratorResource {
     @Path("string")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 //    @Produces("application/x-shortinvoicedescriptor")
-    public String generateInvoiceString(@Form InvoiceParam invoiceParam, @FormParam("transliterate") @DefaultValue("true") Boolean transliterate) {
+    public String generateInvoiceString(@Form InvoiceParamDomain invoiceParamDomain, @FormParam("transliterate") @DefaultValue("true") Boolean transliterate) {
 
+        // TODO add CZK as default value
         Generator generator = new Generator();
         try {
 
-            return generator.getInvoiceString(invoiceParam, transliterate);
+            return generator.getInvoiceString(invoiceParamDomain, transliterate);
         } catch (UnsupportedEncodingException ex) {
             // TODO throw business exception
             log.fatal("unable to unmarshall params", ex);

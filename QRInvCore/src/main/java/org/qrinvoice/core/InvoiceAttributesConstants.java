@@ -1,4 +1,4 @@
-package org.qrinvoice.constants;
+package org.qrinvoice.core;
 
 /**
  * Created by zcg on 5.6.2016.
@@ -6,7 +6,7 @@ package org.qrinvoice.constants;
  * @see http://qr-faktura.cz/popis-formatu
  */
 // TODO make it an enum
-public class InvoiceAttributes {
+public class InvoiceAttributesConstants {
 
 
     public static final String PREFIX = "SID*";
@@ -71,7 +71,7 @@ public class InvoiceAttributes {
 
     //MIME-type: application/x-shortinvoicedescriptor
     // hidden default constructor
-    private InvoiceAttributes() {}
+    private InvoiceAttributesConstants() {}
 
 
 }

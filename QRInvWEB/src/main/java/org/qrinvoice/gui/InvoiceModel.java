@@ -2,7 +2,7 @@ package org.qrinvoice.gui;
 
 import org.qrinvoice.core.AccountNumber;
 import org.qrinvoice.core.CheckAccountNumber;
-import org.qrinvoice.domain.DateParam;
+import org.qrinvoice.core.DateParam;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -23,20 +23,20 @@ public class InvoiceModel {
     //ID
 
     @FormParam(value = "id")
-    @NotNull
+    @NotNull(message = "není vyplněné")
     @Size(max = 40)
     private String id;
 
 
     //DD
     @FormParam(value = "DD")
-    @NotNull
+    @NotNull(message = "není vyplněné")
     private DateParam dateOfIssue;
 
     //AM
     @FormParam(value = "AM")
     @Digits(integer = 15, fraction = 2)
-    @NotNull
+    @NotNull(message = "nejsou vyplněné")
     private BigDecimal totalAmount;
 
     //TP

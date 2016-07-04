@@ -1,9 +1,8 @@
 package org.qrinvoice.helper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.qrinvoice.domain.InvoiceParam;
+import org.qrinvoice.core.InvoiceParamDomain;
 import org.qrinvoice.gui.InvoiceModel;
 
 /**
@@ -17,7 +16,7 @@ public interface  InvoiceMapper {
 
     // TODO compute IBAN using mapstruct
     //@Mapping(source = "xxx", target = "yyy")
-    InvoiceParam invoiceModelToInvoiceParam(InvoiceModel invoice);
+    InvoiceParamDomain invoiceModelToInvoiceParam(InvoiceModel invoice);
 
 
 }

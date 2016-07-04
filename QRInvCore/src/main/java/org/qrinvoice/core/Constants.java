@@ -1,4 +1,4 @@
-package org.qrinvoice.constants;
+package org.qrinvoice.core;
 
 /**
  * Created by zcg on 29.5.2016.

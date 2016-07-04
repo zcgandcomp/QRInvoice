@@ -1,4 +1,4 @@
-package org.qrinvoice.domain;
+package org.qrinvoice.core;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by zcg on 14.6.2016.
  * special type for conversion to DATE param
  */
-public class DateParam extends Date{
+public class DateParam {
 
 
     // Declare the date format for the parsing to be correct
@@ -27,6 +27,10 @@ public class DateParam extends Date{
 
         date = new Date(df.parse(dateStr).getTime());
 
+    }
+
+    public Date getDate(){
+        return date;
     }
 
     @Override
