@@ -1,5 +1,6 @@
 package org.qrinvoice.core;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,11 +9,11 @@ import java.util.Date;
  * Created by zcg on 14.6.2016.
  * special type for conversion to DATE param
  */
-public class DateParam {
+public class DateParam implements Serializable{
 
 
     // Declare the date format for the parsing to be correct
-    private SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+    private transient SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
     private Date date;
 
 

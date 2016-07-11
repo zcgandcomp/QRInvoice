@@ -4,58 +4,67 @@ import org.qrinvoice.core.AccountNumber;
 import org.qrinvoice.core.CheckAccountNumber;
 import org.qrinvoice.core.DateParam;
 
-import javax.enterprise.context.RequestScoped;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
+import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.ws.rs.FormParam;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.QueryParam;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * Created by zcg on 27.6.2016.
  */
+// Managed Bean has to be there because @RequestScoped annotation - JSF part of application
+@ManagedBean
 @Named("invoiceModel")
+// this has to be from jsf package otherwise resteasy will fail to properly use bean
 @RequestScoped
-public class InvoiceModel {
+public class InvoiceModel  implements Serializable {
 
 
     //ID
 
-    @FormParam(value = "id")
+    @QueryParam(value = "id")
     @NotNull(message = "není vyplněné")
     @Size(max = 40)
     private String id;
 
 
     //DD
-    @FormParam(value = "DD")
+    @QueryParam(value = "DD")
     @NotNull(message = "není vyplněné")
     private DateParam dateOfIssue;
 
     //AM
-    @FormParam(value = "AM")
+    @QueryParam(value = "AM")
     @Digits(integer = 15, fraction = 2)
     @NotNull(message = "nejsou vyplněné")
     private BigDecimal totalAmount;
 
     //TP
-    @FormParam(value = "TP")
+    @QueryParam(value = "TP")
     @Digits(integer = 1, fraction = 0)
     private Byte typeOfTax;
 
     //TD
-    @FormParam(value = "TD")
+    @QueryParam(value = "TD")
     @Digits(integer = 1, fraction = 0)
     private Byte typeOfIdentification;
 
     //SA
-    @FormParam(value = "SA")
+    @QueryParam(value = "SA")
     @Digits(integer = 1, fraction = 0)
     private Byte taxDeposit;
 
     //MSG
-    @FormParam(value = "MSG")
+    @QueryParam(value = "MSG")
     @Size(max = 40)
     private String message;
 
@@ -76,123 +85,125 @@ public class InvoiceModel {
     }
 
     //ON
-    @FormParam(value = "ON")
+    @QueryParam(value = "ON")
     @Size(max = 20)
     private String orderNumber;
 
     //VS
-    @FormParam(value = "VA")
+    @QueryParam(value = "VA")
     @Size(max = 10)
     private String variableString;
 
     // VII
-    @FormParam(value = "VII")
+    @QueryParam(value = "VII")
     @Size(max = 14)
     private String taxIdentificationNumberDrawer;
 
     // INI
 
-    @FormParam(value = "INI")
+    @QueryParam(value = "INI")
     @Digits(integer = 8, fraction = 0)
     private BigDecimal identificationNumberDrawer;
 
     //VIR
-    @FormParam(value = "VIR")
+    @QueryParam(value = "VIR")
     @Size(max = 14)
     private String taxIdentificationNumberBene;
 
     //INR
 
-    @FormParam(value = "INR")
+    @QueryParam(value = "INR")
     @Digits(integer = 8, fraction = 0)
     private BigDecimal identificationNumberBene;
 
     //DUZP
-    @FormParam(value = "DUZP")
+    @QueryParam(value = "DUZP")
     private DateParam dateOfTax;
 
     //DPPD
     //TODO validation
-    @FormParam(value = "DPPD")
+    @QueryParam(value = "DPPD")
     private DateParam dateOfTaxDuty;
 
     //DT
-    @FormParam(value = "DT")
+    @QueryParam(value = "DT")
     private DateParam dateOfDue;
 
     //TB0
-    @FormParam(value = "TB0")
+    @QueryParam(value = "TB0")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxBaseAmount;
 
     // T0
-    @FormParam(value = "T0")
+    @QueryParam(value = "T0")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxAmount;
 
     //TB1
-    @FormParam(value = "TB1")
+    @QueryParam(value = "TB1")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxBaseReduced1Amount;
 
     //T1
-    @FormParam(value = "T1")
+    @QueryParam(value = "T1")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxReduced1Amount;
 
     //TB2
-    @FormParam(value = "TB2")
+    @QueryParam(value = "TB2")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxBaseReduced2Amount;
 
     //T2
-    @FormParam(value = "T2")
+    @QueryParam(value = "T2")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxReduced2Amount;
 
     //NTB
-    @FormParam(value = "NTB")
+    @QueryParam(value = "NTB")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal nonTaxAmount;
 
     //CC
-    @FormParam(value = "CC")
+    @DefaultValue("CZK")
+    @QueryParam(value = "CC")
     @Size(max = 3)
     private String currencyCode;
 
     //FX
-    @FormParam(value = "FX")
+    @QueryParam(value = "FX")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal exchangeRate;
 
     //FXA
-    @FormParam(value = "FXA")
+    @QueryParam(value = "FXA")
     @Digits(integer = 5, fraction = 0)
     private BigDecimal exchangeUnits;
 
     // special attributes
 
     @CheckAccountNumber
-    private AccountNumber accountNumber = new AccountNumberModel();
+    @Valid
+    private AccountNumberModel accountNumber;
 
 
     //ACC
-    @FormParam(value = "ACC")
+    @QueryParam(value = "ACC")
     @Size(max = 34)
     private String IBAN;
 
     // no code
-    @FormParam(value = "BIC")
+    @QueryParam(value = "BIC")
     @Size(max = 11)
     private String BIC;
 
     //X-SW
-    @FormParam(value = "X-SW")
+    @QueryParam(value = "X-SW")
     @Size(max = 30)
     private String softwareOrigin;
 
     //X-URL
-    @FormParam(value = "X-URL")
+    @QueryParam(value = "X-URL")
     @Size(max = 70)
     private String url;
 
@@ -425,7 +436,7 @@ public class InvoiceModel {
         return accountNumber;
     }
 
-    public void setAccountNumber(AccountNumber accountNumber) {
+    public void setAccountNumber(AccountNumberModel accountNumber) {
         this.accountNumber = accountNumber;
     }
 }

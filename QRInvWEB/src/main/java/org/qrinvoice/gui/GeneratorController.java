@@ -37,17 +37,11 @@ public class GeneratorController implements Serializable {
 
     public void generate(ActionEvent actionEvent) {
 
-        log.info("generate:" + model);
+        log.info("generate:" + actionEvent);
 
         Generator generator = new Generator();
 
-        InvoiceParamDomain param = InvoiceMapper.INSTANCE.invoiceModelToInvoiceParam( model );
-
-        param.setCurrencyCode(model.getCurrencyCode());
-
-
-
-
+        InvoiceParamDomain param = InvoiceMapper.INSTANCE.invoiceModelToInvoiceParam(model);
 
         try {
 
@@ -55,18 +49,15 @@ public class GeneratorController implements Serializable {
 
             param.setIBAN(accNum.computeIBAN());
 
-            String qrString = generator.getInvoiceString(param, true);
 
-            log.info("QR string:"+ qrString);
-
-            setQrString(qrString);
+            setQrString(generator.getInvoiceString(param, true));
         } catch (UnsupportedEncodingException e) {
-            log.fatal("error generating QR code",e);
+            log.fatal("error generating QR code", e);
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Chyba při generování", null);
             FacesContext.getCurrentInstance().addMessage(null, message);
 
         } catch (AccountNotValidException e) {
-            log.fatal("error account number not valid",e);
+            log.fatal("error account number not valid", e);
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Číslo účtu není validní", null);
             FacesContext.getCurrentInstance().addMessage("acc1", message);
         }

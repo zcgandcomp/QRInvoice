@@ -14,11 +14,13 @@ import static org.qrinvoice.core.InvoiceAttributesConstants.*;
 
 /**
  * Created by zcg on 5.6.2016.
- * holder for invoice data
+ * holder for invoice data, internal
+ *
  */
 
 public class InvoiceParamDomain {
 
+    // TODO validation
     //ID
 
 
@@ -163,7 +165,7 @@ public class InvoiceParamDomain {
     @Size(max = 70)
     private String url;
 
-    private Map<String, Object> paramMap = new HashMap<String, Object>();
+    private Map<String, Object> paramMap = new HashMap<>();
 
     /**
      * add parameter to internal map of
@@ -205,7 +207,7 @@ public class InvoiceParamDomain {
 
     public void setDateOfIssue(DateParam dateOfIssue) {
         this.dateOfIssue = dateOfIssue;
-        setValueCodePair(dateOfIssue, DT);
+        setValueCodePair(dateOfIssue, DD);
     }
 
 

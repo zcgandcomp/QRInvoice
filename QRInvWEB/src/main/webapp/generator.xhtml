@@ -334,9 +334,15 @@
                                 </div>
                                 <div class="widget-wrapper widget_text"
                                      style="width: 500px; margin-left: 20px; float: right; height: 500px; background-color: white;">
-                                    <p:messages autoUpdate="true" closable="true"/>
-                                    <p:barcode value="#{generatorController.qrString}" type="qr" id="qrcode"/>
-                                    <p:outputLabel value="#{generatorController.qrString}" id="qrstring"/>
+                                    <div>
+                                        <p:messages autoUpdate="true" closable="true"/>
+                                    </div>
+                                    <div>
+                                        <p:barcode value="#{generatorController.qrString}" type="qr" id="qrcode"/>
+                                    </div>
+                                    <div>
+                                        <p:outputLabel value="#{generatorController.qrString}" id="qrstring"/>
+                                    </div>
                                     <div style="text-align: center; margin-top: 20px" id="welcomediv">
                                         <em>
                                             <p:outputLabel

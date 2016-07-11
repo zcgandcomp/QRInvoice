@@ -1,6 +1,7 @@
 package org.qrinvoice.gui;
 
 import org.qrinvoice.core.AccountNumber;
+import org.qrinvoice.core.CheckAccountNumber;
 
 import javax.validation.constraints.Size;
 import javax.ws.rs.FormParam;
@@ -8,6 +9,7 @@ import javax.ws.rs.FormParam;
 /**
  * Created by zcg on 2.7.2016.
  */
+
 public class AccountNumberModel implements AccountNumber {
     @FormParam(value = "accountPrefix")
     @Size(max = 6)

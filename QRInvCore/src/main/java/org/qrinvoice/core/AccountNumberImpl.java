@@ -16,11 +16,6 @@ public class AccountNumberImpl implements AccountNumber {
         // default constructor
     }
 
-    public boolean isEmpty() {
-
-        return accountPrefix == null && accountBase == null && bankCode == null;
-
-    }
 
     public AccountNumberImpl(String accountPrefix, String accountBase, String bankCode) throws AccountNotValidException {
 
@@ -48,6 +43,12 @@ public class AccountNumberImpl implements AccountNumber {
 
     }
 
+
+    public boolean isEmpty() {
+
+        return accountPrefix == null && accountBase == null && bankCode == null;
+
+    }
 
     /**
      * Computes the IBAN number

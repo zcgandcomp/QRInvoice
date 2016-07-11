@@ -12,7 +12,7 @@ import com.google.zxing.qrcode.encoder.QRCode;
 import net.sf.junidecode.Junidecode;
 import org.apache.log4j.Logger;
 
-import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -29,7 +29,11 @@ public class Generator {
 
     static Logger log = Logger.getLogger(Generator.class.getName());
 
-    public BufferedImage getQRCode(Integer size, String invoiceData) throws IOException,WriterException {
+    public ByteArrayOutputStream getQRCode(Integer sizeParam, String invoiceData) throws ImageGenerationException {
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        Integer size = sizeParam;
         if (size == null) {
             size = Constants.DEF_QR_SIZE;
         } else if (size < Constants.MIN_QR_SIZE) {
@@ -38,30 +42,30 @@ public class Generator {
             size = Constants.MAX_QR_SIZE;
         }
 
-        BitMatrix matrix = null;
+        BitMatrix matrix;
         int h = size;
         int w = size;
-        int barsize = -1;
+
         Writer writer = new MultiFormatWriter();
         try {
-            Map<EncodeHintType, Object> hints = new EnumMap<EncodeHintType, Object>(EncodeHintType.class);
+            Map<EncodeHintType, Object> hints = new EnumMap<>(EncodeHintType.class);
             hints.put(EncodeHintType.CHARACTER_SET, "ISO-8859-1");
-            QRCode code = Encoder.encode(invoiceData, ErrorCorrectionLevel.M, hints);
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
-            barsize = size / (code.getMatrix().getWidth() + 8);
             matrix = writer.encode(invoiceData, com.google.zxing.BarcodeFormat.QR_CODE, w, h, hints);
-        } catch (WriterException e) {
-            log.fatal("error generating QR code",e);
-            throw e;
+
+            if (matrix == null ) {
+                throw new ImageGenerationException("invalid format");
+            }
+
+            MatrixToImageWriter.writeToStream(matrix, "png", out);
+            return out;
+
+        } catch (WriterException|IOException e) {
+            log.fatal("error generating QR code", e);
+            throw new ImageGenerationException(e);
+
         }
 
-        if (matrix == null || barsize < 0) {
-            throw new IOException("invalid format");
-        }
-
-        BufferedImage image = MatrixToImageWriter.toBufferedImage(matrix);
-
-        return image;
 
     }
 
@@ -76,9 +80,11 @@ public class Generator {
      */
     public String escapeDisallowedCharacters(String originalString) throws UnsupportedEncodingException {
         String working = "";
+
+
         for (int i = 0; i < originalString.length(); i++) {
             if (originalString.charAt(i) > 127) { // escape non-ascii characters
-                working += URLEncoder.encode("" + originalString.charAt(i), "UTF-8");
+                working += URLEncoder.encode( Character.toString(originalString.charAt(i)), "UTF-8");
             } else {
                 if (originalString.charAt(i) == '*') { // star is a special character for the SPAYD format
                     working += "%2A";
@@ -87,7 +93,7 @@ public class Generator {
                 } else if (originalString.charAt(i) == '%') { // percent is an escape character
                     working += "%25";
                 } else {
-                    working += originalString.charAt(i); // ascii characters may be used as expected
+                    working += Character.toString(originalString.charAt(i)); // ascii characters may be used as expected
                 }
             }
         }
@@ -95,16 +101,19 @@ public class Generator {
     }
 
 
-    protected void addValue(StringBuffer buf, String constant, String value, boolean transliterate) throws UnsupportedEncodingException {
+    protected void addValue(StringBuilder buf, String constant, String value, boolean transliterate) throws UnsupportedEncodingException {
         if (value != null) {
+            String innerValue ;
             if (transliterate) {
-                value = Junidecode.unidecode(value.toUpperCase());
+                innerValue = Junidecode.unidecode(value.toUpperCase());
+            } else {
+                innerValue = value;
             }
-            addValue(buf, constant, escapeDisallowedCharacters(value));
+            addValue(buf, constant, escapeDisallowedCharacters(innerValue));
         }
     }
 
-    protected void addValue(StringBuffer buf, String constant, Object value) {
+    protected void addValue(StringBuilder buf, String constant, Object value) {
 
         if (value != null) {
             buf.append(constant);
@@ -117,7 +126,7 @@ public class Generator {
 
     public String getInvoiceString(InvoiceParamDomain invoice, boolean transliterate) throws UnsupportedEncodingException {
 
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
 
         buf.append(PREFIX);
 
@@ -137,9 +146,9 @@ public class Generator {
                 addValue(buf, entry.getKey(), entry.getValue());
             }
         }
-// TODO add CRC32
+        // TODO add CRC32
 
-
+        log.info("getInvoiceString:"+buf);
         return buf.toString();
 
     }
