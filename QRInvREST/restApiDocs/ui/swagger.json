@@ -1,0 +1,758 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<h1>qr-inv-restapp<\/h1>",
+    "version": "1.0-SNAPSHOT",
+    "title": "qr-inv-restapp"
+  },
+  "schemes": [],
+  "tags": [
+    {
+      "name": "AsynchronousDispatcher",
+      "description": ""
+    },
+    {
+      "name": "QRInvoiceGeneratorResource",
+      "description": "Created by zcg on 12.6.2016.\r\nResource for QR invoice REST API"
+    }
+  ],
+  "definitions": {
+  },
+  "paths": {
+    "\/{job-id}": {
+      "delete": {
+        "tags": [
+          "AsynchronousDispatcher"
+        ],
+        "description": "",
+        "operationId": "resource_AsynchronousDispatcher_remove_DELETE",
+        "parameters": [
+          {
+            "name": "job-id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "201": {
+            "headers": {
+            },
+            "description": "Success"
+          },
+          "default": {
+            "description": "Unexpected error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AsynchronousDispatcher"
+        ],
+        "description": "",
+        "operationId": "resource_AsynchronousDispatcher_readAndRemove_POST",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "job-id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "wait",
+            "in": "query",
+            "default": "-1",
+            "type": "number",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "201": {
+            "headers": {
+            },
+            "description": "Success"
+          },
+          "default": {
+            "description": "Unexpected error."
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "AsynchronousDispatcher"
+        ],
+        "description": "",
+        "operationId": "resource_AsynchronousDispatcher_get_GET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "job-id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "wait",
+            "in": "query",
+            "default": "-1",
+            "type": "number",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": "Success"
+          },
+          "default": {
+            "description": "Unexpected error."
+          }
+        }
+      }
+    },
+    "\/generator/image": {
+      "get": {
+        "tags": [
+          "QRInvoiceGeneratorResource"
+        ],
+        "description": "",
+        "operationId": "resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET",
+        "produces": [
+          "image/png"
+        ],
+        "parameters": [
+          {
+            "name": "transliterate",
+            "in": "formData",
+            "default": "true",
+            "type": "boolean",
+            "description": ""
+          },
+          {
+            "name": "ACC",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "AM",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "BIC",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "CC",
+            "in": "query",
+            "default": "CZK",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DD",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DPPD",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DT",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DUZP",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "FX",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "FXA",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "INI",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "INR",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "MSG",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "NTB",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "ON",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "SA",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "T0",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "T1",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "T2",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TB0",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TB1",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TB2",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TD",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TP",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VA",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VII",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VIR",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-SW",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-URL",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": "Success"
+          },
+          "default": {
+            "description": "Unexpected error."
+          }
+        }
+      }
+    },
+    "\/generator/string": {
+      "get": {
+        "tags": [
+          "QRInvoiceGeneratorResource"
+        ],
+        "description": "Returns String representing QR payment, make basic validation of input params",
+        "operationId": "resource_QRInvoiceGeneratorResource_generateInvoiceString_GET",
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "ACC",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "AM",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "BIC",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "CC",
+            "in": "query",
+            "default": "CZK",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DD",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DPPD",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DT",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DUZP",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "FX",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "FXA",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "INI",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "INR",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "MSG",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "NTB",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "ON",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "SA",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "T0",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "T1",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "T2",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TB0",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TB1",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TB2",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TD",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TP",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VA",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VII",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VIR",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-SW",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-URL",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "transliterate",
+            "in": "query",
+            "default": "true",
+            "type": "boolean",
+            "description": "identifies if returned string has to have capitalized string parameters"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "description": "",
+              "type": "string"
+            },
+            "headers": {
+            },
+            "description": "Success"
+          },
+          "default": {
+            "description": "Unexpected error."
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "QRInvoiceGeneratorResource"
+        ],
+        "description": "",
+        "operationId": "resource_QRInvoiceGeneratorResource_validateInvoiceString_GET",
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "ACC",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "AM",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "BIC",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "CC",
+            "in": "query",
+            "default": "CZK",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DD",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DPPD",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DT",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "DUZP",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "FX",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "FXA",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "INI",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "INR",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "MSG",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "NTB",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "ON",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "SA",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "T0",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "T1",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "T2",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TB0",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TB1",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TB2",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TD",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "TP",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VA",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VII",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VIR",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-SW",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-URL",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "description": "",
+              "type": "string"
+            },
+            "headers": {
+            },
+            "description": "Success"
+          },
+          "default": {
+            "description": "Unexpected error."
+          }
+        }
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@ import static org.qrinvoice.core.InvoiceAttributesConstants.*;
 
 /**
  * Created by zcg on 5.6.2016.
- * holder for invoice data, internal
+ * Holder for invoice data, internal. Validation constraints set using bean validation
  *
  */
 
@@ -22,8 +22,6 @@ public class InvoiceParamDomain {
 
     // TODO validation
     //ID
-
-
     @NotNull
     @Size(max = 40)
     private String id;

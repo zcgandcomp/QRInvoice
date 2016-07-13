@@ -1,26 +1,25 @@
-package org.qrinvoice.gui;
+package org.qrinvoice.model;
 
 import org.qrinvoice.core.AccountNumber;
-import org.qrinvoice.core.CheckAccountNumber;
 
 import javax.validation.constraints.Size;
-import javax.ws.rs.FormParam;
+import javax.ws.rs.QueryParam;
 
 /**
  * Created by zcg on 2.7.2016.
  */
 
 public class AccountNumberModel implements AccountNumber {
-    @FormParam(value = "accountPrefix")
+    @QueryParam(value = "accountPrefix")
     @Size(max = 6)
     private String accountPrefix;
 
-    @FormParam(value = "accountBase")
+    @QueryParam(value = "accountBase")
     @Size(max = 10)
     private String accountBase;
 
 
-    @FormParam(value = "bankCode")
+    @QueryParam(value = "bankCode")
     @Size(max = 4)
     private String bankCode;
 

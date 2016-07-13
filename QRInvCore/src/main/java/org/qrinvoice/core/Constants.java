@@ -22,5 +22,6 @@ public class Constants {
 
 
     // hidden default constructor
-    private Constants () {}
+    private Constants() {
+    }
 }

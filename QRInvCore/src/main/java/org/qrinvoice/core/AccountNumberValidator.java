@@ -7,6 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * Created by zcg on 2.7.2016.
+ * Implementation of czech bank account numbers validation
  */
 
 public class AccountNumberValidator implements ConstraintValidator<CheckAccountNumber, AccountNumber> {

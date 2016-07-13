@@ -6,7 +6,7 @@ import org.qrinvoice.core.AccountNotValidException;
 import org.qrinvoice.core.AccountNumberImpl;
 import org.qrinvoice.core.Generator;
 import org.qrinvoice.core.InvoiceParamDomain;
-import org.qrinvoice.helper.InvoiceMapper;
+import org.qrinvoice.model.InvoiceMapper;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -31,8 +31,8 @@ public class GeneratorController implements Serializable {
 
 
     @Inject
-    @Named("invoiceModel")
-    private InvoiceModel model;
+    @Named("invoiceWebModel")
+    private InvoiceWebModel model;
 
 
     public void generate(ActionEvent actionEvent) {

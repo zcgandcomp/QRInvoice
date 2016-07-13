@@ -2,7 +2,7 @@ package org.qrinvoice.core;
 
 /**
  * Created by zcg on 29.5.2016.
- * Czech account number oobject, for validating and converison to IBAN
+ * Czech account number object, for validating and converison to IBAN
  */
 public class AccountNumberImpl implements AccountNumber {
 
@@ -55,6 +55,7 @@ public class AccountNumberImpl implements AccountNumber {
      *
      * @return An IBAN number.
      */
+    // TODO refactor
     public String computeIBAN() throws AccountNotValidException {
         // preprocess the numbers
         AccountNumberValidator validator = new AccountNumberValidator();

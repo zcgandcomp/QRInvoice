@@ -1,19 +1,16 @@
-package org.qrinvoice.gui;
+package org.qrinvoice.model;
 
 import org.qrinvoice.core.AccountNumber;
 import org.qrinvoice.core.CheckAccountNumber;
 import org.qrinvoice.core.DateParam;
 
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.inject.Named;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.DefaultValue;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.QueryParam;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -21,31 +18,30 @@ import java.math.BigDecimal;
 /**
  * Created by zcg on 27.6.2016.
  */
-// Managed Bean has to be there because @RequestScoped annotation - JSF part of application
-@ManagedBean
-@Named("invoiceModel")
-// this has to be from jsf package otherwise resteasy will fail to properly use bean
-@RequestScoped
-public class InvoiceModel  implements Serializable {
+
+
+public class InvoiceModel implements Serializable {
 
 
     //ID
-
+    /**
+     * Id of generated invoice
+     */
     @QueryParam(value = "id")
-    @NotNull(message = "není vyplněné")
+    @NotNull
     @Size(max = 40)
     private String id;
 
 
     //DD
     @QueryParam(value = "DD")
-    @NotNull(message = "není vyplněné")
+    @NotNull
     private DateParam dateOfIssue;
 
     //AM
     @QueryParam(value = "AM")
     @Digits(integer = 15, fraction = 2)
-    @NotNull(message = "nejsou vyplněné")
+    @NotNull
     private BigDecimal totalAmount;
 
     //TP
@@ -90,13 +86,15 @@ public class InvoiceModel  implements Serializable {
     private String orderNumber;
 
     //VS
-    @QueryParam(value = "VA")
+    @QueryParam(value = "VS")
     @Size(max = 10)
+    @Pattern(regexp = "^([0-9]{0,10})$")
     private String variableString;
 
     // VII
     @QueryParam(value = "VII")
     @Size(max = 14)
+    @Pattern(regexp = "^[a-zA-Z0-9]*$")
     private String taxIdentificationNumberDrawer;
 
     // INI
@@ -108,6 +106,7 @@ public class InvoiceModel  implements Serializable {
     //VIR
     @QueryParam(value = "VIR")
     @Size(max = 14)
+    @Pattern(regexp = "^[a-zA-Z0-9]*$")
     private String taxIdentificationNumberBene;
 
     //INR
@@ -168,6 +167,7 @@ public class InvoiceModel  implements Serializable {
     @DefaultValue("CZK")
     @QueryParam(value = "CC")
     @Size(max = 3)
+    @Pattern(regexp = "^[A-Z]*$")
     private String currencyCode;
 
     //FX
@@ -182,9 +182,11 @@ public class InvoiceModel  implements Serializable {
 
     // special attributes
 
+    // TODO create in producer
     @CheckAccountNumber
     @Valid
-    private AccountNumberModel accountNumber;
+    @BeanParam
+    private AccountNumberModel accountNumber = new AccountNumberModel();
 
 
     //ACC

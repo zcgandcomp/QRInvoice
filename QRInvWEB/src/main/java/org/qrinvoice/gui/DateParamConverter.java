@@ -13,7 +13,7 @@ import java.text.ParseException;
 /**
  * Created by zcg on 3.7.2016.
  */
-@FacesConverter("org.qrinvoice.gui.DateParamConverter")
+@FacesConverter("DateParamConverter")
 public class DateParamConverter implements Converter {
 
 

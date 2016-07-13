@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?enunciate-assumed-base-uri ./?>
+<wadl:application xmlns:wadl="http://wadl.dev.java.net/2009/02">
+
+    <wadl:doc xmlns:enunciate="http://enunciate.webcohesion.com/" enunciate:generatedBy="Enunciate-2.0"/>
+
+    <wadl:grammars>
+    </wadl:grammars>
+
+    <wadl:resources base="./">
+
+        <wadl:resource path="invoiceservices/{job-id}">
+            <wadl:method name="DELETE">
+                <wadl:doc><![CDATA[]]></wadl:doc>
+                <wadl:request>
+                </wadl:request>
+            </wadl:method>
+        </wadl:resource>
+
+        <wadl:resource path="invoiceservices/{job-id}">
+            <wadl:method name="POST">
+                <wadl:doc><![CDATA[]]></wadl:doc>
+                <wadl:request>
+                    <wadl:param name="wait" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                </wadl:request>
+                <wadl:response>
+                    <wadl:representation mediaType="*/*"/>
+                </wadl:response>
+            </wadl:method>
+        </wadl:resource>
+
+        <wadl:resource path="invoiceservices/{job-id}">
+            <wadl:method name="GET">
+                <wadl:doc><![CDATA[]]></wadl:doc>
+                <wadl:request>
+                    <wadl:param name="wait" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                </wadl:request>
+                <wadl:response>
+                    <wadl:representation mediaType="*/*"/>
+                </wadl:response>
+            </wadl:method>
+        </wadl:resource>
+
+        <wadl:resource path="invoiceservices/generator/image">
+            <wadl:method name="GET">
+                <wadl:doc><![CDATA[]]></wadl:doc>
+                <wadl:request>
+                    <wadl:param name="ACC" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="AM" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="BIC" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="CC" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DD" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DPPD" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DT" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DUZP" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="FX" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="FXA" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="INI" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="INR" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="MSG" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="NTB" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="ON" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="SA" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="T0" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="T1" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="T2" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TB0" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TB1" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TB2" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TD" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TP" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VA" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VII" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VIR" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="X-SW" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="X-URL" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="id" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                </wadl:request>
+                <wadl:response>
+                    <wadl:representation mediaType="image/png"/>
+                </wadl:response>
+            </wadl:method>
+        </wadl:resource>
+
+        <wadl:resource path="invoiceservices/generator/string">
+            <wadl:method name="GET">
+                <wadl:doc>
+                    <![CDATA[Returns String representing QR payment, make basic validation of input params]]></wadl:doc>
+                <wadl:request>
+                    <wadl:param name="ACC" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="AM" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="BIC" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="CC" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DD" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DPPD" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DT" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DUZP" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="FX" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="FXA" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="INI" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="INR" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="MSG" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="NTB" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="ON" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="SA" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="T0" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="T1" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="T2" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TB0" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TB1" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TB2" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TD" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TP" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VA" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VII" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VIR" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="X-SW" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="X-URL" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="id" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="transliterate" style="query">
+                        <wadl:doc>
+                            <![CDATA[identifies if returned string has to have capitalized string parameters]]></wadl:doc>
+                    </wadl:param>
+                </wadl:request>
+                <wadl:response>
+                    <wadl:doc><![CDATA[string with QR code data]]></wadl:doc>
+                    <wadl:representation mediaType="text/plain"/>
+                </wadl:response>
+            </wadl:method>
+        </wadl:resource>
+
+        <wadl:resource path="invoiceservices/generator/string">
+            <wadl:method name="GET">
+                <wadl:doc><![CDATA[]]></wadl:doc>
+                <wadl:request>
+                    <wadl:param name="ACC" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="AM" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="BIC" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="CC" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DD" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DPPD" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DT" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="DUZP" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="FX" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="FXA" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="INI" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="INR" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="MSG" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="NTB" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="ON" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="SA" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="T0" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="T1" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="T2" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TB0" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TB1" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TB2" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TD" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="TP" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VA" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VII" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VIR" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="X-SW" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="X-URL" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="id" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                </wadl:request>
+                <wadl:response>
+                    <wadl:representation mediaType="text/plain"/>
+                </wadl:response>
+            </wadl:method>
+        </wadl:resource>
+    </wadl:resources>
+</wadl:application>

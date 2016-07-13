@@ -11,6 +11,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Created by zcg on 2.7.2016.
+ * Annotation used for account number validation
  */
 @Target({FIELD, METHOD, PARAMETER, ANNOTATION_TYPE})
 @Retention(RUNTIME)
@@ -18,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface CheckAccountNumber {
 
-    String message() default "{org.qrinvoice.core.AccountNotValid}";
+    String message() default "{org.qrinvoice.core.AccountNotValidException}";
 
     Class<?>[] groups() default {};
 

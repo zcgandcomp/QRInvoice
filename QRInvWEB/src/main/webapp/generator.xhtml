@@ -46,7 +46,7 @@
                                         <p:messages for="idx" display="text"/>
                                     </div>
                                     <div>
-                                        <p:inputText id="idx" size="40" value="#{invoiceModel.id}"/>
+                                        <p:inputText id="idx" size="40" value="#{invoiceWebModel.id}"/>
                                     </div>
                                     <div>
                                         <p:outputLabel value="Číslo účtu:" for="acc2"/>
@@ -58,16 +58,16 @@
                                     <div>
                                         <div style="float: left">
                                             <p:inputText size="6" id="acc1"
-                                                         value="#{invoiceModel.accountNumber.accountPrefix}"/> -
+                                                         value="#{invoiceWebModel.accountNumber.accountPrefix}"/> -
                                         </div>
                                         <div style="float: left">
                                             <p:inputText id="acc2" size="10"
-                                                         value="#{invoiceModel.accountNumber.accountBase}"/> /
+                                                         value="#{invoiceWebModel.accountNumber.accountBase}"/> /
                                         </div>
                                         <div style="float: right">
                                             <p:inputText
                                                     size="4"
-                                                    id="bic" value="#{invoiceModel.accountNumber.bankCode}"/>
+                                                    id="bic" value="#{invoiceWebModel.accountNumber.bankCode}"/>
                                         </div>
                                     </div>
                                     <div>
@@ -77,10 +77,10 @@
                                     <div>
                                         <div style="float: left">
                                             <p:inputNumber id="am" decimalPlaces="2" maxValue="999999999999999"
-                                                           value="#{invoiceModel.totalAmount}" thousandSeparator=" "
+                                                           value="#{invoiceWebModel.totalAmount}" thousandSeparator=" "
                                                            decimalSeparator=","/>
                                         </div>
-                                        <p:selectOneMenu id="cc" value="#{invoiceModel.currencyCode}">
+                                        <p:selectOneMenu id="cc" value="#{invoiceWebModel.currencyCode}">
                                             <f:selectItem itemValue="CZK" itemLabel="CZK"/>
                                             <f:selectItem itemValue="EUR" itemLabel="EUR"/>
                                             <f:selectItem itemValue="USD" itemLabel="USD"/>
@@ -91,9 +91,9 @@
                                         <p:messages autoUpdate="true" for="dd"/>
                                     </div>
                                     <div>
-                                        <p:calendar id="dd" value="#{invoiceModel.dateOfIssue}" locale="cz"
+                                        <p:calendar id="dd" value="#{invoiceWebModel.dateOfIssue}" locale="cz"
                                                     pattern="yyyyMMdd">
-                                            <f:converter converterId="org.qrinvoice.gui.DateParamConverter"/>
+                                            <f:converter converterId="DateParamConverter"/>
                                         </p:calendar>
                                     </div>
                                     <div>
@@ -101,16 +101,16 @@
                                         <p:messages autoUpdate="true" for="vs"/>
                                     </div>
                                     <div>
-                                        <p:inputText id="vs" size="10" value="#{invoiceModel.variableString}"/>
+                                        <p:inputText id="vs" size="10" value="#{invoiceWebModel.variableString}"/>
                                     </div>
                                     <div>
                                         <p:outputLabel value="Datum splatnosti celkové částky:" for="dt"/>
                                         <p:messages autoUpdate="true" for="dt"/>
                                     </div>
                                     <div>
-                                        <p:calendar id="dt" value="#{invoiceModel.dateOfDue}" locale="cz"
+                                        <p:calendar id="dt" value="#{invoiceWebModel.dateOfDue}" locale="cz"
                                                     pattern="yyyyMMdd"><f:converter
-                                                converterId="org.qrinvoice.gui.DateParamConverter"/> </p:calendar>
+                                                converterId="DateParamConverter"/> </p:calendar>
                                     </div>
                                     <div>
                                         <p:outputLabel value="Zpráva pro příjemce / Textový popis předmětu fakturace:"
@@ -118,7 +118,8 @@
                                         <p:messages autoUpdate="true" for="msg"/>
                                     </div>
                                     <div>
-                                        <p:inputTextarea rows="4" cols="10" id="msg" value="#{invoiceModel.message}"/>
+                                        <p:inputTextarea rows="4" cols="10" id="msg"
+                                                         value="#{invoiceWebModel.message}"/>
                                     </div>
 
                                     <div>
@@ -126,7 +127,7 @@
                                         <p:messages autoUpdate="true" for="tp"/>
                                     </div>
                                     <div>
-                                        <p:selectOneMenu id="tp" value="#{invoiceModel.typeOfTax}">
+                                        <p:selectOneMenu id="tp" value="#{invoiceWebModel.typeOfTax}">
                                             <f:selectItem itemValue="" itemLabel="nevybráno"/>
                                             <f:selectItem itemValue="0" itemLabel="běžný typ plnění"/>
                                             <f:selectItem itemValue="1" itemLabel="RPDP"/>
@@ -138,7 +139,7 @@
                                         <p:messages autoUpdate="true" for="td"/>
                                     </div>
                                     <div>
-                                        <p:selectOneMenu id="td" value="#{invoiceModel.typeOfIdentification}">
+                                        <p:selectOneMenu id="td" value="#{invoiceWebModel.typeOfIdentification}">
                                             <f:selectItem itemValue="" itemLabel="nevybráno"/>
                                             <f:selectItem itemValue="0" itemLabel="nedaňový doklad"/>
                                             <f:selectItem itemValue="1" itemLabel="opravný daňový doklad"/>
@@ -156,7 +157,7 @@
                                         <p:messages autoUpdate="true" for="sa"/>
                                     </div>
                                     <div>
-                                        <p:selectOneMenu id="sa" value="#{invoiceModel.taxDeposit}">
+                                        <p:selectOneMenu id="sa" value="#{invoiceWebModel.taxDeposit}">
                                             <f:selectItem itemValue="" itemLabel="nevybráno"/>
                                             <f:selectItem itemValue="0" itemLabel="faktura neobsahuje zúčtování záloh"/>
                                             <f:selectItem itemValue="1" itemLabel="faktura obsahuje zúčtování záloh"/>
@@ -169,7 +170,7 @@
                                         <p:messages autoUpdate="true" for="on"/>
                                     </div>
                                     <div>
-                                        <p:inputText id="on" size="20" value="#{invoiceModel.orderNumber}"/>
+                                        <p:inputText id="on" size="20" value="#{invoiceWebModel.orderNumber}"/>
                                     </div>
                                     <div>
                                         <p:outputLabel value="DIČ výstavce:" for="vii"/>
@@ -177,7 +178,7 @@
                                     </div>
                                     <div>
                                         <p:inputText size="14" id="vii"
-                                                     value="#{invoiceModel.taxIdentificationNumberDrawer}"/>
+                                                     value="#{invoiceWebModel.taxIdentificationNumberDrawer}"/>
                                     </div>
                                     <div>
                                         <p:outputLabel value="IČO výstavce:" for="ini"/>
@@ -185,7 +186,7 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="0" maxValue="99999999" id="ini"
-                                                       value="#{invoiceModel.identificationNumberDrawer}"
+                                                       value="#{invoiceWebModel.identificationNumberDrawer}"
                                                        thousandSeparator=""/>
                                     </div>
                                     <div>
@@ -194,7 +195,7 @@
                                     </div>
                                     <div>
                                         <p:inputText size="14" id="vir"
-                                                     value="#{invoiceModel.taxIdentificationNumberBene}"/>
+                                                     value="#{invoiceWebModel.taxIdentificationNumberBene}"/>
                                     </div>
                                     <div>
                                         <p:outputLabel value="IČO příjemce:" for="inr"/>
@@ -202,7 +203,7 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="0" maxValue="99999999" id="inr"
-                                                       value="#{invoiceModel.identificationNumberBene}"
+                                                       value="#{invoiceWebModel.identificationNumberBene}"
                                                        thousandSeparator=""/>
                                     </div>
                                     <div>
@@ -210,18 +211,18 @@
                                         <p:messages autoUpdate="true" for="duzp"/>
                                     </div>
                                     <div>
-                                        <p:calendar id="duzp" value="#{invoiceModel.dateOfTax}" locale="cz"
+                                        <p:calendar id="duzp" value="#{invoiceWebModel.dateOfTax}" locale="cz"
                                                     pattern="yyyyMMdd"><f:converter
-                                                converterId="org.qrinvoice.gui.DateParamConverter"/></p:calendar>
+                                                converterId="DateParamConverter"/></p:calendar>
                                     </div>
                                     <div>
                                         <p:outputLabel value="Datum povinnosti přiznat daň:" for="dppd"/>
                                         <p:messages autoUpdate="true" for="dppd"/>
                                     </div>
                                     <div>
-                                        <p:calendar id="dppd" value="#{invoiceModel.dateOfTaxDuty}" locale="cz"
+                                        <p:calendar id="dppd" value="#{invoiceWebModel.dateOfTaxDuty}" locale="cz"
                                                     pattern="yyyyMMdd"><f:converter
-                                                converterId="org.qrinvoice.gui.DateParamConverter"/></p:calendar>
+                                                converterId="DateParamConverter"/></p:calendar>
                                     </div>
                                     <div>
                                         <p:outputLabel
@@ -231,7 +232,7 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb0"
-                                                       value="#{invoiceModel.taxBaseAmount}" thousandSeparator=" "
+                                                       value="#{invoiceWebModel.taxBaseAmount}" thousandSeparator=" "
                                                        decimalSeparator=","/>
 
                                     </div>
@@ -243,7 +244,7 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb1"
-                                                       value="#{invoiceModel.taxBaseReduced1Amount}"
+                                                       value="#{invoiceWebModel.taxBaseReduced1Amount}"
                                                        thousandSeparator=" " decimalSeparator=","/>
                                     </div>
                                     <div>
@@ -254,7 +255,8 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t1"
-                                                       value="#{invoiceModel.taxReduced1Amount}" thousandSeparator=" "
+                                                       value="#{invoiceWebModel.taxReduced1Amount}"
+                                                       thousandSeparator=" "
                                                        decimalSeparator=","/>
                                     </div>
                                     <div>
@@ -265,7 +267,7 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="tb2"
-                                                       value="#{invoiceModel.taxBaseReduced2Amount}"
+                                                       value="#{invoiceWebModel.taxBaseReduced2Amount}"
                                                        thousandSeparator=" " decimalSeparator=","/>
                                     </div>
                                     <div>
@@ -276,7 +278,8 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t2"
-                                                       value="#{invoiceModel.taxReduced2Amount}" thousandSeparator=" "
+                                                       value="#{invoiceWebModel.taxReduced2Amount}"
+                                                       thousandSeparator=" "
                                                        decimalSeparator=","/>
                                     </div>
                                     <div>
@@ -287,7 +290,7 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="2" maxValue="999999999999999" id="ntb"
-                                                       value="#{invoiceModel.nonTaxAmount}" thousandSeparator=" "
+                                                       value="#{invoiceWebModel.nonTaxAmount}" thousandSeparator=" "
                                                        decimalSeparator=","/>
                                     </div>
                                     <div>
@@ -296,7 +299,7 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="3" maxValue="99999999999999" id="fx"
-                                                       value="#{invoiceModel.exchangeRate}" thousandSeparator=" "
+                                                       value="#{invoiceWebModel.exchangeRate}" thousandSeparator=" "
                                                        decimalSeparator=","/>
                                     </div>
                                     <div>
@@ -306,7 +309,7 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="0" maxValue="99999" id="fxa"
-                                                       value="#{invoiceModel.exchangeUnits}" thousandSeparator=" "
+                                                       value="#{invoiceWebModel.exchangeUnits}" thousandSeparator=" "
                                                        decimalSeparator=","/>
                                     </div>
                                     <div>
@@ -316,7 +319,7 @@
                                         <p:messages autoUpdate="true" for="x-sw"/>
                                     </div>
                                     <div>
-                                        <p:inputText id="x-sw" value="#{invoiceModel.softwareOrigin}"/>
+                                        <p:inputText id="x-sw" value="#{invoiceWebModel.softwareOrigin}"/>
                                     </div>
                                     <div>
                                         <p:outputLabel
@@ -325,7 +328,7 @@
                                         <p:messages autoUpdate="true" for="x-url"/>
                                     </div>
                                     <div>
-                                        <p:inputText id="x-url" value="#{invoiceModel.url}"/>
+                                        <p:inputText id="x-url" value="#{invoiceWebModel.url}"/>
                                     </div>
                                     <p:commandButton value="Generovat QR Fakturu"
                                                      actionListener="#{generatorController.generate}"

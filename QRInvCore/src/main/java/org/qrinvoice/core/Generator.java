@@ -7,8 +7,6 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.google.zxing.qrcode.encoder.Encoder;
-import com.google.zxing.qrcode.encoder.QRCode;
 import net.sf.junidecode.Junidecode;
 import org.apache.log4j.Logger;
 
@@ -16,6 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -29,6 +28,15 @@ public class Generator {
 
     static Logger log = Logger.getLogger(Generator.class.getName());
 
+    /**
+     * create byte stream holding data of QR code image, generated from @param invoiceData
+     *
+     * @param sizeParam   size of desired QR code, if null default is used @see Constants.DEF_QR_SIZE
+     * @param invoiceData String with QR data
+     * @return byte stream with image
+     * @throws ImageGenerationException in case encoding or any other IOException occurs
+     */
+    // TODO return outputstream ??
     public ByteArrayOutputStream getQRCode(Integer sizeParam, String invoiceData) throws ImageGenerationException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -47,6 +55,13 @@ public class Generator {
         int w = size;
 
         Writer writer = new MultiFormatWriter();
+        // check if encoding is correct
+        if (!Charset.forName("ISO-8859-1").newEncoder().canEncode(invoiceData)) {
+            throw new ImageGenerationException("Invalid charset - only ISO-8859-1 characters must be used");
+        }
+
+        //"^([A-Z]{2,2}[0-9]{2,2}[A-Z0-9]+)(\\+([A-Z0-9]+))?(,([A-Z]{2,2}[0-9]+)(\\+([A-Z0-9]+))?)*$"
+
         try {
             Map<EncodeHintType, Object> hints = new EnumMap<>(EncodeHintType.class);
             hints.put(EncodeHintType.CHARACTER_SET, "ISO-8859-1");
@@ -124,6 +139,17 @@ public class Generator {
     }
 
 
+    public void validateInvoiceString(String invoceData) {
+
+    }
+
+    /**
+     * Creates valid String holding data for QR code generation. Get fields from data holder. Method encode string parameter as needed, but does no validation as validation itself should be done by bean validation on holder object
+     * @param invoice Invoice is DTO with setted parram
+     * @param transliterate id string parameters has to be capitalized
+     * @return String holding data for QR code generation
+     * @throws UnsupportedEncodingException if String parameters cannot be encoded
+     */
     public String getInvoiceString(InvoiceParamDomain invoice, boolean transliterate) throws UnsupportedEncodingException {
 
         StringBuilder buf = new StringBuilder();
@@ -136,9 +162,6 @@ public class Generator {
 
         Map<String, Object> attributes = invoice.getParamMap();
 
-        // TODO validate account
-
-        // TODO make position in QR string static ?
         for (Map.Entry<String, Object> entry : attributes.entrySet()) {
             if (entry.getValue() instanceof String) {
                 addValue(buf, entry.getKey(), (String) entry.getValue(), transliterate);
