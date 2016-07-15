@@ -17,15 +17,15 @@ import java.math.BigDecimal;
 
 /**
  * Created by zcg on 27.6.2016.
+ * holder for query parameter
+ *
  */
-
-
 public class InvoiceModel implements Serializable {
 
 
     //ID
     /**
-     * Id of generated invoice
+     * ID of generated invoice
      */
     @QueryParam(value = "id")
     @NotNull
@@ -34,6 +34,9 @@ public class InvoiceModel implements Serializable {
 
 
     //DD
+    /**
+     * date of issue of invoice
+     */
     @QueryParam(value = "DD")
     @NotNull
     private DateParam dateOfIssue;
@@ -63,22 +66,6 @@ public class InvoiceModel implements Serializable {
     @QueryParam(value = "MSG")
     @Size(max = 40)
     private String message;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber;
-    }
 
     //ON
     @QueryParam(value = "ON")
@@ -209,6 +196,36 @@ public class InvoiceModel implements Serializable {
     @Size(max = 70)
     private String url;
 
+    /**
+     * indicates which mode of QR should be used, eather pure QR invoice or QR payment
+     */
+    @DefaultValue("0")
+    @QueryParam(value = "mode")
+    private int mode;
+
+    public int getMode() {
+        return mode;
+    }
+
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
     public String getId() {
         return id;
     }

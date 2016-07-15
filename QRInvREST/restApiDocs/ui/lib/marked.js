@@ -109,7 +109,7 @@
                 this.rules = block.tables;
             } else {
                 this.rules = block.gfm;
-            }
+    }
         }
     }
 
@@ -532,7 +532,7 @@
                 this.rules = inline.breaks;
             } else {
                 this.rules = inline.gfm;
-            }
+    }
         } else if (this.options.pedantic) {
             this.rules = inline.pedantic;
         }
@@ -760,7 +760,7 @@
             if (out != null && out !== code) {
                 escaped = true;
                 code = out;
-            }
+    }
         }
 
         if (!lang) {
@@ -867,7 +867,7 @@
                     .toLowerCase();
             } catch (e) {
                 return '';
-            }
+    }
             if (prot.indexOf('javascript:') === 0) {
                 return '';
             }
@@ -1044,7 +1044,7 @@
                 }
 
                 return this.renderer.listitem(body);
-            }
+    }
             case 'loose_item_start': {
                 var body = '';
 
@@ -1053,7 +1053,7 @@
                 }
 
                 return this.renderer.listitem(body);
-            }
+    }
             case 'html': {
                 var html = !this.token.pre && !this.options.pedantic
                     ? this.inline.output(this.token.text)
@@ -1090,7 +1090,7 @@
                 return n.charAt(1) === 'x'
                     ? String.fromCharCode(parseInt(n.substring(2), 16))
                     : String.fromCharCode(+n.substring(1));
-            }
+    }
             return '';
         });
     }
@@ -1123,7 +1123,7 @@
                 if (Object.prototype.hasOwnProperty.call(target, key)) {
                     obj[key] = target[key];
                 }
-            }
+    }
         }
 
         return obj;
@@ -1189,7 +1189,7 @@
                 (function (token) {
                     if (token.type !== 'code') {
                         return --pending || done();
-                    }
+        }
                     return highlight(token.text, token.lang, function (err, code) {
                         if (err) return done(err);
                         if (code == null || code === token.text) {
@@ -1200,7 +1200,7 @@
                         --pending || done();
                     });
                 })(tokens[i]);
-            }
+    }
 
             return;
         }

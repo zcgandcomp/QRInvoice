@@ -5,7 +5,6 @@
     font-weight: 400;
     src: local('Droid Sans'), local('DroidSans'), url('../fonts/DroidSans.ttf') format('truetype');
 }
-
 /* Google Font's Droid Sans Bold */
 @font-face {
     font-family: 'Droid Sans';

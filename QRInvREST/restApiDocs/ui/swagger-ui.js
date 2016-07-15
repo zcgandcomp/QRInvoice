@@ -323,7 +323,7 @@
             var parameterClass = 'parameter';
             if (param.required) {
                 parameterClass += ' required';
-            }
+        }
             result = '<input class=\'' + parameterClass + '\' minlength=\'' + (param.required ? 1 : 0) + '\'';
             result += ' name=\'' + param.name + '\' placeholder=\'' + (param.required ? '(required)' : '') + '\'' + idAtt + dataVendorExtensions;
             result += ' type=\'' + type + '\' value=\'' + defaultValue + '\'/>';
@@ -8120,11 +8120,11 @@
                                                 if (cookies_list.length === 0) {
                                                     delete cookies[cookie.name];
                                                 }
-                                                return false;
-                                            }
+                                return false;
+                            }
                                             cookies_list[i] = cookie;
                                             return cookie;
-                                        }
+                        }
                                     }
                                     if (remove) {
                                         return false;
@@ -8150,9 +8150,9 @@
                                     if (cookie.expiration_date <= Date.now()) {
                                         if (cookies_list.length === 0) {
                                             delete cookies[cookie.name];
-                                        }
+                        }
                                         continue;
-                                    }
+                    }
 
                                     if (cookie.matches(access_info)) {
                                         return cookie;
@@ -12799,7 +12799,7 @@
                                         column: index - lineStart - 1
                                     };
                                     addComment('Line', comment, start, index - 1, loc);
-                                }
+                }
                                 if (ch === 13 && source.charCodeAt(index) === 10) {
                                     ++index;
                                 }
@@ -12854,7 +12854,7 @@
                                             column: index - lineStart
                                         };
                                         addComment('Block', comment, start, index, loc);
-                                    }
+                    }
                                     return;
                                 }
                                 ++index;
@@ -13010,7 +13010,7 @@
                                 cp = ch.charCodeAt(0);
                                 if (!ch || ch === '\\' || !isIdentifierStart(cp)) {
                                     throwUnexpectedToken();
-                                }
+                }
                             }
                             id = ch;
                         }
@@ -13029,7 +13029,7 @@
                                 id = id.substr(0, id.length - 1);
                                 if (source.charCodeAt(index) !== 0x75) {
                                     throwUnexpectedToken();
-                                }
+                }
                                 ++index;
                                 if (source[index] === '{') {
                                     ++index;
@@ -13185,14 +13185,14 @@
                                             str === '&=' || str === '|=' || str === '^=' || str === '%=' ||
                                             str === '<=' || str === '>=' || str === '=>') {
                                             index += 2;
-                                        } else {
+                    } else {
 
                                             // 1-character punctuators.
-                                            str = source[index];
+                        str = source[index];
                                             if ('<>=!+-*%&|^/'.indexOf(str) >= 0) {
                                                 ++index;
-                                            }
-                                        }
+                        }
+                    }
                                     }
                                 }
                         }
@@ -13362,7 +13362,7 @@
                                 if (isOctalDigit(ch)) {
                                     if (isImplicitOctalLiteral()) {
                                         return scanOctalLiteral(ch, start);
-                                    }
+                    }
                                 }
                             }
 
@@ -13441,9 +13441,9 @@
                                                 unescaped = scanHexEscape(ch);
                                                 if (!unescaped) {
                                                     throw throwUnexpectedToken();
-                                                }
+                            }
                                                 str += unescaped;
-                                            }
+                        }
                                             break;
                                         case 'n':
                                             str += '\n';
@@ -13476,8 +13476,8 @@
                                                 octal = octToDec.octal || octal;
                                                 str += String.fromCharCode(octToDec.code);
                                             } else {
-                                                str += ch;
-                                            }
+                            str += ch;
+                        }
                                             break;
                                     }
                                 } else {
@@ -13553,18 +13553,18 @@
                                         case 'u':
                                         case 'x':
                                             if (source[index] === '{') {
-                                                ++index;
+                            ++index;
                                                 cooked += scanUnicodeCodePointEscape();
                                             } else {
                                                 restore = index;
                                                 unescaped = scanHexEscape(ch);
                                                 if (unescaped) {
                                                     cooked += unescaped;
-                                                } else {
+                            } else {
                                                     index = restore;
                                                     cooked += ch;
-                                                }
-                                            }
+                            }
+                        }
                                             break;
                                         case 'b':
                                             cooked += '\b';
@@ -13590,7 +13590,7 @@
                                                 cooked += ch;
                                             }
                                             break;
-                                    }
+                    }
                                 } else {
                                     ++lineNumber;
                                     if (ch === '\r' && source[index] === '\n') {
@@ -13655,7 +13655,7 @@
                                     var codePoint = parseInt($1 || $2, 16);
                                     if (codePoint > 0x10FFFF) {
                                         throwUnexpectedToken(null, Messages.InvalidRegExp);
-                                    }
+                    }
                                     if (codePoint <= 0xFFFF) {
                                         return String.fromCharCode(codePoint);
                                     }
@@ -13761,7 +13761,7 @@
                                         index = restore;
                                         flags += 'u';
                                         str += '\\u';
-                                    }
+                    }
                                     tolerateUnexpectedToken();
                                 } else {
                                     str += '\\';
@@ -13846,7 +13846,7 @@
                                 if (token.range[0] === pos && token.type === 'Punctuator') {
                                     if (token.value === '/' || token.value === '/=') {
                                         extra.tokens.pop();
-                                    }
+                    }
                                 }
                             }
 
@@ -14133,7 +14133,7 @@
                                         innerComments.unshift(comment);
                                         extra.leadingComments.splice(i, 1);
                                         extra.trailingComments.splice(i, 1);
-                                    }
+                    }
                                 }
                                 if (innerComments.length) {
                                     this.innerComments = innerComments;
@@ -14149,7 +14149,7 @@
                                     if (comment.range[0] >= this.range[1]) {
                                         trailingComments.unshift(comment);
                                         extra.trailingComments.splice(i, 1);
-                                    }
+                    }
                                 }
                                 extra.trailingComments = [];
                             } else {
@@ -14173,12 +14173,12 @@
                                         if (comment.range[1] <= this.range[0]) {
                                             leadingComments.unshift(comment);
                                             lastChild.leadingComments.splice(i, 1);
-                                        }
-                                    }
+                        }
+                    }
 
                                     if (!lastChild.leadingComments.length) {
                                         lastChild.leadingComments = undefined;
-                                    }
+                    }
                                 }
                             } else if (extra.leadingComments.length > 0) {
                                 leadingComments = [];
@@ -14842,7 +14842,7 @@
                                         msg = Messages.UnexpectedReserved;
                                     } else if (strict && isStrictModeReservedWord(token.value)) {
                                         msg = Messages.StrictReservedWord;
-                                    }
+                    }
                                 }
                             }
 
@@ -15315,7 +15315,7 @@
                                     state.allowYield = previousAllowYield;
                                     if (options.defaultCount === 0) {
                                         options.defaults = [];
-                                    }
+                    }
                                 }
                                 expect(')');
 
@@ -15533,21 +15533,21 @@
 
                                 if (match('...')) {
                                     if (!isBindingElement) {
-                                        throwUnexpectedToken(lookahead);
-                                    }
+                        throwUnexpectedToken(lookahead);
+                    }
                                     expressions.push(parseRestElement(params));
                                     expect(')');
                                     if (!match('=>')) {
-                                        expect('=>');
-                                    }
+                        expect('=>');
+                    }
                                     isBindingElement = false;
                                     for (i = 0; i < expressions.length; i++) {
                                         reinterpretExpressionAsPattern(expressions[i]);
-                                    }
+                    }
                                     return {
                                         type: PlaceHolders.ArrowParameterPlaceHolder,
                                         params: expressions
-                                    };
+                    };
                                 }
 
                                 expressions.push(inheritCoverGrammar(parseAssignmentExpression));
@@ -16138,7 +16138,7 @@
                                     if (param.right.type === Syntax.YieldExpression) {
                                         if (param.right.argument) {
                                             throwUnexpectedToken(lookahead);
-                                        }
+                    }
                                         param.right.type = Syntax.Identifier;
                                         param.right.name = 'yield';
                                         delete param.right.argument;
@@ -16731,7 +16731,7 @@
                                     } else {
                                         consumeSemicolon();
                                         init = init.finishLexicalDeclaration(declarations, kind);
-                                    }
+                    }
                                 }
                             } else {
                                 initStartToken = lookahead;
@@ -16742,7 +16742,7 @@
                                 if (matchKeyword('in')) {
                                     if (!isAssignmentTarget) {
                                         tolerateError(Messages.InvalidLHSInForIn);
-                                    }
+                    }
 
                                     lex();
                                     reinterpretExpressionAsPattern(init);
@@ -17479,7 +17479,7 @@
                                         } else {
                                             key = parseObjectPropertyKey();
                                         }
-                                    }
+                    }
                                 }
                                 method = tryParseMethodDefinition(token, key, computed, method);
                                 if (method) {
@@ -17498,19 +17498,19 @@
                                                 hasConstructor = true;
                                             }
                                             method.kind = 'constructor';
-                                        }
+                        }
                                     } else {
                                         if (!method.computed && (method.key.name || method.key.value.toString()) === 'prototype') {
                                             throwUnexpectedToken(token, Messages.StaticPrototype);
                                         }
-                                    }
+                    }
                                     method.type = Syntax.MethodDefinition;
                                     delete method.method;
                                     delete method.shorthand;
                                     body.push(method);
                                 } else {
                                     throwUnexpectedToken(lookahead);
-                                }
+                }
                             }
                         }
                         lex();
@@ -17617,7 +17617,7 @@
                                 expect(',');
                                 if (match('}')) {
                                     break;
-                                }
+                }
                             }
                         }
                         expect('}');
@@ -23024,7 +23024,6 @@
                                 return call.apply(f, arguments);
                             };
                         }
-
 // This is equivalent, but slower:
 // uncurryThis = Function_bind.bind(Function_bind.call);
 // http://jsperf.com/uncurrythis
@@ -24348,7 +24347,7 @@
                                                 promises[index] = value;
                                                 if (--pendingCount === 0) {
                                                     deferred.resolve(promises);
-                                                }
+                        }
                                             },
                                             deferred.reject,
                                             function (progress) {
@@ -26309,7 +26308,7 @@
                 mapping: {
                     collapse: 'collapse',
                     expand: 'expand'
-                },
+        },
                 icon_prefix: 'swagger-'
             });
 
@@ -26460,7 +26459,7 @@
 
             $('.propDesc', '.model-signature .description').each(function () {
                 $(this).html(marked($(this).html())).addClass('markdown');
-            });
+    });
         }
 
     });
@@ -26837,7 +26836,7 @@
                 className: 'resource',
                 auths: auths,
                 swaggerOptions: this.options.swaggerOptions
-            });
+    });
             $('#resources', this.el).append(resourceView.render().el);
         },
 
@@ -26961,11 +26960,11 @@
                                                     description: v
                                                 };
                                                 this.model.oauth.scopes.push(o);
-                                            }
+                    }
                                         }
-                                    }
+                }
                                 }
-                            }
+            }
                         }
                     }
                 } else {
@@ -26974,14 +26973,14 @@
                         if (k === 'oauth2') {
                             if (this.model.oauth === null) {
                                 this.model.oauth = {};
-                            }
+            }
                             if (this.model.oauth.scopes === void 0) {
                                 this.model.oauth.scopes = [];
-                            }
+            }
                             for (m = 0, len1 = v.length; m < len1; m++) {
                                 o = v[m];
                                 this.model.oauth.scopes.push(o);
-                            }
+            }
                         }
                     }
                 }
@@ -27613,7 +27612,7 @@
                 for (i = 0; i < this.model.parameters.length; i++) {
                     if (this.model.parameters[i].name === name) {
                         return this.model.parameters[i];
-                    }
+        }
                 }
             }
             return null;
@@ -27644,7 +27643,7 @@
                 } else {
                     return opts.inverse(this);
                 }
-            });
+    });
         },
 
         render: function () {
@@ -27722,12 +27721,12 @@
                             $('.body-textarea', $self).show();
                             $('.editor_holder', $self).hide();
                             this.model.jsonEditor.disable();
-                        }
-                        else {
+            }
+            else {
                             $('.body-textarea', $self).hide();
                             $('.editor_holder', $self).show();
                             this.model.jsonEditor.enable();
-                        }
+            }
                     });
             }
 
@@ -27765,7 +27764,7 @@
                         return Handlebars.templates.param_readonly_required;
                     } else {
                         return Handlebars.templates.param_readonly;
-                    }
+        }
                 } else {
                     if (this.model.required) {
                         return Handlebars.templates.param_required;
@@ -27934,7 +27933,7 @@
                     // TODO move this code outside of the view and expose an event instead
                     if (this.model.jsonEditor && this.model.jsonEditor.isEnabled()) {
                         this.model.jsonEditor.setValue(JSON.parse(this.model.sampleJSON));
-                    }
+        }
                 }
             }
         }

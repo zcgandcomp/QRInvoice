@@ -25,7 +25,7 @@ function handleLogin() {
                     for (i = 0; i < auth.scopes.length; i++) {
                         scopes.push(auth.scopes[i]);
                     }
-                }
+        }
                 else {
                     // 2.0 support
                     for (scope in auth.scopes) {
@@ -33,7 +33,7 @@ function handleLogin() {
                     }
                 }
             }
-        }
+    }
     }
 
     if (window.swaggerUi.api
@@ -71,7 +71,7 @@ function handleLogin() {
                 str += '<br/><span class="api-scope-desc">' + scope.description + ' (' + scope.OAuthSchemeKey + ')' + '</span>';
             else
                 str += '<br/><span class="api-scope-desc">' + scope.description + '</span>';
-        }
+    }
         str += '</label></li>';
         popup.append(str);
     }
@@ -151,7 +151,7 @@ function handleLogin() {
                             var ep = dets.loginEndpoint.url;
                             url = dets.loginEndpoint.url + '?response_type=token';
                             window.swaggerUi.tokenName = dets.tokenName;
-                        }
+            }
                         else if (o.hasOwnProperty(t) && t === 'accessCode') {
                             var dets = o[t];
                             var ep = dets.tokenRequestEndpoint.url;
@@ -159,7 +159,7 @@ function handleLogin() {
                             window.swaggerUi.tokenName = dets.tokenName;
                         }
                     }
-                }
+        }
             }
         }
 
@@ -302,14 +302,14 @@ window.onOAuthComplete = function onOAuthComplete(token, OAuthSchemeKey) {
                             var inner = v1.innerHTML;
                             if (inner)
                                 requiredScopes.push(inner);
-                        });
+            });
                         var diff = [];
                         for (var i = 0; i < requiredScopes.length; i++) {
                             var s = requiredScopes[i];
                             if (window.enabledScopes && window.enabledScopes.indexOf(s) == -1) {
                                 diff.push(s);
                             }
-                        }
+            }
                         if (diff.length > 0) {
                             o = v.parentNode.parentNode;
                             $(o.parentNode).find('.api-ic.ic-on').addClass('ic-off');
@@ -328,11 +328,11 @@ window.onOAuthComplete = function onOAuthComplete(token, OAuthSchemeKey) {
                             $(o).find('.api-ic').addClass('ic-info');
                             $(o).find('.api-ic').removeClass('ic-warning');
                             $(o).find('.api-ic').removeClass('ic-error');
-                        }
+            }
                     }
                 });
                 window.swaggerUi.api.clientAuthorizations.add(OAuthSchemeKey, new SwaggerClient.ApiKeyAuthorization('Authorization', 'Bearer ' + b, 'header'));
             }
-        }
+    }
     }
 };

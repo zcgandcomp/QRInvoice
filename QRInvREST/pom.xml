@@ -30,7 +30,21 @@
             <artifactId>log4j</artifactId>
         </dependency>
 
+        <!--- rest testing -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>tjws</artifactId>
+            <scope>test</scope>
+        </dependency>
 
+
+        <!-- rest easy itself -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
@@ -43,6 +57,13 @@
         </dependency>
 
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+
+        </dependency>
+
+        <!-- internal dependencies -->
+        <dependency>
             <groupId>org.qrinv</groupId>
             <artifactId>qr-inv-core</artifactId>
         </dependency>
@@ -51,11 +72,14 @@
             <groupId>org.qrinv</groupId>
             <artifactId>qr-inv-model</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>3.1.0-SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
+
+
     </dependencies>
 
     <build>

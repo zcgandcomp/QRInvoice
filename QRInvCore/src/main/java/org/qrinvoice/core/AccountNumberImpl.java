@@ -1,11 +1,14 @@
 package org.qrinvoice.core;
 
+import org.apache.log4j.Logger;
+
 /**
  * Created by zcg on 29.5.2016.
  * Czech account number object, for validating and converison to IBAN
  */
 public class AccountNumberImpl implements AccountNumber {
 
+    static Logger log = Logger.getLogger(AccountNumberImpl.class.getName());
     private String accountPrefix;
 
     private String accountBase;
@@ -75,6 +78,8 @@ public class AccountNumberImpl implements AccountNumber {
         buf.append(bankCode);
         if (accountPrefix != null) {
             buf.append(accountPrefix);
+        } else {
+            buf.append("000000");
         }
         buf.append(accountBase);
         buf.append("123500");
@@ -101,7 +106,7 @@ public class AccountNumberImpl implements AccountNumber {
         String checksum = String.format("%02d", pz);
 
         // build the IBAN number
-        return "CZ" + checksum + bankCode + accountPrefix + accountBase;
+        return "CZ" + checksum + bankCode + ((accountPrefix != null) ? accountPrefix : "000000") + accountBase;
     }
 
     @Override

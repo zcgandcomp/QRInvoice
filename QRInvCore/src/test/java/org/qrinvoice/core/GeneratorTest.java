@@ -26,7 +26,6 @@ public class GeneratorTest {
 
         invoice.setIBAN(number.computeIBAN());
 
-
         generator.getQRCode(null, generator.getInvoiceString(invoice, false));
 
 

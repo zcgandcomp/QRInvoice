@@ -112,14 +112,6 @@
                 <version>2.3.3</version>
             </dependency>
 
-
-            <dependency>
-                <groupId>com.webcohesion.enunciate</groupId>
-                <artifactId>enunciate-maven-plugin</artifactId>
-                <version>2.5.0</version>
-            </dependency>
-
-
             <!--- internal dependencies -->
             <dependency>
                 <groupId>org.qrinv</groupId>
@@ -137,6 +129,12 @@
     <build>
 
         <plugins>
+            <plugin>
+
+                <groupId>com.webcohesion.enunciate</groupId>
+                <artifactId>enunciate-maven-plugin</artifactId>
+                <version>2.5.0</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

@@ -4,7 +4,6 @@ package org.qrinvoice.core;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.ws.rs.FormParam;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashMap;
@@ -154,14 +153,16 @@ public class InvoiceParamDomain {
     private String BIC;
 
     //X-SW
-    @FormParam(value = "X-SW")
     @Size(max = 30)
     private String softwareOrigin;
 
     //X-URL
-    @FormParam(value = "X-URL")
     @Size(max = 70)
     private String url;
+
+
+    private int mode;
+
 
     private Map<String, Object> paramMap = new HashMap<>();
 
@@ -484,5 +485,13 @@ public class InvoiceParamDomain {
     public Map<String, Object> getParamMap() {
 
         return (paramMap == null) ? null : Collections.unmodifiableMap(paramMap);
+    }
+
+    public int getMode() {
+        return mode;
+    }
+
+    public void setMode(int mode) {
+        this.mode = mode;
     }
 }
