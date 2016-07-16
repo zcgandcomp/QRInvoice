@@ -14,13 +14,15 @@ public class AccountNumberValidator implements ConstraintValidator<CheckAccountN
 
     static Logger log = Logger.getLogger(AccountNumberValidator.class.getName());
 
+    /**
+     * specification of weights for account number validation
+     */
+    private Integer[] baseWeights = new Integer[]{6, 3, 7, 9, 10, 5, 8, 4, 2, 1};
+
     @Override
     public void initialize(CheckAccountNumber constraintAnnotation) {
         // empty initialization
     }
-
-
-    private Integer[] baseWeights = new Integer[]{6, 3, 7, 9, 10, 5, 8, 4, 2, 1};
 
     /**
      * check weights of string
@@ -113,11 +115,8 @@ public class AccountNumberValidator implements ConstraintValidator<CheckAccountN
             return false;
         }
 
-        if (bankCode.length() == 4) {
-            return true;
-        } else {
-            return false;
-        }
+        return (bankCode.length() == 4);
+
     }
 
 

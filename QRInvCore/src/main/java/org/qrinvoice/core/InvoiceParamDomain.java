@@ -6,8 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static org.qrinvoice.core.InvoiceAttributesConstants.*;
 
@@ -19,7 +19,6 @@ import static org.qrinvoice.core.InvoiceAttributesConstants.*;
 
 public class InvoiceParamDomain {
 
-    // TODO validation
     //ID
     @NotNull
     @Size(max = 40)
@@ -67,7 +66,7 @@ public class InvoiceParamDomain {
     // INI
 
     @Digits(integer = 8, fraction = 0)
-    private BigDecimal identificationNumberDrawer;
+    private String identificationNumberDrawer;
 
     //VIR
 
@@ -77,7 +76,7 @@ public class InvoiceParamDomain {
     //INR
 
     @Digits(integer = 8, fraction = 0)
-    private BigDecimal identificationNumberBene;
+    private String identificationNumberBene;
 
     //DUZP
 
@@ -161,10 +160,15 @@ public class InvoiceParamDomain {
     private String url;
 
 
-    private int mode;
+    //X-URL
+    @Size(max = 70)
+    private String spaydUrl;
 
+    //MSG
+    @Size(max = 40)
+    private String spaydMessage;
 
-    private Map<String, Object> paramMap = new HashMap<>();
+    private Map<String, Object> paramMap = new TreeMap<>();
 
     /**
      * add parameter to internal map of
@@ -231,11 +235,11 @@ public class InvoiceParamDomain {
     }
 
 
-    public BigDecimal getIdentificationNumberBene() {
+    public String getIdentificationNumberBene() {
         return identificationNumberBene;
     }
 
-    public void setIdentificationNumberBene(BigDecimal dentificationNumberBene) {
+    public void setIdentificationNumberBene(String dentificationNumberBene) {
         this.identificationNumberBene = dentificationNumberBene;
         setValueCodePair(identificationNumberBene, INR);
     }
@@ -302,11 +306,11 @@ public class InvoiceParamDomain {
     }
 
 
-    public BigDecimal getIdentificationNumberDrawer() {
+    public String getIdentificationNumberDrawer() {
         return identificationNumberDrawer;
     }
 
-    public void setIdentificationNumberDrawer(BigDecimal identificationNumberDrawer) {
+    public void setIdentificationNumberDrawer(String identificationNumberDrawer) {
         this.identificationNumberDrawer = identificationNumberDrawer;
         setValueCodePair(identificationNumberDrawer, INI);
     }
@@ -367,7 +371,7 @@ public class InvoiceParamDomain {
 
     public void setTaxBaseReduced2Amount(BigDecimal taxBaseReduced2Amount) {
         this.taxBaseReduced2Amount = taxBaseReduced2Amount;
-        setValueCodePair(taxBaseReduced2Amount, T2);
+        setValueCodePair(taxBaseReduced2Amount, TB2);
     }
 
     public Byte getTaxDeposit() {
@@ -480,6 +484,9 @@ public class InvoiceParamDomain {
 
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
+        setValueCodePair(orderNumber, ON);
+
+
     }
 
     public Map<String, Object> getParamMap() {
@@ -487,11 +494,21 @@ public class InvoiceParamDomain {
         return (paramMap == null) ? null : Collections.unmodifiableMap(paramMap);
     }
 
-    public int getMode() {
-        return mode;
+    public String getSpaydUrl() {
+        return spaydUrl;
     }
 
-    public void setMode(int mode) {
-        this.mode = mode;
+    public void setSpaydUrl(String spaydUrl) {
+        this.spaydUrl = spaydUrl;
+        setValueCodePair(spaydUrl, X_URL_SPAYD);
+    }
+
+    public String getSpaydMessage() {
+        return spaydMessage;
+    }
+
+    public void setSpaydMessage(String spaydMessage) {
+        this.spaydMessage = spaydMessage;
+        setValueCodePair(spaydMessage, MSG_SPAYD);
     }
 }

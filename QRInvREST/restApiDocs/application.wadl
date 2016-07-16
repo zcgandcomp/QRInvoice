@@ -47,7 +47,7 @@
 
         <wadl:resource path="invoiceservices/generator/image">
             <wadl:method name="GET">
-                <wadl:doc><![CDATA[]]></wadl:doc>
+                <wadl:doc><![CDATA[generate QR code based on invoice data]]></wadl:doc>
                 <wadl:request>
                     <wadl:param name="ACC" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
@@ -97,6 +97,12 @@
                     <wadl:param name="SA" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
+                    <wadl:param name="SPAYD-MSG" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="SPAYD-URL" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
                     <wadl:param name="T0" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
@@ -121,13 +127,13 @@
                     <wadl:param name="TP" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
-                    <wadl:param name="VA" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
-                    </wadl:param>
                     <wadl:param name="VII" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VIR" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VS" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="X-SW" style="query">
@@ -136,8 +142,27 @@
                     <wadl:param name="X-URL" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
+                    <wadl:param name="accountBase" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="accountPrefix" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="bankCode" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="branding" style="query">
+                        <wadl:doc><![CDATA[id resulted image has to have branding labels]]></wadl:doc>
+                    </wadl:param>
                     <wadl:param name="id" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="mode" style="query">
+                        <wadl:doc>
+                            <![CDATA[indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="transliterate" style="query">
+                        <wadl:doc><![CDATA[identifies if returned string has to have capitalized letters]]></wadl:doc>
                     </wadl:param>
                 </wadl:request>
                 <wadl:response>
@@ -199,6 +224,12 @@
                     <wadl:param name="SA" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
+                    <wadl:param name="SPAYD-MSG" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="SPAYD-URL" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
                     <wadl:param name="T0" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
@@ -223,13 +254,13 @@
                     <wadl:param name="TP" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
-                    <wadl:param name="VA" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
-                    </wadl:param>
                     <wadl:param name="VII" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VIR" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="VS" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="X-SW" style="query">
@@ -238,12 +269,24 @@
                     <wadl:param name="X-URL" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
+                    <wadl:param name="accountBase" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="accountPrefix" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="bankCode" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
                     <wadl:param name="id" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
-                    <wadl:param name="transliterate" style="query">
+                    <wadl:param name="mode" style="query">
                         <wadl:doc>
-                            <![CDATA[identifies if returned string has to have capitalized string parameters]]></wadl:doc>
+                            <![CDATA[indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="transliterate" style="query">
+                        <wadl:doc><![CDATA[identifies if returned string has to have capitalized letters]]></wadl:doc>
                     </wadl:param>
                 </wadl:request>
                 <wadl:response>
@@ -253,7 +296,7 @@
             </wadl:method>
         </wadl:resource>
 
-        <wadl:resource path="invoiceservices/generator/string">
+        <wadl:resource path="invoiceservices/generator/validator">
             <wadl:method name="GET">
                 <wadl:doc><![CDATA[]]></wadl:doc>
                 <wadl:request>
@@ -305,6 +348,12 @@
                     <wadl:param name="SA" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
+                    <wadl:param name="SPAYD-MSG" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="SPAYD-URL" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
                     <wadl:param name="T0" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
@@ -329,19 +378,28 @@
                     <wadl:param name="TP" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
-                    <wadl:param name="VA" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
-                    </wadl:param>
                     <wadl:param name="VII" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VIR" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
+                    <wadl:param name="VS" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
                     <wadl:param name="X-SW" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="X-URL" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="accountBase" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="accountPrefix" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="bankCode" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="id" style="query">

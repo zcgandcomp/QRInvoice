@@ -23,7 +23,6 @@
             <scope>provided</scope>
         </dependency>
 
-
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>

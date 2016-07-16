@@ -20,7 +20,7 @@ public class DateParamConverter implements Converter {
     static Logger log = Logger.getLogger(DateParamConverter.class.getName());
 
     @Override
-    public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) throws ConverterException {
+    public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
         log.info("getAsObject:" + s);
 
         if (s == null) {

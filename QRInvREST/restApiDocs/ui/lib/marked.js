@@ -870,7 +870,7 @@
     }
             if (prot.indexOf('javascript:') === 0) {
                 return '';
-            }
+    }
         }
         var out = '<a href="' + href + '"';
         if (title) {
@@ -1023,7 +1023,7 @@
                 }
 
                 return this.renderer.blockquote(body);
-            }
+    }
             case 'list_start': {
                 var body = ''
                     , ordered = this.token.ordered;
@@ -1033,7 +1033,7 @@
                 }
 
                 return this.renderer.list(body, ordered);
-            }
+    }
             case 'list_item_start': {
                 var body = '';
 
@@ -1059,13 +1059,13 @@
                     ? this.inline.output(this.token.text)
                     : this.token.text;
                 return this.renderer.html(html);
-            }
+    }
             case 'paragraph': {
                 return this.renderer.paragraph(this.inline.output(this.token.text));
-            }
+    }
             case 'text': {
                 return this.renderer.paragraph(this.parseText());
-            }
+    }
         }
     };
 
@@ -1213,7 +1213,7 @@
                 return '<p>An error occured:</p><pre>'
                     + escape(e.message + '', true)
                     + '</pre>';
-            }
+    }
             throw e;
         }
     }

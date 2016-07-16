@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,8 +28,7 @@ public class GeneratorTest {
 
         invoice.setIBAN(number.computeIBAN());
 
-        generator.getQRCode(null, generator.getInvoiceString(invoice, false));
-
+        generator.getQRCode(null, generator.getInvoiceString(invoice, false, IntegrationModeEnum.INVOICE_MODE), IntegrationModeEnum.INVOICE_MODE, true);
 
     }
 
@@ -44,14 +45,94 @@ public class GeneratorTest {
 
         //invoice.setCurrencyCode("CZK");
 
+        invoice.setIBAN(number.computeIBAN());
+
+        invoice.setDateOfDue(new DateParam("20160131"));
+
+        String expResult = "SID*1.0*ACC:CZ4830300000190001007001*DT:20160131*";
+
+        String result = generator.getInvoiceString(invoice, true, IntegrationModeEnum.INVOICE_MODE);
+
+        assertEquals(expResult, result);
+
+    }
+
+    @Test
+    public void getInvoiceStringSPAYDIntegration() throws Exception {
+
+        Generator generator = new Generator();
+
+        InvoiceParamDomain invoice = new InvoiceParamDomain();
+
+        AccountNumberImpl number = new AccountNumberImpl("19", "1007001", "3030");
+
+        invoice.setCurrencyCode("CZK");
 
         invoice.setIBAN(number.computeIBAN());
 
         invoice.setDateOfDue(new DateParam("20160131"));
 
-        String expResult = "SID*1.0*DT:20160131*ACC:CZ4830300000190001007001*";
+        invoice.setDateOfIssue(new DateParam("20160202"));
 
-        String result = generator.getInvoiceString(invoice, true);
+
+        invoice.setTotalAmount(new BigDecimal(9535.12).setScale(2, RoundingMode.HALF_UP));
+
+        invoice.setMessage("qr message");
+
+        invoice.setUrl("url");
+
+        invoice.setId("1963/160/2015");
+
+        invoice.setTypeOfTax((byte) 0);
+
+        invoice.setVariableString("1234567890");
+
+        invoice.setTaxIdentificationNumberDrawer("CZ60194383");
+
+        invoice.setTaxIdentificationNumberBene("CZ12345678");
+
+        invoice.setIdentificationNumberDrawer("60194383");
+
+        invoice.setDateOfTax(new DateParam("20161201"));
+
+        invoice.setTaxBaseAmount(BigDecimal.TEN);
+
+        invoice.setTaxAmount(new BigDecimal(13.13).setScale(2, RoundingMode.HALF_UP));
+
+        invoice.setTaxBaseReduced1Amount(new BigDecimal(15.15).setScale(2, RoundingMode.HALF_UP));
+
+        invoice.setTaxReduced1Amount(new BigDecimal(20.20).setScale(2, RoundingMode.HALF_UP));
+
+        invoice.setNonTaxAmount(new BigDecimal(21.21).setScale(2, RoundingMode.HALF_UP));
+
+        String expResult = "SID*1.0*ACC:CZ4830300000190001007001*" +
+                "AM:9535.12*" +
+                "CC:CZK*" +
+                "DD:20160202*" +
+                "DT:20160131*" +
+                "DUZP:20161201*ID:1963/160/2015*" +
+                "INI:60194383*MSG:QR MESSAGE*NTB:21.21*" +
+                "T0:13.13*T1:20.20*TB0:10*TB1:15.15*TP:0*" +
+                "VII:CZ60194383*VIR:CZ12345678*" +
+                "VS:1234567890*X-URL:URL*";
+
+        String result = generator.getInvoiceString(invoice, true, IntegrationModeEnum.INVOICE_MODE);
+
+        assertEquals(expResult, result);
+
+        invoice.setSpaydMessage("spayd message");
+
+        invoice.setSpaydUrl("spayd url");
+
+        result = generator.getInvoiceString(invoice, true, IntegrationModeEnum.SPAYD_MODE);
+
+        expResult = "SPD*1.0*ACC:CZ4830300000190001007001*" +
+                "AM:9535.12*" +
+                "CC:CZK*" +
+                "DT:20160131*MSG:SPAYD MESSAGE*X-VS:1234567890*X-URL:SPAYD URL*" +
+                "X-INV:SID%2A1.0%2ADD:20160202%2ADUZP:20161201%2AID:1963/160/2015%2AINI:60194383%2AMSG:QR MESSAGE%2A" +
+                "NTB:21.21%2AT0:13.13%2AT1:20.20%2ATB0:10%2A" +
+                "TB1:15.15%2ATP:0%2AVII:CZ60194383%2AVIR:CZ12345678%2AX-URL:URL%2A";
 
         assertEquals(expResult, result);
 
@@ -69,28 +150,5 @@ public class GeneratorTest {
         assertEquals(expected, generator.escapeDisallowedCharacters(original));
     }
 
-
-    /**
-     * Test of paymentStringFromAccount method, of class SmartPayment.
-     */
-    /*
-    @Test
-    public void testPaymentStringFromAccountAmountAndAlternateAccounts() throws UnsupportedEncodingException {
-        System.out.println("paymentStringFromAccount");
-        SpaydPaymentAttributes parameters = new SpaydPaymentAttributes();
-        parameters.setBankAccount(new CzechBankAccount("19", "123", "0800"));
-        List<BankAccount> alternateAccounts = new LinkedList<BankAccount>();
-        alternateAccounts.add(new CzechBankAccount(null, "19", "5500"));
-        alternateAccounts.add(new CzechBankAccount(null, "19", "0100"));
-        parameters.setAlternateAccounts(alternateAccounts);
-        parameters.setAmount(100.5);
-        SpaydExtendedPaymentAttributeMap extendedParameters = null;
-        boolean transliterateParams = false;
-        String expResult = "SPD*1.0*ACC:CZ2408000000190000000123*ALT-ACC:CZ9755000000000000000019,CZ7301000000000000000019*AM:100.5";
-        String result = SpaydPayment.paymentStringFromAccount(parameters, extendedParameters, transliterateParams);
-        System.out.println(result);
-        assertEquals(expResult, result);
-    }
-*/
 
 }

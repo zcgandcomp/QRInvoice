@@ -236,6 +236,22 @@
                                                        decimalSeparator=","/>
 
                                     </div>
+
+
+                                    <div>
+                                        <p:outputLabel
+                                                value="Částka daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:"
+                                                for="t0"/>
+                                        <p:messages autoUpdate="true" for="tb0"/>
+                                    </div>
+                                    <div>
+                                        <p:inputNumber decimalPlaces="2" maxValue="99999999999999" id="t0"
+                                                       value="#{invoiceWebModel.taxAmount}" thousandSeparator=" "
+                                                       decimalSeparator=","/>
+
+                                    </div>
+
+
                                     <div>
                                         <p:outputLabel
                                                 value="Částka daně v základní daňové sazbě v CZK včetně haléřového vyrovnání:"

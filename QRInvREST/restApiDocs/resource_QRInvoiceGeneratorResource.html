@@ -53,8 +53,8 @@
             <ul class="nav nav-sidebar">
                 <li><a href="#resource_QRInvoiceGeneratorResource_generateInvoiceString_GET">GET /generator/string</a>
                 </li>
-                <li><a href="#resource_QRInvoiceGeneratorResource_validateInvoiceString_GET">GET /generator/string</a>
-                </li>
+                <li><a href="#resource_QRInvoiceGeneratorResource_validateInvoiceString_GET">GET
+                    /generator/validator</a></li>
                 <li><a href="#resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET">GET /generator/image</a></li>
                 <li class="divider"></li>
                 <li class="text-right"><a href="#top">
@@ -164,7 +164,7 @@
                         <td><span class="parameter-name">FXA</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-default-value">1</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
@@ -206,8 +206,22 @@
                         <td><span class="parameter-name">SA</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">SPAYD-MSG</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">SPAYD-URL</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T0</span></td>
@@ -262,15 +276,8 @@
                         <td><span class="parameter-name">TP</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="parameter-name">VA</span></td>
-                        <td>query</td>
-                        <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
-                        <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VII</span></td>
@@ -281,6 +288,13 @@
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VIR</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">VS</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
@@ -301,6 +315,27 @@
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
+                        <td><span class="parameter-name">accountBase</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">accountPrefix</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">bankCode</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
                         <td><span class="parameter-name">id</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
@@ -308,9 +343,17 @@
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
+                        <td><span class="parameter-name">mode</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description">indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD</span>
+                        </td>
+                        <td><span class="parameter-default-value">INVOICE_MODE</span></td>
+                        <td><span class="parameter-constraints">"INVOICE_MODE" or "SPAYD_MODE"</span></td>
+                    </tr>
+                    <tr>
                         <td><span class="parameter-name">transliterate</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description">identifies if returned string has to have capitalized string parameters</span>
+                        <td><span class="parameter-description">identifies if returned string has to have capitalized letters</span>
                         </td>
                         <td><span class="parameter-default-value">true</span></td>
                         <td><span class="parameter-constraints">boolean</span></td>
@@ -341,8 +384,8 @@
             </div>
 
             <div id="resource_QRInvoiceGeneratorResource_validateInvoiceString_GET">
-                <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/generator/string <a
-                        href="./invoiceservices/generator/string" class="glyphicon glyphicon-new-window"
+                <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/generator/validator <a
+                        href="./invoiceservices/generator/validator" class="glyphicon glyphicon-new-window"
                         target="_blank"></a></span></h3>
 
                 <p></p>
@@ -426,7 +469,7 @@
                         <td><span class="parameter-name">FXA</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-default-value">1</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
@@ -468,8 +511,22 @@
                         <td><span class="parameter-name">SA</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">SPAYD-MSG</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">SPAYD-URL</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T0</span></td>
@@ -524,15 +581,8 @@
                         <td><span class="parameter-name">TP</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="parameter-name">VA</span></td>
-                        <td>query</td>
-                        <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
-                        <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VII</span></td>
@@ -549,6 +599,13 @@
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
+                        <td><span class="parameter-name">VS</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
                         <td><span class="parameter-name">X-SW</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
@@ -557,6 +614,27 @@
                     </tr>
                     <tr>
                         <td><span class="parameter-name">X-URL</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">accountBase</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">accountPrefix</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">bankCode</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
@@ -597,7 +675,7 @@
                         href="./invoiceservices/generator/image" class="glyphicon glyphicon-new-window"
                         target="_blank"></a></span></h3>
 
-                <p></p>
+                <p>generate QR code based on invoice data</p>
 
                 <table class="table">
                     <caption>Request Parameters</caption>
@@ -611,13 +689,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><span class="parameter-name">transliterate</span></td>
-                        <td>form</td>
-                        <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">true</span></td>
-                        <td><span class="parameter-constraints">boolean</span></td>
-                    </tr>
                     <tr>
                         <td><span class="parameter-name">ACC</span></td>
                         <td>query</td>
@@ -685,7 +756,7 @@
                         <td><span class="parameter-name">FXA</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-default-value">1</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
@@ -727,8 +798,22 @@
                         <td><span class="parameter-name">SA</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">SPAYD-MSG</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">SPAYD-URL</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T0</span></td>
@@ -783,15 +868,8 @@
                         <td><span class="parameter-name">TP</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="parameter-name">VA</span></td>
-                        <td>query</td>
-                        <td><span class="parameter-description"></span></td>
-                        <td><span class="parameter-default-value">&nbsp;</span></td>
-                        <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VII</span></td>
@@ -802,6 +880,13 @@
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VIR</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">VS</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
@@ -822,11 +907,56 @@
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
+                        <td><span class="parameter-name">accountBase</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">accountPrefix</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">bankCode</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">branding</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description">id resulted image has to have branding labels</span>
+                        </td>
+                        <td><span class="parameter-default-value">true</span></td>
+                        <td><span class="parameter-constraints">boolean</span></td>
+                    </tr>
+                    <tr>
                         <td><span class="parameter-name">id</span></td>
                         <td>query</td>
                         <td><span class="parameter-description"></span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">mode</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description">indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD</span>
+                        </td>
+                        <td><span class="parameter-default-value">INVOICE_MODE</span></td>
+                        <td><span class="parameter-constraints">"INVOICE_MODE" or "SPAYD_MODE"</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">transliterate</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description">identifies if returned string has to have capitalized letters</span>
+                        </td>
+                        <td><span class="parameter-default-value">true</span></td>
+                        <td><span class="parameter-constraints">boolean</span></td>
                     </tr>
                     </tbody>
                 </table>

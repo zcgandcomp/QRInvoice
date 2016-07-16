@@ -135,7 +135,7 @@ function handleLogin() {
                     window.swaggerUi.tokenName = dets.tokenName || 'access_token';
                     window.swaggerUi.tokenUrl = (flow === 'accessCode' ? dets.tokenUrl : null);
                     state = key;
-                }
+        }
                 else if (authSchemes[key].type === 'oauth2' && flow && (flow === 'application')) {
                     var dets = authSchemes[key];
                     window.swaggerUi.tokenName = dets.tokenName || 'access_token';
@@ -318,7 +318,7 @@ window.onOAuthComplete = function onOAuthComplete(token, OAuthSchemeKey) {
                             // sorry, not all scopes are satisfied
                             $(o).find('.api-ic').addClass('ic-warning');
                             $(o).find('.api-ic').removeClass('ic-error');
-                        }
+            }
                         else {
                             o = v.parentNode.parentNode;
                             $(o.parentNode).find('.api-ic.ic-off').addClass('ic-on');

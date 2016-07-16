@@ -124,19 +124,12 @@
         "tags": [
           "QRInvoiceGeneratorResource"
         ],
-        "description": "",
+        "description": "generate QR code based on invoice data",
         "operationId": "resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET",
         "produces": [
           "image/png"
         ],
         "parameters": [
-          {
-            "name": "transliterate",
-            "in": "formData",
-            "default": "true",
-            "type": "boolean",
-            "description": ""
-          },
           {
             "name": "ACC",
             "in": "query",
@@ -195,6 +188,7 @@
           {
             "name": "FXA",
             "in": "query",
+            "default": "1",
             "type": "string",
             "description": ""
           },
@@ -230,6 +224,19 @@
           },
           {
             "name": "SA",
+            "in": "query",
+            "default": "0",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "SPAYD-MSG",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "SPAYD-URL",
             "in": "query",
             "type": "string",
             "description": ""
@@ -279,12 +286,7 @@
           {
             "name": "TP",
             "in": "query",
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "VA",
-            "in": "query",
+            "default": "0",
             "type": "string",
             "description": ""
           },
@@ -296,6 +298,12 @@
           },
           {
             "name": "VIR",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VS",
             "in": "query",
             "type": "string",
             "description": ""
@@ -313,10 +321,53 @@
             "description": ""
           },
           {
+            "name": "accountBase",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "accountPrefix",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "bankCode",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "branding",
+            "in": "query",
+            "default": "true",
+            "type": "boolean",
+            "description": "id resulted image has to have branding labels"
+          },
+          {
             "name": "id",
             "in": "query",
             "type": "string",
             "description": ""
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "default": "INVOICE_MODE",
+            "type": "string",
+            "enum": [
+              "INVOICE_MODE",
+              "SPAYD_MODE"
+            ],
+            "description": "indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD"
+          },
+          {
+            "name": "transliterate",
+            "in": "query",
+            "default": "true",
+            "type": "boolean",
+            "description": "identifies if returned string has to have capitalized letters"
           }
         ],
         "responses": {
@@ -400,6 +451,7 @@
           {
             "name": "FXA",
             "in": "query",
+            "default": "1",
             "type": "string",
             "description": ""
           },
@@ -435,6 +487,19 @@
           },
           {
             "name": "SA",
+            "in": "query",
+            "default": "0",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "SPAYD-MSG",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "SPAYD-URL",
             "in": "query",
             "type": "string",
             "description": ""
@@ -484,12 +549,7 @@
           {
             "name": "TP",
             "in": "query",
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "VA",
-            "in": "query",
+            "default": "0",
             "type": "string",
             "description": ""
           },
@@ -501,6 +561,12 @@
           },
           {
             "name": "VIR",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "VS",
             "in": "query",
             "type": "string",
             "description": ""
@@ -518,17 +584,46 @@
             "description": ""
           },
           {
+            "name": "accountBase",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "accountPrefix",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "bankCode",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
             "name": "id",
             "in": "query",
             "type": "string",
             "description": ""
           },
           {
+            "name": "mode",
+            "in": "query",
+            "default": "INVOICE_MODE",
+            "type": "string",
+            "enum": [
+              "INVOICE_MODE",
+              "SPAYD_MODE"
+            ],
+            "description": "indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD"
+          },
+          {
             "name": "transliterate",
             "in": "query",
             "default": "true",
             "type": "boolean",
-            "description": "identifies if returned string has to have capitalized string parameters"
+            "description": "identifies if returned string has to have capitalized letters"
           }
         ],
         "responses": {
@@ -545,7 +640,9 @@
             "description": "Unexpected error."
           }
         }
-      },
+      }
+    },
+    "\/generator/validator": {
       "get": {
         "tags": [
           "QRInvoiceGeneratorResource"
@@ -614,6 +711,7 @@
           {
             "name": "FXA",
             "in": "query",
+            "default": "1",
             "type": "string",
             "description": ""
           },
@@ -649,6 +747,19 @@
           },
           {
             "name": "SA",
+            "in": "query",
+            "default": "0",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "SPAYD-MSG",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "SPAYD-URL",
             "in": "query",
             "type": "string",
             "description": ""
@@ -698,12 +809,7 @@
           {
             "name": "TP",
             "in": "query",
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "VA",
-            "in": "query",
+            "default": "0",
             "type": "string",
             "description": ""
           },
@@ -720,6 +826,12 @@
             "description": ""
           },
           {
+            "name": "VS",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
             "name": "X-SW",
             "in": "query",
             "type": "string",
@@ -727,6 +839,24 @@
           },
           {
             "name": "X-URL",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "accountBase",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "accountPrefix",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "bankCode",
             "in": "query",
             "type": "string",
             "description": ""

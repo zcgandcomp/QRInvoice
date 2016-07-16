@@ -8156,7 +8156,7 @@
 
                                     if (cookie.matches(access_info)) {
                                         return cookie;
-                                    }
+                    }
                                 }
                             };
                             //returns a list of cookies
@@ -13188,10 +13188,10 @@
                     } else {
 
                                             // 1-character punctuators.
-                        str = source[index];
+                                            str = source[index];
                                             if ('<>=!+-*%&|^/'.indexOf(str) >= 0) {
                                                 ++index;
-                        }
+                                            }
                     }
                                     }
                                 }
@@ -13435,7 +13435,7 @@
                                         case 'u':
                                         case 'x':
                                             if (source[index] === '{') {
-                                                ++index;
+                            ++index;
                                                 str += scanUnicodeCodePointEscape();
                                             } else {
                                                 unescaped = scanHexEscape(ch);
@@ -13466,7 +13466,7 @@
                                         case '8':
                                         case '9':
                                             str += ch;
-                                            tolerateUnexpectedToken();
+                        tolerateUnexpectedToken();
                                             break;
 
                                         default:
@@ -13476,15 +13476,15 @@
                                                 octal = octToDec.octal || octal;
                                                 str += String.fromCharCode(octToDec.code);
                                             } else {
-                            str += ch;
+                                                str += ch;
                         }
                                             break;
-                                    }
+                    }
                                 } else {
                                     ++lineNumber;
                                     if (ch === '\r' && source[index] === '\n') {
                                         ++index;
-                                    }
+                    }
                                     lineStart = index;
                                 }
                             } else if (isLineTerminator(ch.charCodeAt(0))) {
@@ -13578,19 +13578,19 @@
 
                                         default:
                                             if (ch === '0') {
-                                                if (isDecimalDigit(source.charCodeAt(index))) {
-                                                    // Illegal: \01 \02 and so on
-                                                    throwError(Messages.TemplateOctalLiteral);
-                                                }
+                            if (isDecimalDigit(source.charCodeAt(index))) {
+                                // Illegal: \01 \02 and so on
+                                throwError(Messages.TemplateOctalLiteral);
+                            }
                                                 cooked += '\0';
                                             } else if (isOctalDigit(ch)) {
                                                 // Illegal: \1 \2
                                                 throwError(Messages.TemplateOctalLiteral);
                                             } else {
                                                 cooked += ch;
-                                            }
+                        }
                                             break;
-                    }
+                                    }
                                 } else {
                                     ++lineNumber;
                                     if (ch === '\r' && source[index] === '\n') {
@@ -14149,7 +14149,7 @@
                                     if (comment.range[0] >= this.range[1]) {
                                         trailingComments.unshift(comment);
                                         extra.trailingComments.splice(i, 1);
-                    }
+                                    }
                                 }
                                 extra.trailingComments = [];
                             } else {
@@ -14173,7 +14173,7 @@
                                         if (comment.range[1] <= this.range[0]) {
                                             leadingComments.unshift(comment);
                                             lastChild.leadingComments.splice(i, 1);
-                        }
+                                        }
                     }
 
                                     if (!lastChild.leadingComments.length) {
@@ -15315,7 +15315,7 @@
                                     state.allowYield = previousAllowYield;
                                     if (options.defaultCount === 0) {
                                         options.defaults = [];
-                    }
+                                    }
                                 }
                                 expect(')');
 
@@ -15533,17 +15533,17 @@
 
                                 if (match('...')) {
                                     if (!isBindingElement) {
-                        throwUnexpectedToken(lookahead);
-                    }
+                                        throwUnexpectedToken(lookahead);
+                                    }
                                     expressions.push(parseRestElement(params));
                                     expect(')');
                                     if (!match('=>')) {
-                        expect('=>');
-                    }
+                                        expect('=>');
+                                    }
                                     isBindingElement = false;
                                     for (i = 0; i < expressions.length; i++) {
                                         reinterpretExpressionAsPattern(expressions[i]);
-                    }
+                                    }
                                     return {
                                         type: PlaceHolders.ArrowParameterPlaceHolder,
                                         params: expressions
@@ -16717,7 +16717,7 @@
 
                                     if (declarations.length === 1 && declarations[0].init === null && matchKeyword('in')) {
                                         init = init.finishLexicalDeclaration(declarations, kind);
-                                        lex();
+                        lex();
                                         left = init;
                                         right = parseExpression();
                                         init = null;
@@ -16731,7 +16731,7 @@
                                     } else {
                                         consumeSemicolon();
                                         init = init.finishLexicalDeclaration(declarations, kind);
-                    }
+                                    }
                                 }
                             } else {
                                 initStartToken = lookahead;
@@ -16752,7 +16752,7 @@
                                 } else if (matchContextualKeyword('of')) {
                                     if (!isAssignmentTarget) {
                                         tolerateError(Messages.InvalidLHSInForLoop);
-                                    }
+                    }
 
                                     lex();
                                     reinterpretExpressionAsPattern(init);
@@ -16764,11 +16764,11 @@
                                     if (match(',')) {
                                         initSeq = [init];
                                         while (match(',')) {
-                                            lex();
+                            lex();
                                             initSeq.push(isolateCoverGrammar(parseAssignmentExpression));
-                                        }
+                        }
                                         init = new WrappingNode(initStartToken).finishSequenceExpression(initSeq);
-                                    }
+                    }
                                     expect(';');
                                 }
                             }
@@ -17473,12 +17473,12 @@
                                     if (key.name === 'static' && (lookaheadPropertyName() || match('*'))) {
                                         token = lookahead;
                                         isStatic = true;
-                                        computed = match('[');
-                                        if (match('*')) {
-                                            lex();
-                                        } else {
-                                            key = parseObjectPropertyKey();
-                                        }
+                        computed = match('[');
+                        if (match('*')) {
+                            lex();
+                        } else {
+                            key = parseObjectPropertyKey();
+                        }
                     }
                                 }
                                 method = tryParseMethodDefinition(token, key, computed, method);
@@ -17486,23 +17486,23 @@
                                     method['static'] = isStatic; // jscs:ignore requireDotNotation
                                     if (method.kind === 'init') {
                                         method.kind = 'method';
-                                    }
+                    }
                                     if (!isStatic) {
                                         if (!method.computed && (method.key.name || method.key.value.toString()) === 'constructor') {
                                             if (method.kind !== 'method' || !method.method || method.value.generator) {
                                                 throwUnexpectedToken(token, Messages.ConstructorSpecialMethod);
-                                            }
+                            }
                                             if (hasConstructor) {
                                                 throwUnexpectedToken(token, Messages.DuplicateConstructor);
-                                            } else {
+                            } else {
                                                 hasConstructor = true;
-                                            }
+                            }
                                             method.kind = 'constructor';
                         }
                                     } else {
                                         if (!method.computed && (method.key.name || method.key.value.toString()) === 'prototype') {
                                             throwUnexpectedToken(token, Messages.StaticPrototype);
-                                        }
+                        }
                     }
                                     method.type = Syntax.MethodDefinition;
                                     delete method.method;
@@ -17510,7 +17510,7 @@
                                     body.push(method);
                                 } else {
                                     throwUnexpectedToken(lookahead);
-                }
+                                }
                             }
                         }
                         lex();
@@ -17617,7 +17617,7 @@
                                 expect(',');
                                 if (match('}')) {
                                     break;
-                }
+                                }
                             }
                         }
                         expect('}');
@@ -17803,8 +17803,8 @@
                                         specifiers = specifiers.concat(parseNamedImports());
                                     } else {
                                         throwUnexpectedToken(lookahead);
-                                    }
-                                }
+                    }
+                }
                             } else {
                                 throwUnexpectedToken(lex());
                             }
@@ -17843,7 +17843,7 @@
                                 strict = true;
                                 if (firstRestricted) {
                                     tolerateUnexpectedToken(firstRestricted, Messages.StrictOctalLiteral);
-                                }
+                }
                             } else {
                                 if (!firstRestricted && token.octal) {
                                     firstRestricted = token;
@@ -17972,7 +17972,7 @@
                                         break;
                                     } else {
                                         throw lexError;
-                                    }
+                    }
                                 }
                             }
 
@@ -26455,7 +26455,7 @@
         renderGFM: function () {
             $('.markdown').each(function () {
                 $(this).html(marked($(this).html()));
-            });
+    });
 
             $('.propDesc', '.model-signature .description').each(function () {
                 $(this).html(marked($(this).html())).addClass('markdown');
@@ -26669,7 +26669,7 @@
             this.trigger('update-swagger-ui', {
                 url: $('#input_baseUrl').val(),
                 apiKey: $('#input_apiKey').val()
-            });
+    });
         },
 
         update: function (url, apiKey, trigger) {
@@ -26816,7 +26816,7 @@
                 $('.optionsWrapper', $(this)).show();
             }, function offhover() {
                 $('.optionsWrapper', $(this)).hide();
-            });
+    });
             return this;
         },
 
@@ -26836,7 +26836,7 @@
                 className: 'resource',
                 auths: auths,
                 swaggerOptions: this.options.swaggerOptions
-    });
+            });
             $('#resources', this.el).append(resourceView.render().el);
         },
 
@@ -27770,7 +27770,7 @@
                         return Handlebars.templates.param_required;
                     } else {
                         return Handlebars.templates.param;
-                    }
+        }
                 }
             }
         }

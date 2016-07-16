@@ -20,6 +20,9 @@ public class Constants {
      */
     public static final Integer MAX_QR_SIZE = 800;
 
+    public static final String QR_INVOICE = "QR Faktura";
+
+    public static final String QR_PAYMENT_INVOICE = "QR Platba+F";
 
     // hidden default constructor
     private Constants() {

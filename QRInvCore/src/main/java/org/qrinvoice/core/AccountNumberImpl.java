@@ -53,6 +53,27 @@ public class AccountNumberImpl implements AccountNumber {
 
     }
 
+    private int computeIBANChecksum(StringBuilder buf) {
+        int index = 0;
+        String dividend;
+        int pz = -1;
+        while (index <= buf.length()) {
+            if (pz < 0) {
+                dividend = buf.substring(index, Math.min(index + 9, buf.length()));
+                index += 9;
+            } else if (pz >= 0 && pz <= 9) {
+                dividend = pz + buf.substring(index, Math.min(index + 8, buf.length()));
+                index += 8;
+            } else {
+                dividend = pz + buf.substring(index, Math.min(index + 7, buf.length()));
+                index += 7;
+            }
+            pz = Integer.valueOf(dividend) % 97;
+        }
+        pz = 98 - pz;
+
+        return pz;
+    }
     /**
      * Computes the IBAN number
      *
@@ -84,23 +105,7 @@ public class AccountNumberImpl implements AccountNumber {
         buf.append(accountBase);
         buf.append("123500");
 
-        int index = 0;
-        String dividend;
-        int pz = -1;
-        while (index <= buf.length()) {
-            if (pz < 0) {
-                dividend = buf.substring(index, Math.min(index + 9, buf.length()));
-                index += 9;
-            } else if (pz >= 0 && pz <= 9) {
-                dividend = pz + buf.substring(index, Math.min(index + 8, buf.length()));
-                index += 8;
-            } else {
-                dividend = pz + buf.substring(index, Math.min(index + 7, buf.length()));
-                index += 7;
-            }
-            pz = Integer.valueOf(dividend) % 97;
-        }
-        pz = 98 - pz;
+        int pz = computeIBANChecksum(buf);
 
         // assign the checksum
         String checksum = String.format("%02d", pz);

@@ -17,7 +17,8 @@ import java.math.BigDecimal;
 
 /**
  * Created by zcg on 27.6.2016.
- * holder for query parameter
+ * holder for query parameter for detail see http://qr-faktura.cz/popis-formatu
+ *
  *
  */
 public class InvoiceModel implements Serializable {
@@ -45,11 +46,18 @@ public class InvoiceModel implements Serializable {
     @QueryParam(value = "AM")
     @Digits(integer = 15, fraction = 2)
     @NotNull
+    /**
+     * Total amount to pay in @see CC currency
+     */
     private BigDecimal totalAmount;
 
     //TP
+    @DefaultValue("0")
     @QueryParam(value = "TP")
     @Digits(integer = 1, fraction = 0)
+    /**
+     * identification of type of tax
+     */
     private Byte typeOfTax;
 
     //TD
@@ -58,6 +66,7 @@ public class InvoiceModel implements Serializable {
     private Byte typeOfIdentification;
 
     //SA
+    @DefaultValue("0")
     @QueryParam(value = "SA")
     @Digits(integer = 1, fraction = 0)
     private Byte taxDeposit;
@@ -163,6 +172,7 @@ public class InvoiceModel implements Serializable {
     private BigDecimal exchangeRate;
 
     //FXA
+    @DefaultValue("1")
     @QueryParam(value = "FXA")
     @Digits(integer = 5, fraction = 0)
     private BigDecimal exchangeUnits;
@@ -174,7 +184,6 @@ public class InvoiceModel implements Serializable {
     @Valid
     @BeanParam
     private AccountNumberModel accountNumber = new AccountNumberModel();
-
 
     //ACC
     @QueryParam(value = "ACC")
@@ -196,20 +205,17 @@ public class InvoiceModel implements Serializable {
     @Size(max = 70)
     private String url;
 
-    /**
-     * indicates which mode of QR should be used, eather pure QR invoice or QR payment
-     */
-    @DefaultValue("0")
-    @QueryParam(value = "mode")
-    private int mode;
 
-    public int getMode() {
-        return mode;
-    }
+    //X-URL
+    @Size(max = 70)
+    @QueryParam(value = "SPAYD-URL")
+    private String spaydUrl;
 
-    public void setMode(int mode) {
-        this.mode = mode;
-    }
+    //MSG
+    @Size(max = 40)
+    @QueryParam(value = "SPAYD-MSG")
+    private String spaydMessage;
+
 
     public String getMessage() {
         return message;
