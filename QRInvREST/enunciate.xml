@@ -4,6 +4,7 @@
 
     <api-classes>
         <include pattern="org.qrinvoice.**"/>
+        <include pattern="org.qrinvoice.model.*"/>
     </api-classes>
 
     <modules>

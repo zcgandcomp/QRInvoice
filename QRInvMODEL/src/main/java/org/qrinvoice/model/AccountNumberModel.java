@@ -10,15 +10,25 @@ import javax.ws.rs.QueryParam;
  */
 
 public class AccountNumberModel implements AccountNumber {
+
+    /**
+     * Account number prefix
+     */
     @QueryParam(value = "accountPrefix")
     @Size(max = 6)
     private String accountPrefix;
 
+    /**
+     * Base of account number
+     */
     @QueryParam(value = "accountBase")
     @Size(max = 10)
     private String accountBase;
 
 
+    /**
+     * Code of bank
+     */
     @QueryParam(value = "bankCode")
     @Size(max = 4)
     private String bankCode;
@@ -56,5 +66,14 @@ public class AccountNumberModel implements AccountNumber {
     @Override
     public boolean isEmpty() {
         return accountPrefix == null && accountBase == null && bankCode == null;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountNumberModel{" +
+                "accountPrefix='" + accountPrefix + '\'' +
+                ", accountBase='" + accountBase + '\'' +
+                ", bankCode='" + bankCode + '\'' +
+                '}';
     }
 }

@@ -17,10 +17,11 @@ import java.math.BigDecimal;
 
 /**
  * Created by zcg on 27.6.2016.
- * holder for query parameter for detail see http://qr-faktura.cz/popis-formatu
+ * Holder for query parameter for detail see http://qr-faktura.cz/popis-formatu
  *
  *
  */
+
 public class InvoiceModel implements Serializable {
 
 
@@ -36,129 +37,187 @@ public class InvoiceModel implements Serializable {
 
     //DD
     /**
-     * date of issue of invoice
+     * Date of issue of invoice
      */
     @QueryParam(value = "DD")
     @NotNull
     private DateParam dateOfIssue;
 
+    /**
+     * Total amount to pay in @see CC currency
+     */
     //AM
     @QueryParam(value = "AM")
     @Digits(integer = 15, fraction = 2)
     @NotNull
-    /**
-     * Total amount to pay in @see CC currency
-     */
     private BigDecimal totalAmount;
 
+    /**
+     * Identification of type of taxable event
+     */
     //TP
     @DefaultValue("0")
     @QueryParam(value = "TP")
     @Digits(integer = 1, fraction = 0)
-    /**
-     * identification of type of tax
-     */
-    private Byte typeOfTax;
+    private Byte typeOfTaxTransaction;
 
+    /**
+     * Type of tax document
+     */
     //TD
     @QueryParam(value = "TD")
     @Digits(integer = 1, fraction = 0)
-    private Byte typeOfIdentification;
+    private Byte typeOfTaxDocument;
 
+    /**
+     * Flag if tax advance payments are on invoice
+     */
     //SA
     @DefaultValue("0")
     @QueryParam(value = "SA")
     @Digits(integer = 1, fraction = 0)
-    private Byte taxDeposit;
+    private Byte taxAdvance;
 
+    /**
+     * Text description of subject of invoice
+     */
     //MSG
     @QueryParam(value = "MSG")
     @Size(max = 40)
     private String message;
 
+    /**
+     * Number of order
+     */
     //ON
     @QueryParam(value = "ON")
     @Size(max = 20)
     private String orderNumber;
 
+    /**
+     * Variable symbol
+     */
     //VS
     @QueryParam(value = "VS")
     @Size(max = 10)
     @Pattern(regexp = "^([0-9]{0,10})$")
     private String variableString;
 
+    /**
+     * Tax identification number of issuer - DIČ
+     */
     // VII
     @QueryParam(value = "VII")
     @Size(max = 14)
     @Pattern(regexp = "^[a-zA-Z0-9]*$")
-    private String taxIdentificationNumberDrawer;
+    private String taxIdentificationNumberIssuer;
 
+    /**
+     * Identification number of issuer - IČO
+     */
     // INI
-
     @QueryParam(value = "INI")
     @Digits(integer = 8, fraction = 0)
-    private BigDecimal identificationNumberDrawer;
+    private BigDecimal identificationNumberIssuer;
 
+    /**
+     * Tax identification number of recipient - DIČ
+     */
     //VIR
     @QueryParam(value = "VIR")
     @Size(max = 14)
     @Pattern(regexp = "^[a-zA-Z0-9]*$")
-    private String taxIdentificationNumberBene;
+    private String taxIdentificationNumberRecipient;
 
+    /**
+     * Identification number of recipient - IČO
+     */
     //INR
-
     @QueryParam(value = "INR")
     @Digits(integer = 8, fraction = 0)
-    private BigDecimal identificationNumberBene;
+    private BigDecimal identificationNumberRecipient;
 
+    /**
+     * Date of taxable event
+     */
     //DUZP
     @QueryParam(value = "DUZP")
     private DateParam dateOfTax;
 
+
+    /**
+     * Date of duty to declare tax
+     */
     //DPPD
-    //TODO validation
     @QueryParam(value = "DPPD")
     private DateParam dateOfTaxDuty;
 
+    /**
+     * Date of due of total amount
+     */
     //DT
     @QueryParam(value = "DT")
     private DateParam dateOfDue;
 
+    /**
+     * Tax base
+     */
     //TB0
     @QueryParam(value = "TB0")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxBaseAmount;
 
+    /**
+     * Tax amount in base tax rate
+     */
     // T0
     @QueryParam(value = "T0")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxAmount;
 
+    /**
+     * Tax base in first reduced rate
+     */
     //TB1
     @QueryParam(value = "TB1")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxBaseReduced1Amount;
 
+    /**
+     * Tax amount in first reduced rate
+     */
     //T1
     @QueryParam(value = "T1")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxReduced1Amount;
 
+    /**
+     * Tax base in second reduced rate
+     */
     //TB2
     @QueryParam(value = "TB2")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxBaseReduced2Amount;
 
+    /**
+     * Tax amount in second reduced rate
+     */
     //T2
     @QueryParam(value = "T2")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal taxReduced2Amount;
 
+    /**
+     * Amount of non taxable event
+     */
     //NTB
     @QueryParam(value = "NTB")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal nonTaxAmount;
 
+    /**
+     * Currency of total amount
+     */
     //CC
     @DefaultValue("CZK")
     @QueryParam(value = "CC")
@@ -166,11 +225,17 @@ public class InvoiceModel implements Serializable {
     @Pattern(regexp = "^[A-Z]*$")
     private String currencyCode;
 
+    /**
+     * Exchange rate between CZK currency and currency of total amount
+     */
     //FX
     @QueryParam(value = "FX")
     @Digits(integer = 15, fraction = 2)
     private BigDecimal exchangeRate;
 
+    /**
+     * Currency units
+     */
     //FXA
     @DefaultValue("1")
     @QueryParam(value = "FXA")
@@ -179,38 +244,58 @@ public class InvoiceModel implements Serializable {
 
     // special attributes
 
+    /**
+     * Account number in czech format
+     */
     // TODO create in producer
     @CheckAccountNumber
     @Valid
     @BeanParam
     private AccountNumberModel accountNumber = new AccountNumberModel();
 
+    /**
+     * IBAN number
+     */
     //ACC
     @QueryParam(value = "ACC")
     @Size(max = 34)
     private String IBAN;
 
+    /**
+     * BIC code of bank
+     */
     // no code
     @QueryParam(value = "BIC")
     @Size(max = 11)
     private String BIC;
 
+    /**
+     * Identification of Software
+     */
     //X-SW
     @QueryParam(value = "X-SW")
     @Size(max = 30)
     private String softwareOrigin;
 
+    /**
+     * URL to electronic document of invoice
+     */
     //X-URL
     @QueryParam(value = "X-URL")
     @Size(max = 70)
     private String url;
 
-
+    /**
+     * URL from spayd specification
+     */
     //X-URL
     @Size(max = 70)
     @QueryParam(value = "SPAYD-URL")
     private String spaydUrl;
 
+    /**
+     * Message for beneficiary from spayd specification
+     */
     //MSG
     @Size(max = 40)
     @QueryParam(value = "SPAYD-MSG")
@@ -233,9 +318,6 @@ public class InvoiceModel implements Serializable {
         this.orderNumber = orderNumber;
     }
 
-    /**
-     * ID of generated invoice getter
-     */
     public String getId() {
         return id;
     }
@@ -260,28 +342,28 @@ public class InvoiceModel implements Serializable {
         this.totalAmount = totalAmount;
     }
 
-    public Byte getTypeOfTax() {
-        return typeOfTax;
+    public Byte getTypeOfTaxTransaction() {
+        return typeOfTaxTransaction;
     }
 
-    public void setTypeOfTax(Byte typeOfTax) {
-        this.typeOfTax = typeOfTax;
+    public void setTypeOfTaxTransaction(Byte typeOfTaxTransaction) {
+        this.typeOfTaxTransaction = typeOfTaxTransaction;
     }
 
-    public Byte getTypeOfIdentification() {
-        return typeOfIdentification;
+    public Byte getTypeOfTaxDocument() {
+        return typeOfTaxDocument;
     }
 
-    public void setTypeOfIdentification(Byte typeOfIdentification) {
-        this.typeOfIdentification = typeOfIdentification;
+    public void setTypeOfTaxDocument(Byte typeOfTaxDocument) {
+        this.typeOfTaxDocument = typeOfTaxDocument;
     }
 
-    public Byte getTaxDeposit() {
-        return taxDeposit;
+    public Byte getTaxAdvance() {
+        return taxAdvance;
     }
 
-    public void setTaxDeposit(Byte taxDeposit) {
-        this.taxDeposit = taxDeposit;
+    public void setTaxAdvance(Byte taxAdvance) {
+        this.taxAdvance = taxAdvance;
     }
 
     public String getVariableString() {
@@ -292,36 +374,36 @@ public class InvoiceModel implements Serializable {
         this.variableString = variableString;
     }
 
-    public String getTaxIdentificationNumberDrawer() {
-        return taxIdentificationNumberDrawer;
+    public String getTaxIdentificationNumberIssuer() {
+        return taxIdentificationNumberIssuer;
     }
 
-    public void setTaxIdentificationNumberDrawer(String taxIdentificationNumberDrawer) {
-        this.taxIdentificationNumberDrawer = taxIdentificationNumberDrawer;
+    public void setTaxIdentificationNumberIssuer(String taxIdentificationNumberIssuer) {
+        this.taxIdentificationNumberIssuer = taxIdentificationNumberIssuer;
     }
 
-    public BigDecimal getIdentificationNumberDrawer() {
-        return identificationNumberDrawer;
+    public BigDecimal getIdentificationNumberIssuer() {
+        return identificationNumberIssuer;
     }
 
-    public void setIdentificationNumberDrawer(BigDecimal identificationNumberDrawer) {
-        this.identificationNumberDrawer = identificationNumberDrawer;
+    public void setIdentificationNumberIssuer(BigDecimal identificationNumberIssuer) {
+        this.identificationNumberIssuer = identificationNumberIssuer;
     }
 
-    public String getTaxIdentificationNumberBene() {
-        return taxIdentificationNumberBene;
+    public String getTaxIdentificationNumberRecipient() {
+        return taxIdentificationNumberRecipient;
     }
 
-    public void setTaxIdentificationNumberBene(String taxIdentificationNumberBene) {
-        this.taxIdentificationNumberBene = taxIdentificationNumberBene;
+    public void setTaxIdentificationNumberRecipient(String taxIdentificationNumberRecipient) {
+        this.taxIdentificationNumberRecipient = taxIdentificationNumberRecipient;
     }
 
-    public BigDecimal getIdentificationNumberBene() {
-        return identificationNumberBene;
+    public BigDecimal getIdentificationNumberRecipient() {
+        return identificationNumberRecipient;
     }
 
-    public void setIdentificationNumberBene(BigDecimal identificationNumberBene) {
-        this.identificationNumberBene = identificationNumberBene;
+    public void setIdentificationNumberRecipient(BigDecimal identificationNumberRecipient) {
+        this.identificationNumberRecipient = identificationNumberRecipient;
     }
 
     public DateParam getDateOfTax() {
@@ -467,5 +549,44 @@ public class InvoiceModel implements Serializable {
 
     public void setAccountNumber(AccountNumberModel accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceModel{" +
+                "id='" + id + '\'' +
+                ", dateOfIssue=" + dateOfIssue +
+                ", totalAmount=" + totalAmount +
+                ", typeOfTaxTransaction=" + typeOfTaxTransaction +
+                ", typeOfTaxDocument=" + typeOfTaxDocument +
+                ", taxAdvance=" + taxAdvance +
+                ", message='" + message + '\'' +
+                ", orderNumber='" + orderNumber + '\'' +
+                ", variableString='" + variableString + '\'' +
+                ", taxIdentificationNumberIssuer='" + taxIdentificationNumberIssuer + '\'' +
+                ", identificationNumberIssuer=" + identificationNumberIssuer +
+                ", taxIdentificationNumberRecipient='" + taxIdentificationNumberRecipient + '\'' +
+                ", identificationNumberRecipient=" + identificationNumberRecipient +
+                ", dateOfTax=" + dateOfTax +
+                ", dateOfTaxDuty=" + dateOfTaxDuty +
+                ", dateOfDue=" + dateOfDue +
+                ", taxBaseAmount=" + taxBaseAmount +
+                ", taxAmount=" + taxAmount +
+                ", taxBaseReduced1Amount=" + taxBaseReduced1Amount +
+                ", taxReduced1Amount=" + taxReduced1Amount +
+                ", taxBaseReduced2Amount=" + taxBaseReduced2Amount +
+                ", taxReduced2Amount=" + taxReduced2Amount +
+                ", nonTaxAmount=" + nonTaxAmount +
+                ", currencyCode='" + currencyCode + '\'' +
+                ", exchangeRate=" + exchangeRate +
+                ", exchangeUnits=" + exchangeUnits +
+                ", accountNumber=" + accountNumber +
+                ", IBAN='" + IBAN + '\'' +
+                ", BIC='" + BIC + '\'' +
+                ", softwareOrigin='" + softwareOrigin + '\'' +
+                ", url='" + url + '\'' +
+                ", spaydUrl='" + spaydUrl + '\'' +
+                ", spaydMessage='" + spaydMessage + '\'' +
+                '}';
     }
 }

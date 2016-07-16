@@ -13039,7 +13039,7 @@
                                     cp = ch.charCodeAt(0);
                                     if (!ch || ch === '\\' || !isIdentifierPart(cp)) {
                                         throwUnexpectedToken();
-                                    }
+                    }
                                 }
                                 id += ch;
                             }
@@ -13191,7 +13191,7 @@
                         str = source[index];
                                             if ('<>=!+-*%&|^/'.indexOf(str) >= 0) {
                                                 ++index;
-                                            }
+                        }
                                         }
                                     }
                                 }

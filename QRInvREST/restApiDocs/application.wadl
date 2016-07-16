@@ -50,116 +50,119 @@
                 <wadl:doc><![CDATA[generate QR code based on invoice data]]></wadl:doc>
                 <wadl:request>
                     <wadl:param name="ACC" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[IBAN number]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="AM" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Total amount to pay in @see CC currency]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="BIC" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[BIC code of bank]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="CC" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Currency of total amount]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DD" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of issue of invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DPPD" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of duty to declare tax]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DT" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of due of total amount]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DUZP" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of taxable event]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="FX" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Exchange rate between CZK currency and currency of total amount]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="FXA" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Currency units]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="INI" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification number of issuer - I�O]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="INR" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification number of recipient - I�O]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="MSG" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Text description of subject of invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="NTB" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Amount of non taxable event]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="ON" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Number of order]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="SA" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Flag if tax advance payments are on invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="SPAYD-MSG" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Message for beneficiary from spayd specification]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="SPAYD-URL" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[URL from spayd specification]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="T0" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax amount in base tax rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="T1" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax amount in first reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="T2" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax amount in second reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TB0" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax base]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TB1" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax base in first reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TB2" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax base in second reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TD" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Type of tax document]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TP" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification of type of taxable event]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VII" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax identification number of issuer - DI�]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VIR" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax identification number of recipient - DI�]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VS" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Variable symbol]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="X-SW" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification of Software]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="X-URL" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[URL to electronic document of invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="accountBase" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Base of account number]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="accountPrefix" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Account number prefix]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="bankCode" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Code of bank]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="branding" style="query">
-                        <wadl:doc><![CDATA[id resulted image has to have branding labels]]></wadl:doc>
+                        <wadl:doc><![CDATA[if resulted image has to have branding labels]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="id" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[ID of generated invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="mode" style="query">
                         <wadl:doc>
                             <![CDATA[indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="size" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="transliterate" style="query">
                         <wadl:doc><![CDATA[identifies if returned string has to have capitalized letters]]></wadl:doc>
@@ -172,115 +175,138 @@
             </wadl:method>
         </wadl:resource>
 
+        <wadl:resource path="invoiceservices/generator/imagefromstring">
+            <wadl:method name="GET">
+                <wadl:doc><![CDATA[]]></wadl:doc>
+                <wadl:request>
+                    <wadl:param name="branding" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="invoicedata" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="mode" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="size" style="query">
+                        <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                </wadl:request>
+                <wadl:response>
+                    <wadl:representation mediaType="image/png"/>
+                </wadl:response>
+            </wadl:method>
+        </wadl:resource>
+
         <wadl:resource path="invoiceservices/generator/string">
             <wadl:method name="GET">
                 <wadl:doc>
                     <![CDATA[Returns String representing QR payment, make basic validation of input params]]></wadl:doc>
                 <wadl:request>
                     <wadl:param name="ACC" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[IBAN number]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="AM" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Total amount to pay in @see CC currency]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="BIC" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[BIC code of bank]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="CC" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Currency of total amount]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DD" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of issue of invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DPPD" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of duty to declare tax]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DT" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of due of total amount]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DUZP" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of taxable event]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="FX" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Exchange rate between CZK currency and currency of total amount]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="FXA" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Currency units]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="INI" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification number of issuer - I�O]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="INR" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification number of recipient - I�O]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="MSG" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Text description of subject of invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="NTB" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Amount of non taxable event]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="ON" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Number of order]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="SA" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Flag if tax advance payments are on invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="SPAYD-MSG" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Message for beneficiary from spayd specification]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="SPAYD-URL" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[URL from spayd specification]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="T0" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax amount in base tax rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="T1" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax amount in first reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="T2" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax amount in second reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TB0" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax base]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TB1" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax base in first reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TB2" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax base in second reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TD" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Type of tax document]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TP" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification of type of taxable event]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VII" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax identification number of issuer - DI�]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VIR" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax identification number of recipient - DI�]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VS" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Variable symbol]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="X-SW" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification of Software]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="X-URL" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[URL to electronic document of invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="accountBase" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Base of account number]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="accountPrefix" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Account number prefix]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="bankCode" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Code of bank]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="id" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[ID of generated invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="mode" style="query">
                         <wadl:doc>
@@ -303,109 +329,109 @@
 TODO create validation for InvoiceModel itself]]></wadl:doc>
                 <wadl:request>
                     <wadl:param name="ACC" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[IBAN number]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="AM" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Total amount to pay in @see CC currency]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="BIC" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[BIC code of bank]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="CC" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Currency of total amount]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DD" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of issue of invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DPPD" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of duty to declare tax]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DT" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of due of total amount]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="DUZP" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Date of taxable event]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="FX" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Exchange rate between CZK currency and currency of total amount]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="FXA" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Currency units]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="INI" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification number of issuer - I�O]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="INR" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification number of recipient - I�O]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="MSG" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Text description of subject of invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="NTB" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Amount of non taxable event]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="ON" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Number of order]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="SA" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Flag if tax advance payments are on invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="SPAYD-MSG" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Message for beneficiary from spayd specification]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="SPAYD-URL" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[URL from spayd specification]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="T0" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax amount in base tax rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="T1" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax amount in first reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="T2" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax amount in second reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TB0" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax base]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TB1" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax base in first reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TB2" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax base in second reduced rate]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TD" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Type of tax document]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="TP" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification of type of taxable event]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VII" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax identification number of issuer - DI�]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VIR" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Tax identification number of recipient - DI�]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="VS" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Variable symbol]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="X-SW" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Identification of Software]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="X-URL" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[URL to electronic document of invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="accountBase" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Base of account number]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="accountPrefix" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Account number prefix]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="bankCode" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[Code of bank]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="id" style="query">
-                        <wadl:doc><![CDATA[]]></wadl:doc>
+                        <wadl:doc><![CDATA[ID of generated invoice]]></wadl:doc>
                     </wadl:param>
                     <wadl:param name="mode" style="query">
                         <wadl:doc>

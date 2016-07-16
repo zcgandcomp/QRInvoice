@@ -134,222 +134,222 @@
             "name": "ACC",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "IBAN number"
           },
           {
             "name": "AM",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Total amount to pay in @see CC currency"
           },
           {
             "name": "BIC",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "BIC code of bank"
           },
           {
             "name": "CC",
             "in": "query",
             "default": "CZK",
             "type": "string",
-            "description": ""
+            "description": "Currency of total amount"
           },
           {
             "name": "DD",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of issue of invoice"
           },
           {
             "name": "DPPD",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of duty to declare tax"
           },
           {
             "name": "DT",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of due of total amount"
           },
           {
             "name": "DUZP",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of taxable event"
           },
           {
             "name": "FX",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Exchange rate between CZK currency and currency of total amount"
           },
           {
             "name": "FXA",
             "in": "query",
             "default": "1",
             "type": "string",
-            "description": ""
+            "description": "Currency units"
           },
           {
             "name": "INI",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Identification number of issuer - IČO"
           },
           {
             "name": "INR",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Identification number of recipient - IČO"
           },
           {
             "name": "MSG",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Text description of subject of invoice"
           },
           {
             "name": "NTB",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Amount of non taxable event"
           },
           {
             "name": "ON",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Number of order"
           },
           {
             "name": "SA",
             "in": "query",
             "default": "0",
             "type": "string",
-            "description": ""
+            "description": "Flag if tax advance payments are on invoice"
           },
           {
             "name": "SPAYD-MSG",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Message for beneficiary from spayd specification"
           },
           {
             "name": "SPAYD-URL",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "URL from spayd specification"
           },
           {
             "name": "T0",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax amount in base tax rate"
           },
           {
             "name": "T1",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax amount in first reduced rate"
           },
           {
             "name": "T2",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax amount in second reduced rate"
           },
           {
             "name": "TB0",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax base"
           },
           {
             "name": "TB1",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax base in first reduced rate"
           },
           {
             "name": "TB2",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax base in second reduced rate"
           },
           {
             "name": "TD",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Type of tax document"
           },
           {
             "name": "TP",
             "in": "query",
             "default": "0",
             "type": "string",
-            "description": ""
+            "description": "Identification of type of taxable event"
           },
           {
             "name": "VII",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax identification number of issuer - DIČ"
           },
           {
             "name": "VIR",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax identification number of recipient - DIČ"
           },
           {
             "name": "VS",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Variable symbol"
           },
           {
             "name": "X-SW",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Identification of Software"
           },
           {
             "name": "X-URL",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "URL to electronic document of invoice"
           },
           {
             "name": "accountBase",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Base of account number"
           },
           {
             "name": "accountPrefix",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Account number prefix"
           },
           {
             "name": "bankCode",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Code of bank"
           },
           {
             "name": "branding",
             "in": "query",
             "default": "true",
             "type": "boolean",
-            "description": "id resulted image has to have branding labels"
+            "description": "if resulted image has to have branding labels"
           },
           {
             "name": "id",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "ID of generated invoice"
           },
           {
             "name": "mode",
@@ -363,11 +363,71 @@
             "description": "indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD"
           },
           {
+            "name": "size",
+            "in": "query",
+            "type": "integer",
+            "description": ""
+          },
+          {
             "name": "transliterate",
             "in": "query",
             "default": "true",
             "type": "boolean",
             "description": "identifies if returned string has to have capitalized letters"
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": "Success"
+          },
+          "default": {
+            "description": "Unexpected error."
+          }
+        }
+      }
+    },
+    "\/generator/imagefromstring": {
+      "get": {
+        "tags": [
+          "QRInvoiceGeneratorResource"
+        ],
+        "description": "",
+        "operationId": "resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET",
+        "produces": [
+          "image/png"
+        ],
+        "parameters": [
+          {
+            "name": "branding",
+            "in": "query",
+            "default": "true",
+            "type": "boolean",
+            "description": ""
+          },
+          {
+            "name": "invoicedata",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "default": "INVOICE_MODE",
+            "type": "string",
+            "enum": [
+              "INVOICE_MODE",
+              "SPAYD_MODE"
+            ],
+            "description": ""
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "type": "integer",
+            "description": ""
           }
         ],
         "responses": {
@@ -397,215 +457,215 @@
             "name": "ACC",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "IBAN number"
           },
           {
             "name": "AM",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Total amount to pay in @see CC currency"
           },
           {
             "name": "BIC",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "BIC code of bank"
           },
           {
             "name": "CC",
             "in": "query",
             "default": "CZK",
             "type": "string",
-            "description": ""
+            "description": "Currency of total amount"
           },
           {
             "name": "DD",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of issue of invoice"
           },
           {
             "name": "DPPD",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of duty to declare tax"
           },
           {
             "name": "DT",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of due of total amount"
           },
           {
             "name": "DUZP",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of taxable event"
           },
           {
             "name": "FX",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Exchange rate between CZK currency and currency of total amount"
           },
           {
             "name": "FXA",
             "in": "query",
             "default": "1",
             "type": "string",
-            "description": ""
+            "description": "Currency units"
           },
           {
             "name": "INI",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Identification number of issuer - IČO"
           },
           {
             "name": "INR",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Identification number of recipient - IČO"
           },
           {
             "name": "MSG",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Text description of subject of invoice"
           },
           {
             "name": "NTB",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Amount of non taxable event"
           },
           {
             "name": "ON",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Number of order"
           },
           {
             "name": "SA",
             "in": "query",
             "default": "0",
             "type": "string",
-            "description": ""
+            "description": "Flag if tax advance payments are on invoice"
           },
           {
             "name": "SPAYD-MSG",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Message for beneficiary from spayd specification"
           },
           {
             "name": "SPAYD-URL",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "URL from spayd specification"
           },
           {
             "name": "T0",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax amount in base tax rate"
           },
           {
             "name": "T1",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax amount in first reduced rate"
           },
           {
             "name": "T2",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax amount in second reduced rate"
           },
           {
             "name": "TB0",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax base"
           },
           {
             "name": "TB1",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax base in first reduced rate"
           },
           {
             "name": "TB2",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax base in second reduced rate"
           },
           {
             "name": "TD",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Type of tax document"
           },
           {
             "name": "TP",
             "in": "query",
             "default": "0",
             "type": "string",
-            "description": ""
+            "description": "Identification of type of taxable event"
           },
           {
             "name": "VII",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax identification number of issuer - DIČ"
           },
           {
             "name": "VIR",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax identification number of recipient - DIČ"
           },
           {
             "name": "VS",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Variable symbol"
           },
           {
             "name": "X-SW",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Identification of Software"
           },
           {
             "name": "X-URL",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "URL to electronic document of invoice"
           },
           {
             "name": "accountBase",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Base of account number"
           },
           {
             "name": "accountPrefix",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Account number prefix"
           },
           {
             "name": "bankCode",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Code of bank"
           },
           {
             "name": "id",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "ID of generated invoice"
           },
           {
             "name": "mode",
@@ -657,215 +717,215 @@
             "name": "ACC",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "IBAN number"
           },
           {
             "name": "AM",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Total amount to pay in @see CC currency"
           },
           {
             "name": "BIC",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "BIC code of bank"
           },
           {
             "name": "CC",
             "in": "query",
             "default": "CZK",
             "type": "string",
-            "description": ""
+            "description": "Currency of total amount"
           },
           {
             "name": "DD",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of issue of invoice"
           },
           {
             "name": "DPPD",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of duty to declare tax"
           },
           {
             "name": "DT",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of due of total amount"
           },
           {
             "name": "DUZP",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Date of taxable event"
           },
           {
             "name": "FX",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Exchange rate between CZK currency and currency of total amount"
           },
           {
             "name": "FXA",
             "in": "query",
             "default": "1",
             "type": "string",
-            "description": ""
+            "description": "Currency units"
           },
           {
             "name": "INI",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Identification number of issuer - IČO"
           },
           {
             "name": "INR",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Identification number of recipient - IČO"
           },
           {
             "name": "MSG",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Text description of subject of invoice"
           },
           {
             "name": "NTB",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Amount of non taxable event"
           },
           {
             "name": "ON",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Number of order"
           },
           {
             "name": "SA",
             "in": "query",
             "default": "0",
             "type": "string",
-            "description": ""
+            "description": "Flag if tax advance payments are on invoice"
           },
           {
             "name": "SPAYD-MSG",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Message for beneficiary from spayd specification"
           },
           {
             "name": "SPAYD-URL",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "URL from spayd specification"
           },
           {
             "name": "T0",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax amount in base tax rate"
           },
           {
             "name": "T1",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax amount in first reduced rate"
           },
           {
             "name": "T2",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax amount in second reduced rate"
           },
           {
             "name": "TB0",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax base"
           },
           {
             "name": "TB1",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax base in first reduced rate"
           },
           {
             "name": "TB2",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax base in second reduced rate"
           },
           {
             "name": "TD",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Type of tax document"
           },
           {
             "name": "TP",
             "in": "query",
             "default": "0",
             "type": "string",
-            "description": ""
+            "description": "Identification of type of taxable event"
           },
           {
             "name": "VII",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax identification number of issuer - DIČ"
           },
           {
             "name": "VIR",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Tax identification number of recipient - DIČ"
           },
           {
             "name": "VS",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Variable symbol"
           },
           {
             "name": "X-SW",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Identification of Software"
           },
           {
             "name": "X-URL",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "URL to electronic document of invoice"
           },
           {
             "name": "accountBase",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Base of account number"
           },
           {
             "name": "accountPrefix",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Account number prefix"
           },
           {
             "name": "bankCode",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "Code of bank"
           },
           {
             "name": "id",
             "in": "query",
             "type": "string",
-            "description": ""
+            "description": "ID of generated invoice"
           },
           {
             "name": "mode",

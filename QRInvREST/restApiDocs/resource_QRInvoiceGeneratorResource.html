@@ -56,6 +56,8 @@
                 <li><a href="#resource_QRInvoiceGeneratorResource_validateInvoiceString_GET">GET
                     /generator/validator</a></li>
                 <li><a href="#resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET">GET /generator/image</a></li>
+                <li><a href="#resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET">GET
+                    /generator/imagefromstring</a></li>
                 <li class="divider"></li>
                 <li class="text-right"><a href="#top">
                     <small>Back to Top</small>
@@ -100,245 +102,247 @@
                     <tr>
                         <td><span class="parameter-name">ACC</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">IBAN number</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">AM</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Total amount to pay in @see CC currency</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">BIC</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">BIC code of bank</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">CC</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Currency of total amount</span></td>
                         <td><span class="parameter-default-value">CZK</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DD</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of issue of invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DPPD</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of duty to declare tax</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DT</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of due of total amount</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DUZP</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of taxable event</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">FX</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Exchange rate between CZK currency and currency of total amount</span>
+                        </td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">FXA</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Currency units</span></td>
                         <td><span class="parameter-default-value">1</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">INI</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification number of issuer - IČO</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">INR</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification number of recipient - IČO</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">MSG</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Text description of subject of invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">NTB</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Amount of non taxable event</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">ON</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Number of order</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">SA</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Flag if tax advance payments are on invoice</span></td>
                         <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">SPAYD-MSG</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Message for beneficiary from spayd specification</span>
+                        </td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">SPAYD-URL</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">URL from spayd specification</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T0</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax amount in base tax rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T1</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax amount in first reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T2</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax amount in second reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TB0</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax base</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TB1</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax base in first reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TB2</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax base in second reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TD</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Type of tax document</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TP</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification of type of taxable event</span></td>
                         <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VII</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax identification number of issuer - DIČ</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VIR</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax identification number of recipient - DIČ</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VS</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Variable symbol</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">X-SW</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification of Software</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">X-URL</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">URL to electronic document of invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">accountBase</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Base of account number</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">accountPrefix</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Account number prefix</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">bankCode</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Code of bank</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">id</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">ID of generated invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
@@ -406,245 +410,247 @@
                     <tr>
                         <td><span class="parameter-name">ACC</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">IBAN number</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">AM</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Total amount to pay in @see CC currency</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">BIC</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">BIC code of bank</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">CC</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Currency of total amount</span></td>
                         <td><span class="parameter-default-value">CZK</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DD</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of issue of invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DPPD</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of duty to declare tax</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DT</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of due of total amount</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DUZP</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of taxable event</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">FX</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Exchange rate between CZK currency and currency of total amount</span>
+                        </td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">FXA</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Currency units</span></td>
                         <td><span class="parameter-default-value">1</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">INI</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification number of issuer - IČO</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">INR</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification number of recipient - IČO</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">MSG</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Text description of subject of invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">NTB</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Amount of non taxable event</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">ON</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Number of order</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">SA</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Flag if tax advance payments are on invoice</span></td>
                         <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">SPAYD-MSG</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Message for beneficiary from spayd specification</span>
+                        </td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">SPAYD-URL</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">URL from spayd specification</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T0</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax amount in base tax rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T1</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax amount in first reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T2</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax amount in second reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TB0</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax base</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TB1</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax base in first reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TB2</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax base in second reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TD</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Type of tax document</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TP</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification of type of taxable event</span></td>
                         <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VII</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax identification number of issuer - DIČ</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VIR</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax identification number of recipient - DIČ</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VS</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Variable symbol</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">X-SW</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification of Software</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">X-URL</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">URL to electronic document of invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">accountBase</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Base of account number</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">accountPrefix</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Account number prefix</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">bankCode</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Code of bank</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">id</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">ID of generated invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
@@ -701,245 +707,247 @@
                     <tr>
                         <td><span class="parameter-name">ACC</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">IBAN number</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">AM</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Total amount to pay in @see CC currency</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">BIC</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">BIC code of bank</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">CC</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Currency of total amount</span></td>
                         <td><span class="parameter-default-value">CZK</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DD</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of issue of invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DPPD</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of duty to declare tax</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DT</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of due of total amount</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">DUZP</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Date of taxable event</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">FX</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Exchange rate between CZK currency and currency of total amount</span>
+                        </td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">FXA</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Currency units</span></td>
                         <td><span class="parameter-default-value">1</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">INI</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification number of issuer - IČO</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">INR</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification number of recipient - IČO</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">MSG</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Text description of subject of invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">NTB</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Amount of non taxable event</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">ON</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Number of order</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">SA</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Flag if tax advance payments are on invoice</span></td>
                         <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">SPAYD-MSG</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Message for beneficiary from spayd specification</span>
+                        </td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">SPAYD-URL</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">URL from spayd specification</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T0</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax amount in base tax rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T1</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax amount in first reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">T2</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax amount in second reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TB0</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax base</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TB1</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax base in first reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TB2</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax base in second reduced rate</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TD</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Type of tax document</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">TP</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification of type of taxable event</span></td>
                         <td><span class="parameter-default-value">0</span></td>
                         <td><span class="parameter-constraints">byte</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VII</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax identification number of issuer - DIČ</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VIR</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Tax identification number of recipient - DIČ</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">VS</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Variable symbol</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">X-SW</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Identification of Software</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">X-URL</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">URL to electronic document of invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">accountBase</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Base of account number</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">accountPrefix</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Account number prefix</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">bankCode</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">Code of bank</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">branding</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description">id resulted image has to have branding labels</span>
+                        <td><span class="parameter-description">if resulted image has to have branding labels</span>
                         </td>
                         <td><span class="parameter-default-value">true</span></td>
                         <td><span class="parameter-constraints">boolean</span></td>
@@ -947,7 +955,7 @@
                     <tr>
                         <td><span class="parameter-name">id</span></td>
                         <td>query</td>
-                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-description">ID of generated invoice</span></td>
                         <td><span class="parameter-default-value">&nbsp;</span></td>
                         <td><span class="parameter-constraints">&nbsp;</span></td>
                     </tr>
@@ -958,6 +966,13 @@
                         </td>
                         <td><span class="parameter-default-value">INVOICE_MODE</span></td>
                         <td><span class="parameter-constraints">"INVOICE_MODE" or "SPAYD_MODE"</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">size</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">int</span></td>
                     </tr>
                     <tr>
                         <td><span class="parameter-name">transliterate</span></td>
@@ -987,6 +1002,76 @@
                         <td><span class="datatype-reference">(custom)
 </span></td>
                         <td><span class="response-description">png image</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET">
+                <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/generator/imagefromstring <a
+                        href="./invoiceservices/generator/imagefromstring" class="glyphicon glyphicon-new-window"
+                        target="_blank"></a></span></h3>
+
+                <p></p>
+
+                <table class="table">
+                    <caption>Request Parameters</caption>
+                    <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>type</th>
+                        <th>description</th>
+                        <th>default</th>
+                        <th>constraints</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="parameter-name">branding</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">true</span></td>
+                        <td><span class="parameter-constraints">boolean</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">invoicedata</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">&nbsp;</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">mode</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">INVOICE_MODE</span></td>
+                        <td><span class="parameter-constraints">"INVOICE_MODE" or "SPAYD_MODE"</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="parameter-name">size</span></td>
+                        <td>query</td>
+                        <td><span class="parameter-description"></span></td>
+                        <td><span class="parameter-default-value">&nbsp;</span></td>
+                        <td><span class="parameter-constraints">int</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <caption>Response Body</caption>
+                    <thead>
+                    <tr>
+                        <th>media type</th>
+                        <th>data type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><abbr data-toggle="tooltip" data-placement="top"
+                                  title="Use the &quot;Accept: image/png&quot; HTTP header to request that this media type be provided by the server."><span
+                                class="response-type">image/png</span></abbr></td>
+                        <td><span class="datatype-reference">(custom)
+</span></td>
                     </tr>
                     </tbody>
                 </table>

@@ -89,9 +89,9 @@
                 <version>3.1.0</version>
             </dependency>
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.16</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-bom</artifactId>
+                <version>2.6.2</version>
             </dependency>
             <dependency>
                 <groupId>com.moparisthebest</groupId>
@@ -154,6 +154,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
@@ -174,6 +175,8 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+
+
         </plugins>
     </build>
 </project>

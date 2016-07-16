@@ -127,7 +127,7 @@
                                         <p:messages autoUpdate="true" for="tp"/>
                                     </div>
                                     <div>
-                                        <p:selectOneMenu id="tp" value="#{invoiceWebModel.typeOfTax}">
+                                        <p:selectOneMenu id="tp" value="#{invoiceWebModel.typeOfTaxTransaction}">
                                             <f:selectItem itemValue="" itemLabel="nevybráno"/>
                                             <f:selectItem itemValue="0" itemLabel="běžný typ plnění"/>
                                             <f:selectItem itemValue="1" itemLabel="RPDP"/>
@@ -139,7 +139,7 @@
                                         <p:messages autoUpdate="true" for="td"/>
                                     </div>
                                     <div>
-                                        <p:selectOneMenu id="td" value="#{invoiceWebModel.typeOfIdentification}">
+                                        <p:selectOneMenu id="td" value="#{invoiceWebModel.typeOfTaxDocument}">
                                             <f:selectItem itemValue="" itemLabel="nevybráno"/>
                                             <f:selectItem itemValue="0" itemLabel="nedaňový doklad"/>
                                             <f:selectItem itemValue="1" itemLabel="opravný daňový doklad"/>
@@ -157,7 +157,7 @@
                                         <p:messages autoUpdate="true" for="sa"/>
                                     </div>
                                     <div>
-                                        <p:selectOneMenu id="sa" value="#{invoiceWebModel.taxDeposit}">
+                                        <p:selectOneMenu id="sa" value="#{invoiceWebModel.taxAdvance}">
                                             <f:selectItem itemValue="" itemLabel="nevybráno"/>
                                             <f:selectItem itemValue="0" itemLabel="faktura neobsahuje zúčtování záloh"/>
                                             <f:selectItem itemValue="1" itemLabel="faktura obsahuje zúčtování záloh"/>
@@ -178,7 +178,7 @@
                                     </div>
                                     <div>
                                         <p:inputText size="14" id="vii"
-                                                     value="#{invoiceWebModel.taxIdentificationNumberDrawer}"/>
+                                                     value="#{invoiceWebModel.taxIdentificationNumberIssuer}"/>
                                     </div>
                                     <div>
                                         <p:outputLabel value="IČO výstavce:" for="ini"/>
@@ -186,7 +186,7 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="0" maxValue="99999999" id="ini"
-                                                       value="#{invoiceWebModel.identificationNumberDrawer}"
+                                                       value="#{invoiceWebModel.identificationNumberIssuer}"
                                                        thousandSeparator=""/>
                                     </div>
                                     <div>
@@ -195,7 +195,7 @@
                                     </div>
                                     <div>
                                         <p:inputText size="14" id="vir"
-                                                     value="#{invoiceWebModel.taxIdentificationNumberBene}"/>
+                                                     value="#{invoiceWebModel.taxIdentificationNumberRecipient}"/>
                                     </div>
                                     <div>
                                         <p:outputLabel value="IČO příjemce:" for="inr"/>
@@ -203,7 +203,7 @@
                                     </div>
                                     <div>
                                         <p:inputNumber decimalPlaces="0" maxValue="99999999" id="inr"
-                                                       value="#{invoiceWebModel.identificationNumberBene}"
+                                                       value="#{invoiceWebModel.identificationNumberRecipient}"
                                                        thousandSeparator=""/>
                                     </div>
                                     <div>

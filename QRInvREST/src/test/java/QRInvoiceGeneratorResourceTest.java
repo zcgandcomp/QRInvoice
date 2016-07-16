@@ -55,7 +55,6 @@ public class QRInvoiceGeneratorResourceTest {
 
         log.info(server.getDeployment().getActualProviderClasses());
 
-
     }
 
     @After
@@ -64,7 +63,6 @@ public class QRInvoiceGeneratorResourceTest {
         server.stop();
 
     }
-
 
     private Response createTarget(String path) {
 
@@ -77,7 +75,7 @@ public class QRInvoiceGeneratorResourceTest {
 
 
     //  "/generator/string?id=1&AM=1&DD=20160101&bankCode=3030&VS=1234567890&MSG=message&CC=CZK&X-URL=xxx"
-
+    @Test
     public void generateInvoiceString() {
 
         Response resp = createTarget("/generator/string?id=1&AM=1&DD=20160101&accountBase=1007001&bankCode=3030&VS=1234567890&MSG=message&CC=CZK&X-URL=xxx");
@@ -100,5 +98,28 @@ public class QRInvoiceGeneratorResourceTest {
 
     }
 
+    @Test
+    public void generateSpaydInvoiceStringFail() {
+
+        Response resp = createTarget("/generator/string?id=1&AM=1&DD=20160101&DT=20160202&mode=SPAYD_MODE");
+        assertEquals(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(), resp.getStatus());
+        log.info(resp.getStatus());
+        String output = resp.readEntity(String.class);
+        log.info(output);
+
+
+    }
+
+    @Test
+    public void generateSpaydInvoiceStringIBANAndAccountFail() {
+
+        Response resp = createTarget("/generator/string?id=1&AM=1&DD=20160101&DT=20160202&IBAN=AAA&bankCode=3030&accountBase=1007001");
+        assertEquals(Response.Status.OK.getStatusCode(), resp.getStatus());
+        log.info(resp.getStatus());
+        String output = resp.readEntity(String.class);
+        log.info(output);
+
+
+    }
 
 }

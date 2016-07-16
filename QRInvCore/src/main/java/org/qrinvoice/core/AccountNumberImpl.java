@@ -151,5 +151,12 @@ public class AccountNumberImpl implements AccountNumber {
         return accountPrefix + "-" + accountBase + "/" + bankCode;
     }
 
-
+    @Override
+    public String toString() {
+        return "AccountNumberImpl{" +
+                "accountPrefix='" + accountPrefix + '\'' +
+                ", accountBase='" + accountBase + '\'' +
+                ", bankCode='" + bankCode + '\'' +
+                '}';
+    }
 }
