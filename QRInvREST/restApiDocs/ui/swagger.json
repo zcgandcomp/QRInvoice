@@ -647,7 +647,7 @@
         "tags": [
           "QRInvoiceGeneratorResource"
         ],
-        "description": "",
+        "description": "validate specialities which are not handled by bean validation\r\nTODO create validation for InvoiceModel itself",
         "operationId": "resource_QRInvoiceGeneratorResource_validateInvoiceString_GET",
         "produces": [
           "text/plain"
@@ -866,6 +866,17 @@
             "in": "query",
             "type": "string",
             "description": ""
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "default": "INVOICE_MODE",
+            "type": "string",
+            "enum": [
+              "INVOICE_MODE",
+              "SPAYD_MODE"
+            ],
+            "description": "indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD"
           }
         ],
         "responses": {

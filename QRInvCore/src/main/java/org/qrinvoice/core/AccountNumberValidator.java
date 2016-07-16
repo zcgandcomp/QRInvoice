@@ -168,7 +168,7 @@ public class AccountNumberValidator implements ConstraintValidator<CheckAccountN
 
         log.info("isValid:" + value + " context:" + context);
 
-        if (value == null) {
+        if (value == null || value.isEmpty()) {
             return true;
         }
 

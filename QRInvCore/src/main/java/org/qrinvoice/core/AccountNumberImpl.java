@@ -150,4 +150,6 @@ public class AccountNumberImpl implements AccountNumber {
     public String getFormatedAccNumber() {
         return accountPrefix + "-" + accountBase + "/" + bankCode;
     }
+
+
 }

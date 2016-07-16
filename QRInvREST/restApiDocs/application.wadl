@@ -166,6 +166,7 @@
                     </wadl:param>
                 </wadl:request>
                 <wadl:response>
+                    <wadl:doc><![CDATA[png image]]></wadl:doc>
                     <wadl:representation mediaType="image/png"/>
                 </wadl:response>
             </wadl:method>
@@ -298,7 +299,8 @@
 
         <wadl:resource path="invoiceservices/generator/validator">
             <wadl:method name="GET">
-                <wadl:doc><![CDATA[]]></wadl:doc>
+                <wadl:doc><![CDATA[validate specialities which are not handled by bean validation
+TODO create validation for InvoiceModel itself]]></wadl:doc>
                 <wadl:request>
                     <wadl:param name="ACC" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
@@ -404,6 +406,10 @@
                     </wadl:param>
                     <wadl:param name="id" style="query">
                         <wadl:doc><![CDATA[]]></wadl:doc>
+                    </wadl:param>
+                    <wadl:param name="mode" style="query">
+                        <wadl:doc>
+                            <![CDATA[indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD]]></wadl:doc>
                     </wadl:param>
                 </wadl:request>
                 <wadl:response>

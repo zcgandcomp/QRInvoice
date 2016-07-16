@@ -157,7 +157,7 @@ function handleLogin() {
                             var ep = dets.tokenRequestEndpoint.url;
                             url = dets.tokenRequestEndpoint.url + '?response_type=code';
                             window.swaggerUi.tokenName = dets.tokenName;
-                        }
+            }
                     }
         }
             }

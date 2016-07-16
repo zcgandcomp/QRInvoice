@@ -8166,7 +8166,7 @@
                                     cookie = this.getCookie(cookie_name, access_info);
                                     if (cookie) {
                                         matches.push(cookie);
-                                    }
+                    }
                                 }
                                 matches.toString = function toString() {
                                     return matches.join(":");
@@ -13188,11 +13188,11 @@
                     } else {
 
                                             // 1-character punctuators.
-                                            str = source[index];
+                        str = source[index];
                                             if ('<>=!+-*%&|^/'.indexOf(str) >= 0) {
                                                 ++index;
                                             }
-                    }
+                                        }
                                     }
                                 }
                         }
@@ -13435,9 +13435,9 @@
                                         case 'u':
                                         case 'x':
                                             if (source[index] === '{') {
-                            ++index;
+                                                ++index;
                                                 str += scanUnicodeCodePointEscape();
-                                            } else {
+                        } else {
                                                 unescaped = scanHexEscape(ch);
                                                 if (!unescaped) {
                                                     throw throwUnexpectedToken();
@@ -13483,8 +13483,8 @@
                                 } else {
                                     ++lineNumber;
                                     if (ch === '\r' && source[index] === '\n') {
-                                        ++index;
-                    }
+                        ++index;
+                                    }
                                     lineStart = index;
                                 }
                             } else if (isLineTerminator(ch.charCodeAt(0))) {
@@ -13553,16 +13553,16 @@
                                         case 'u':
                                         case 'x':
                                             if (source[index] === '{') {
-                            ++index;
+                                                ++index;
                                                 cooked += scanUnicodeCodePointEscape();
                                             } else {
                                                 restore = index;
                                                 unescaped = scanHexEscape(ch);
                                                 if (unescaped) {
                                                     cooked += unescaped;
-                            } else {
+                                                } else {
                                                     index = restore;
-                                                    cooked += ch;
+                                cooked += ch;
                             }
                         }
                                             break;
@@ -13756,7 +13756,7 @@
                                         flags += ch;
                                         for (str += '\\u'; restore < index; ++restore) {
                                             str += source[restore];
-                                        }
+                        }
                                     } else {
                                         index = restore;
                                         flags += 'u';
@@ -14149,7 +14149,7 @@
                                     if (comment.range[0] >= this.range[1]) {
                                         trailingComments.unshift(comment);
                                         extra.trailingComments.splice(i, 1);
-                                    }
+                    }
                                 }
                                 extra.trailingComments = [];
                             } else {
@@ -14173,7 +14173,7 @@
                                         if (comment.range[1] <= this.range[0]) {
                                             leadingComments.unshift(comment);
                                             lastChild.leadingComments.splice(i, 1);
-                                        }
+                        }
                     }
 
                                     if (!lastChild.leadingComments.length) {
@@ -15315,7 +15315,7 @@
                                     state.allowYield = previousAllowYield;
                                     if (options.defaultCount === 0) {
                                         options.defaults = [];
-                                    }
+                    }
                                 }
                                 expect(')');
 
@@ -15533,12 +15533,12 @@
 
                                 if (match('...')) {
                                     if (!isBindingElement) {
-                                        throwUnexpectedToken(lookahead);
-                                    }
+                        throwUnexpectedToken(lookahead);
+                    }
                                     expressions.push(parseRestElement(params));
                                     expect(')');
                                     if (!match('=>')) {
-                                        expect('=>');
+                        expect('=>');
                                     }
                                     isBindingElement = false;
                                     for (i = 0; i < expressions.length; i++) {
@@ -15547,7 +15547,7 @@
                                     return {
                                         type: PlaceHolders.ArrowParameterPlaceHolder,
                                         params: expressions
-                    };
+                                    };
                                 }
 
                                 expressions.push(inheritCoverGrammar(parseAssignmentExpression));
@@ -26836,7 +26836,7 @@
                 className: 'resource',
                 auths: auths,
                 swaggerOptions: this.options.swaggerOptions
-            });
+    });
             $('#resources', this.el).append(resourceView.render().el);
         },
 

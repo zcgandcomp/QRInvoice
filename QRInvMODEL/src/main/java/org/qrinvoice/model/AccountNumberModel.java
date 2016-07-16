@@ -52,4 +52,9 @@ public class AccountNumberModel implements AccountNumber {
     public void setBankCode(String bankCode) {
         this.bankCode = bankCode;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return accountPrefix == null && accountBase == null && bankCode == null;
+    }
 }

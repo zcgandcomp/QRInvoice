@@ -38,7 +38,7 @@ public class QRInvoiceGeneratorResource {
      *
      * @param model         bean representing query params
      * @param transliterate identifies if returned string has to have capitalized letters
-     * @param mode indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD
+     * @param mode          indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD
      * @return string with QR code data
      */
     @GET
@@ -53,6 +53,9 @@ public class QRInvoiceGeneratorResource {
         log.info("transliterate:" + transliterate);
 
         log.info("mode:" + mode);
+
+        validateInvoiceString(model, mode);
+
         try {
 
             InvoiceParamDomain param = InvoiceMapper.INSTANCE.invoiceModelToInvoiceParam(model);
@@ -68,17 +71,10 @@ public class QRInvoiceGeneratorResource {
             }
             return generator.getInvoiceString(param, transliterate, mode);
 
-        } catch (
-                UnsupportedEncodingException ex)
-
-        {
-
+        } catch (UnsupportedEncodingException ex) {
             log.fatal("unable to encode params", ex);
             throw new ValidationException("{org.qrinvoice.core.UnsupportedEncodingException}");
-        } catch (
-                AccountNotValidException e)
-
-        {
+        } catch (AccountNotValidException e) {
             log.fatal("invalid account number", e);
             throw new ValidationException("{org.qrinvoice.core.AccountNotValidException}");
         }
@@ -86,24 +82,48 @@ public class QRInvoiceGeneratorResource {
     }
 
     /**
-     * @param model
+     * validate specialities which are not handled by bean validation
+     * TODO create validation for InvoiceModel itself
+     *
+     * @param model         bean representing query params
+     * @param mode          indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD
      * @return
      */
     @GET
     @Path("validator")
     @Produces(MediaType.TEXT_PLAIN)
-    public String validateInvoiceString(@BeanParam @Valid InvoiceModel model) {
+    public String validateInvoiceString(@BeanParam @Valid InvoiceModel model, @QueryParam("mode") @DefaultValue("INVOICE_MODE") IntegrationModeEnum mode) {
 
         log.info("validateInvoiceString" + model);
         AccountNumberValidator validator = new AccountNumberValidator();
 
-        if (validator.isValid(model.getAccountNumber(), null)) {
-            return Response.Status.OK.getReasonPhrase();
-        } else {
+        if (!validator.isValid(model.getAccountNumber(), null)) {
+
             log.fatal("account not valid:" + model.getAccountNumber());
             throw new ValidationException("{org.qrinvoice.core.AccountNotValidException}");
 
         }
+
+        // if we fill IBAN parameter account number should be empty
+        if (!(model.getIBAN() == null || model.getAccountNumber().isEmpty())) {
+            try {
+                // check if iban is same as computed iban otherwise raise validation exceptipn
+                AccountNumberImpl accNum = new AccountNumberImpl(model.getAccountNumber().getAccountPrefix(), model.getAccountNumber().getAccountBase(), model.getAccountNumber().getBankCode());
+                String IBAN = accNum.computeIBAN();
+                if (!model.getIBAN().equalsIgnoreCase(IBAN)) {
+
+                    throw new ValidationException("{org.qrinvoice.core.TooMuchAccountParamException}");
+                }
+
+            } catch (AccountNotValidException e) {
+                log.fatal("invalid account number", e);
+                throw new ValidationException("{org.qrinvoice.core.AccountNotValidException}");
+            }
+        }
+
+
+        return Response.Status.OK.getReasonPhrase();
+
 
     }
 
@@ -114,7 +134,7 @@ public class QRInvoiceGeneratorResource {
      * @param transliterate identifies if returned string has to have capitalized letters
      * @param mode          indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD
      * @param hasBranding   id resulted image has to have branding labels
-     * @return
+     * @return png image
      */
     @GET
     @Path("image")

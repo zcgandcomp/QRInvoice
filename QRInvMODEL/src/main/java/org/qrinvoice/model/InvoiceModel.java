@@ -232,6 +232,10 @@ public class InvoiceModel implements Serializable {
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
     }
+
+    /**
+     * ID of generated invoice getter
+     */
     public String getId() {
         return id;
     }

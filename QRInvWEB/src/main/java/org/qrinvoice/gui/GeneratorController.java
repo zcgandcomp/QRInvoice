@@ -2,10 +2,7 @@ package org.qrinvoice.gui;
 
 
 import org.apache.log4j.Logger;
-import org.qrinvoice.core.AccountNotValidException;
-import org.qrinvoice.core.AccountNumberImpl;
-import org.qrinvoice.core.Generator;
-import org.qrinvoice.core.InvoiceParamDomain;
+import org.qrinvoice.core.*;
 import org.qrinvoice.model.InvoiceMapper;
 
 import javax.enterprise.context.SessionScoped;
@@ -50,7 +47,7 @@ public class GeneratorController implements Serializable {
             param.setIBAN(accNum.computeIBAN());
 
 
-            setQrString(generator.getInvoiceString(param, true));
+            setQrString(generator.getInvoiceString(param, true, IntegrationModeEnum.INVOICE_MODE));
         } catch (UnsupportedEncodingException e) {
             log.fatal("error generating QR code", e);
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Chyba při generování", null);

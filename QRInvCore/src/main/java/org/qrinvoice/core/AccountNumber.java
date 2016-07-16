@@ -44,5 +44,9 @@ public interface AccountNumber extends Serializable {
      */
     void setBankCode(String bankCode);
 
+    /**
+     * @return true if all attribute of bank account are null
+     */
+    boolean isEmpty();
 }
 
