@@ -11,6 +11,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Created by zcg on 17.7.2016.
+ * Annotation used for validation of Invoice data
  */
 @Target({FIELD, METHOD, PARAMETER, ANNOTATION_TYPE})
 @Retention(RUNTIME)

@@ -6,7 +6,12 @@ package org.qrinvoice.core;
  */
 public class AccountNotValidException extends Exception {
 
-    public AccountNotValidException(Throwable cause) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2185749286961373876L;
+
+	public AccountNotValidException(Throwable cause) {
         super(cause);
     }
 

@@ -12,6 +12,11 @@ import javax.ws.rs.QueryParam;
 public class AccountNumberModel implements AccountNumber {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4356899838514336201L;
+
+	/**
      * Account number prefix
      */
     @QueryParam(value = "accountPrefix")

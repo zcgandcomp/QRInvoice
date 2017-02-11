@@ -13,6 +13,11 @@ public class DateParam implements Serializable{
 
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1539957086973697508L;
+
+	/**
      * Declare the date format for the parsing to be correct
      */
 

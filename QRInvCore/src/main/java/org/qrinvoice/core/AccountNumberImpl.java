@@ -8,7 +8,11 @@ import org.apache.log4j.Logger;
  */
 public class AccountNumberImpl implements AccountNumber {
 
-    static Logger log = Logger.getLogger(AccountNumberImpl.class.getName());
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4237301959644192456L;
+	static Logger log = Logger.getLogger(AccountNumberImpl.class.getName());
     private String accountPrefix;
 
     private String accountBase;
@@ -47,6 +51,7 @@ public class AccountNumberImpl implements AccountNumber {
     }
 
 
+    @Override
     public boolean isEmpty() {
 
         return accountPrefix == null && accountBase == null && bankCode == null;

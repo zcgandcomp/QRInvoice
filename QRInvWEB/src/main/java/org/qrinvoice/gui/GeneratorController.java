@@ -4,6 +4,7 @@ package org.qrinvoice.gui;
 import org.apache.log4j.Logger;
 import org.qrinvoice.core.*;
 import org.qrinvoice.model.InvoiceMapper;
+import org.qrinvoice.model.InvoiceMapperImpl;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -23,7 +24,11 @@ import java.io.UnsupportedEncodingException;
 @ManagedBean
 public class GeneratorController implements Serializable {
 
-    static Logger log = Logger.getLogger(GeneratorController.class.getName());
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1933994873850845854L;
+	static Logger log = Logger.getLogger(GeneratorController.class.getName());
     private String qrString;
 
 
@@ -38,13 +43,9 @@ public class GeneratorController implements Serializable {
 
         Generator generator = new Generator();
 
-        InvoiceParamDomain param = InvoiceMapper.INSTANCE.invoiceModelToInvoiceParam(model);
-
         try {
 
-            AccountNumberImpl accNum = new AccountNumberImpl(model.getAccountNumber().getAccountPrefix(), model.getAccountNumber().getAccountBase(), model.getAccountNumber().getBankCode());
-
-            param.setIBAN(accNum.computeIBAN());
+        	InvoiceParamDomain param = new InvoiceMapperImpl().invoiceModelToInvoiceParam(model);
 
 
             setQrString(generator.getInvoiceString(param, true, IntegrationModeEnum.INVOICE_MODE));

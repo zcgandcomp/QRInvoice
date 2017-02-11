@@ -1,213 +1,222 @@
 package org.qrinvoice.rest;
 
-import org.apache.log4j.Logger;
-import org.qrinvoice.core.*;
-import org.qrinvoice.model.CheckInvoiceModelValidator;
-import org.qrinvoice.model.InvoiceMapper;
-import org.qrinvoice.model.InvoiceModel;
-
-import javax.imageio.ImageIO;
-import javax.validation.Valid;
-import javax.validation.ValidationException;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import javax.imageio.ImageIO;
+import javax.validation.Valid;
+import javax.validation.ValidationException;
+import javax.ws.rs.BeanParam;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.apache.log4j.Logger;
+import org.qrinvoice.core.AccountNotValidException;
+import org.qrinvoice.core.Generator;
+import org.qrinvoice.core.ImageGenerationException;
+import org.qrinvoice.core.IntegrationModeEnum;
+import org.qrinvoice.core.InvoiceParamDomain;
+import org.qrinvoice.model.CheckInvoiceModelValidator;
+import org.qrinvoice.model.InvoiceMapperImpl;
+import org.qrinvoice.model.InvoiceModel;
+
 /**
- * Created by zcg on 12.6.2016.
- * Resource for QR invoice REST API
+ * Created by zcg on 12.6.2016. Resource for QR invoice REST API
  */
 
 @Path("/generator")
 public class QRInvoiceGeneratorResource {
 
-    /**
-     * content type for string representing QR payment - in case when downloaded as file
-     */
-    public static final String FILE_MEDIA_TYPE = "application/x-shortinvoicedescriptor";
-    public static final String IMAGE_MEDIA_TYPE = "image/png";
+	/**
+	 * content type for string representing QR payment - in case when downloaded
+	 * as file
+	 */
+	public static final String FILE_MEDIA_TYPE = "application/x-shortinvoicedescriptor";
+	public static final String IMAGE_MEDIA_TYPE = "image/png";
 
+	static Logger log = Logger.getLogger(QRInvoiceGeneratorResource.class.getName());
 
-    static Logger log = Logger.getLogger(QRInvoiceGeneratorResource.class.getName());
+	private void logStart(String method, InvoiceModel model, Boolean transliterate, IntegrationModeEnum mode,
+			String data, Boolean hasBranding) {
 
-    /**
-     * Returns String representing QR payment, make basic validation of input params
-     *
-     * @param model         bean representing query params
-     * @param transliterate identifies if returned string has to have capitalized letters
-     * @param mode          indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD
-     * @return string with QR code data
-     */
-    @GET
-    @Path("string")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String generateInvoiceString(@CheckInvoiceModelValidator @BeanParam @Valid InvoiceModel model, @QueryParam("transliterate") @DefaultValue("true") Boolean transliterate, @QueryParam("mode") @DefaultValue("INVOICE_MODE") IntegrationModeEnum mode) {
+		log.info(method);
 
-        log.info("generateInvoiceString, model:" + model);
+		if (model != null) {
+			log.info("model:" + model);
+		}
+		if (transliterate != null) {
+			log.info("transliterate:" + transliterate);
+		}
+		if (mode != null) {
+			log.info("mode:" + mode);
+		}
 
+		if (data != null) {
+			log.info("data:" + data);
+		}
+		if (hasBranding != null) {
+			log.info("has branding:" + hasBranding);
+		}
+	}
 
-        log.info("transliterate:" + transliterate);
+	/**
+	 * Returns String representing QR payment, make basic validation of input
+	 * params
+	 *
+	 * @param model
+	 *            bean representing query params
+	 * @param transliterate
+	 *            identifies if returned string has to have capitalized letters
+	 * @param mode
+	 *            indicates which mode of QR should be used, pure QR invoice or
+	 *            integrated with SPAYD
+	 * @return string with QR code data
+	 */
+	@GET
+	@Path("string")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String generateInvoiceString(@CheckInvoiceModelValidator @BeanParam @Valid InvoiceModel model,
+			@QueryParam("transliterate") @DefaultValue("true") Boolean transliterate,
+			@QueryParam("mode") @DefaultValue("INVOICE_MODE") IntegrationModeEnum mode) {
 
-        log.info("mode:" + mode);
+		logStart("generateInvoiceString", model, transliterate, mode, null, null);
 
-        validateInvoiceString(model, mode);
+		validateInvoiceString(model, mode);
 
-        try {
+		try {
 
-            InvoiceParamDomain param = InvoiceMapper.INSTANCE.invoiceModelToInvoiceParam(model);
-            Generator generator = new Generator();
+			InvoiceParamDomain param = new InvoiceMapperImpl().invoiceModelToInvoiceParam(model);
+			Generator generator = new Generator();
 
+			return generator.getInvoiceString(param, transliterate, mode);
 
-            if (param.getIBAN() == null) {
+		} catch (UnsupportedEncodingException ex) {
+			log.fatal("unable to encode params", ex);
+			throw new ValidationException("{org.qrinvoice.core.UnsupportedEncodingException}");
+		} catch (AccountNotValidException e) {
+			log.fatal("invalid account number", e);
+			throw new ValidationException("{org.qrinvoice.core.AccountNotValidException}");
+		}
 
-                AccountNumberImpl accNum = new AccountNumberImpl(model.getAccountNumber().getAccountPrefix(), model.getAccountNumber().getAccountBase(), model.getAccountNumber().getBankCode());
+	}
 
-                param.setIBAN(accNum.computeIBAN());
+	/**
+	 * validate specialities which are not handled by bean validation TODO
+	 * create validation for InvoiceModel itself
+	 *
+	 * @param model
+	 *            bean representing query params
+	 * @param mode
+	 *            indicates which mode of QR should be used, pure QR invoice or
+	 *            integrated with SPAYD
+	 * @return
+	 */
+	@GET
+	@Path("validator")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String validateInvoiceString(@CheckInvoiceModelValidator @BeanParam @Valid InvoiceModel model,
+			@QueryParam("mode") @DefaultValue("INVOICE_MODE") IntegrationModeEnum mode) {
 
-            }
-            return generator.getInvoiceString(param, transliterate, mode);
+		log.info("validateInvoiceString" + model);
 
-        } catch (UnsupportedEncodingException ex) {
-            log.fatal("unable to encode params", ex);
-            throw new ValidationException("{org.qrinvoice.core.UnsupportedEncodingException}");
-        } catch (AccountNotValidException e) {
-            log.fatal("invalid account number", e);
-            throw new ValidationException("{org.qrinvoice.core.AccountNotValidException}");
-        }
+		// if we are in spayd mode account number is mandatory
+		if (IntegrationModeEnum.SPAYD_MODE.equals(mode) && model.getIBAN() == null
+				&& model.getAccountNumber().isEmpty()) {
+			//
+			throw new ValidationException("{org.qrinvoice.core.AccountParamNullException}");
+		}
 
-    }
+		return Response.Status.OK.getReasonPhrase();
 
+	}
 
-    /**
-     * validate specialities which are not handled by bean validation
-     * TODO create validation for InvoiceModel itself
-     *
-     * @param model         bean representing query params
-     * @param mode          indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD
-     * @return
-     */
-    @GET
-    @Path("validator")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String validateInvoiceString(@CheckInvoiceModelValidator @BeanParam @Valid InvoiceModel model, @QueryParam("mode") @DefaultValue("INVOICE_MODE") IntegrationModeEnum mode) {
+	private Response generateImage(String qrstring, Integer size, IntegrationModeEnum mode, boolean hasBranding) {
 
-        log.info("validateInvoiceString" + model);
-        AccountNumberValidator validator = new AccountNumberValidator();
+		Response.ResponseBuilder response;
+		try {
 
+			Generator generator = new Generator();
 
-        // if we are in spayd mode account number is mandatory
-        if (IntegrationModeEnum.SPAYD_MODE.equals(mode) && model.getIBAN() == null && model.getAccountNumber().isEmpty()) {
-            //
-            throw new ValidationException("{org.qrinvoice.core.AccountParamNullException}");
-        }
+			BufferedImage qrCode = generator.getQRCode(size, qrstring, mode, hasBranding);
 
-        return Response.Status.OK.getReasonPhrase();
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			ImageIO.write(qrCode, "png", outputStream);
 
+			response = Response.ok().entity(outputStream.toByteArray());
 
-    }
+			// allow use in others web pages
+			response.header("Access-Control-Allow-Origin", "*");
 
-    /**
-     * generate QR code based on invoice data
-     *
-     * @param model         data for invoice
-     * @param transliterate identifies if returned string has to have capitalized letters
-     * @param mode          indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD
-     * @param hasBranding   if resulted image has to have branding labels
-     * @return png image
-     */
-    @GET
-    @Path("image")
-    @Produces(IMAGE_MEDIA_TYPE)
-    public Response generateInvoiceQR(@CheckInvoiceModelValidator @BeanParam @Valid InvoiceModel model, @QueryParam("transliterate") @DefaultValue("true") Boolean transliterate, @QueryParam("mode") @DefaultValue("INVOICE_MODE") IntegrationModeEnum mode, @QueryParam("branding") @DefaultValue("true") Boolean hasBranding, @QueryParam("size") int size) {
+			return response.build();
+		} catch (UnsupportedEncodingException ex) {
+			log.fatal("unable to unmarshall params", ex);
+			response = Response.status(Response.Status.BAD_REQUEST);
+			return response.build();
+		} catch (ImageGenerationException | IOException ex) {
+			log.fatal("unable to generate image", ex);
+			response = Response.status(Response.Status.BAD_REQUEST);
+			return response.build();
+		}
 
-        log.info("generateInvoiceQR, mode:" + model);
+	}
 
-        log.info("transliterate:" + transliterate);
+	/**
+	 * generate QR code based on invoice data
+	 *
+	 * @param model
+	 *            data for invoice
+	 * @param transliterate
+	 *            identifies if returned string has to have capitalized letters
+	 * @param mode
+	 *            indicates which mode of QR should be used, pure QR invoice or
+	 *            integrated with SPAYD
+	 * @param hasBranding
+	 *            if resulted image has to have branding labels
+	 * @return png image
+	 */
+	@GET
+	@Path("image")
+	@Produces(IMAGE_MEDIA_TYPE)
+	public Response generateInvoiceQR(@CheckInvoiceModelValidator @BeanParam @Valid InvoiceModel model,
+			@QueryParam("transliterate") @DefaultValue("true") Boolean transliterate,
+			@QueryParam("mode") @DefaultValue("INVOICE_MODE") IntegrationModeEnum mode,
+			@QueryParam("branding") @DefaultValue("true") Boolean hasBranding, @QueryParam("size") int size) {
 
-        log.info("mode:" + mode);
+		logStart("generateInvoiceQR", model, transliterate, mode, null, hasBranding);
 
-        log.info("has branding:" + hasBranding);
+		log.info("has branding:" + hasBranding);
 
+		String qrstring = generateInvoiceString(model, transliterate, mode);
 
-        Response.ResponseBuilder response;
-        try {
+		return generateImage(qrstring, size, mode, hasBranding);
 
-            String qrstring = generateInvoiceString(model, transliterate, mode);
+	}
 
-            Generator generator = new Generator();
+	@GET
+	@Path("imagefromstring")
+	@Produces(IMAGE_MEDIA_TYPE)
+	public Response generateInvoiceQR(@QueryParam("invoicedata") String invoiceData,
+			@QueryParam("mode") @DefaultValue("INVOICE_MODE") IntegrationModeEnum mode,
+			@QueryParam("branding") @DefaultValue("true") Boolean hasBranding, @QueryParam("size") int size) {
 
-            BufferedImage qrCode = generator.getQRCode(size, qrstring, mode, hasBranding);
+		logStart("generateInvoiceQR", null, null, mode, invoiceData, hasBranding);
 
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            ImageIO.write(qrCode, "png", outputStream);
+		log.info("size:" + size);
 
-            response = Response.ok()
-                    .entity(outputStream.toByteArray());
+		if (invoiceData == null) {
+			throw new ValidationException("{org.qrinvoice.validation.DataEmptyException}");
+		}
+		
+		return generateImage(invoiceData, size, mode, hasBranding);
 
-            // allow use in others web pages
-            response.header("Access-Control-Allow-Origin", "*");
-
-            return response.build();
-        } catch (UnsupportedEncodingException ex) {
-            log.fatal("unable to unmarshall params", ex);
-            response = Response.status(Response.Status.BAD_REQUEST);
-            return response.build();
-        } catch (ImageGenerationException | IOException ex) {
-            log.fatal("unable to generate image", ex);
-            response = Response.status(Response.Status.BAD_REQUEST);
-            return response.build();
-        }
-
-    }
-
-    @GET
-    @Path("imagefromstring")
-    @Produces(IMAGE_MEDIA_TYPE)
-    public Response generateInvoiceQR(@QueryParam("invoicedata") String invoiceData, @QueryParam("mode") @DefaultValue("INVOICE_MODE") IntegrationModeEnum mode, @QueryParam("branding") @DefaultValue("true") Boolean hasBranding, @QueryParam("size") int size) {
-
-        log.info("generateInvoiceQR, data:" + invoiceData);
-
-        log.info("mode:" + mode);
-
-        log.info("has branding:" + hasBranding);
-
-        log.info("size:" + size);
-
-        if (invoiceData == null) {
-            throw new ValidationException("{org.qrinvoice.validation.DataEmptyException}");
-        }
-
-        Generator generator = new Generator();
-        Response.ResponseBuilder response;
-        try {
-
-
-            BufferedImage qrCode = generator.getQRCode(size, invoiceData, mode, hasBranding);
-
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            ImageIO.write(qrCode, "png", outputStream);
-
-            response = Response.ok()
-                    .entity(outputStream.toByteArray());
-
-            // allow use in others web pages
-            response.header("Access-Control-Allow-Origin", "*");
-
-            return response.build();
-        } catch (UnsupportedEncodingException ex) {
-            log.fatal("unable to unmarshall params", ex);
-            response = Response.status(Response.Status.BAD_REQUEST);
-            return response.build();
-        } catch (ImageGenerationException | IOException ex) {
-            log.fatal("unable to generate image", ex);
-            response = Response.status(Response.Status.BAD_REQUEST);
-            return response.build();
-        }
-
-    }
+	}
 }

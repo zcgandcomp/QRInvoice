@@ -1,956 +1,925 @@
 {
   "swagger": "2.0",
-  "info": {
-    "description": "<h1>qr-inv-restapp<\/h1>",
-    "version": "1.0-SNAPSHOT",
-    "title": "qr-inv-restapp"
+  "info" : {
+    "description" : "<h1>qr-inv-restapp<\/h1>",
+    "version" : "1.0-SNAPSHOT",
+    "title" : "qr-inv-restapp"
   },
-  "schemes": [],
-  "tags": [
+  "schemes" : [],
+  "tags" : [
     {
-      "name": "AsynchronousDispatcher",
-      "description": ""
-    },
+      "name" : "AsynchronousDispatcher",
+      "description" : ""
+    }
+    ,
     {
-      "name": "QRInvoiceGeneratorResource",
-      "description": "Created by zcg on 12.6.2016.\r\nResource for QR invoice REST API"
+      "name" : "QRInvoiceGeneratorResource",
+      "description" : "Created by zcg on 12.6.2016.\r\nResource for QR invoice REST API"
     }
   ],
-  "definitions": {
+  "definitions" : {
   },
   "paths": {
-    "\/{job-id}": {
-      "delete": {
-        "tags": [
-          "AsynchronousDispatcher"
-        ],
-        "description": "",
-        "operationId": "resource_AsynchronousDispatcher_remove_DELETE",
-        "parameters": [
+    "\/{job-id}" : {
+      "delete" : {
+        "tags" : [ "AsynchronousDispatcher" ],
+        "description" : "",
+        "operationId" : "resource_AsynchronousDispatcher_remove_DELETE",
+        "parameters" : [
           {
-            "name": "job-id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": ""
+            "name" : "job-id",
+            "in" : "path",
+            "required" : true,
+            "type" : "string",
+            "description" : ""
           }
         ],
-        "responses": {
-          "201": {
-            "headers": {
+        "responses" : {
+          "201" : {
+            "headers" : {
             },
-            "description": "Success"
+            "description" : "Success"
           },
-          "default": {
-            "description": "Unexpected error."
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "AsynchronousDispatcher"
-        ],
-        "description": "",
-        "operationId": "resource_AsynchronousDispatcher_readAndRemove_POST",
-        "produces": [
-          "*/*"
-        ],
-        "parameters": [
-          {
-            "name": "job-id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "wait",
-            "in": "query",
-            "default": "-1",
-            "type": "number",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "201": {
-            "headers": {
-            },
-            "description": "Success"
-          },
-          "default": {
-            "description": "Unexpected error."
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "AsynchronousDispatcher"
-        ],
-        "description": "",
-        "operationId": "resource_AsynchronousDispatcher_get_GET",
-        "produces": [
-          "*/*"
-        ],
-        "parameters": [
-          {
-            "name": "job-id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "wait",
-            "in": "query",
-            "default": "-1",
-            "type": "number",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "headers": {
-            },
-            "description": "Success"
-          },
-          "default": {
-            "description": "Unexpected error."
+          "default" : {
+            "description" : "Unexpected error."
           }
         }
       }
-    },
-    "\/generator/image": {
-      "get": {
-        "tags": [
-          "QRInvoiceGeneratorResource"
-        ],
-        "description": "generate QR code based on invoice data",
-        "operationId": "resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET",
-        "produces": [
-          "image/png"
-        ],
-        "parameters": [
+      ,
+      "post" : {
+        "tags" : [ "AsynchronousDispatcher" ],
+        "description" : "",
+        "operationId" : "resource_AsynchronousDispatcher_readAndRemove_POST",
+        "produces" : [ "*/*" ],
+        "parameters" : [
           {
-            "name": "ACC",
-            "in": "query",
-            "type": "string",
-            "description": "IBAN number"
+            "name" : "job-id",
+            "in" : "path",
+            "required" : true,
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "AM",
-            "in": "query",
-            "type": "string",
-            "description": "Total amount to pay in @see CC currency"
-          },
-          {
-            "name": "BIC",
-            "in": "query",
-            "type": "string",
-            "description": "BIC code of bank"
-          },
-          {
-            "name": "CC",
-            "in": "query",
-            "default": "CZK",
-            "type": "string",
-            "description": "Currency of total amount"
-          },
-          {
-            "name": "DD",
-            "in": "query",
-            "type": "string",
-            "description": "Date of issue of invoice"
-          },
-          {
-            "name": "DPPD",
-            "in": "query",
-            "type": "string",
-            "description": "Date of duty to declare tax"
-          },
-          {
-            "name": "DT",
-            "in": "query",
-            "type": "string",
-            "description": "Date of due of total amount"
-          },
-          {
-            "name": "DUZP",
-            "in": "query",
-            "type": "string",
-            "description": "Date of taxable event"
-          },
-          {
-            "name": "FX",
-            "in": "query",
-            "type": "string",
-            "description": "Exchange rate between CZK currency and currency of total amount"
-          },
-          {
-            "name": "FXA",
-            "in": "query",
-            "default": "1",
-            "type": "string",
-            "description": "Currency units"
-          },
-          {
-            "name": "INI",
-            "in": "query",
-            "type": "string",
-            "description": "Identification number of issuer - IČO"
-          },
-          {
-            "name": "INR",
-            "in": "query",
-            "type": "string",
-            "description": "Identification number of recipient - IČO"
-          },
-          {
-            "name": "MSG",
-            "in": "query",
-            "type": "string",
-            "description": "Text description of subject of invoice"
-          },
-          {
-            "name": "NTB",
-            "in": "query",
-            "type": "string",
-            "description": "Amount of non taxable event"
-          },
-          {
-            "name": "ON",
-            "in": "query",
-            "type": "string",
-            "description": "Number of order"
-          },
-          {
-            "name": "SA",
-            "in": "query",
-            "default": "0",
-            "type": "string",
-            "description": "Flag if tax advance payments are on invoice"
-          },
-          {
-            "name": "SPAYD-MSG",
-            "in": "query",
-            "type": "string",
-            "description": "Message for beneficiary from spayd specification"
-          },
-          {
-            "name": "SPAYD-URL",
-            "in": "query",
-            "type": "string",
-            "description": "URL from spayd specification"
-          },
-          {
-            "name": "T0",
-            "in": "query",
-            "type": "string",
-            "description": "Tax amount in base tax rate"
-          },
-          {
-            "name": "T1",
-            "in": "query",
-            "type": "string",
-            "description": "Tax amount in first reduced rate"
-          },
-          {
-            "name": "T2",
-            "in": "query",
-            "type": "string",
-            "description": "Tax amount in second reduced rate"
-          },
-          {
-            "name": "TB0",
-            "in": "query",
-            "type": "string",
-            "description": "Tax base"
-          },
-          {
-            "name": "TB1",
-            "in": "query",
-            "type": "string",
-            "description": "Tax base in first reduced rate"
-          },
-          {
-            "name": "TB2",
-            "in": "query",
-            "type": "string",
-            "description": "Tax base in second reduced rate"
-          },
-          {
-            "name": "TD",
-            "in": "query",
-            "type": "string",
-            "description": "Type of tax document"
-          },
-          {
-            "name": "TP",
-            "in": "query",
-            "default": "0",
-            "type": "string",
-            "description": "Identification of type of taxable event"
-          },
-          {
-            "name": "VII",
-            "in": "query",
-            "type": "string",
-            "description": "Tax identification number of issuer - DIČ"
-          },
-          {
-            "name": "VIR",
-            "in": "query",
-            "type": "string",
-            "description": "Tax identification number of recipient - DIČ"
-          },
-          {
-            "name": "VS",
-            "in": "query",
-            "type": "string",
-            "description": "Variable symbol"
-          },
-          {
-            "name": "X-SW",
-            "in": "query",
-            "type": "string",
-            "description": "Identification of Software"
-          },
-          {
-            "name": "X-URL",
-            "in": "query",
-            "type": "string",
-            "description": "URL to electronic document of invoice"
-          },
-          {
-            "name": "accountBase",
-            "in": "query",
-            "type": "string",
-            "description": "Base of account number"
-          },
-          {
-            "name": "accountPrefix",
-            "in": "query",
-            "type": "string",
-            "description": "Account number prefix"
-          },
-          {
-            "name": "bankCode",
-            "in": "query",
-            "type": "string",
-            "description": "Code of bank"
-          },
-          {
-            "name": "branding",
-            "in": "query",
-            "default": "true",
-            "type": "boolean",
-            "description": "if resulted image has to have branding labels"
-          },
-          {
-            "name": "id",
-            "in": "query",
-            "type": "string",
-            "description": "ID of generated invoice"
-          },
-          {
-            "name": "mode",
-            "in": "query",
-            "default": "INVOICE_MODE",
-            "type": "string",
-            "enum": [
-              "INVOICE_MODE",
-              "SPAYD_MODE"
-            ],
-            "description": "indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD"
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "type": "integer",
-            "description": ""
-          },
-          {
-            "name": "transliterate",
-            "in": "query",
-            "default": "true",
-            "type": "boolean",
-            "description": "identifies if returned string has to have capitalized letters"
+            "name" : "wait",
+            "in" : "query",
+            "default" : "-1",
+            "type" : "number",
+            "description" : ""
           }
         ],
-        "responses": {
-          "200": {
-            "headers": {
+        "responses" : {
+          "201" : {
+            "headers" : {
             },
-            "description": "Success"
+            "description" : "Success"
           },
-          "default": {
-            "description": "Unexpected error."
+          "default" : {
+            "description" : "Unexpected error."
           }
         }
       }
-    },
-    "\/generator/imagefromstring": {
-      "get": {
-        "tags": [
-          "QRInvoiceGeneratorResource"
-        ],
-        "description": "",
-        "operationId": "resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET",
-        "produces": [
-          "image/png"
-        ],
-        "parameters": [
+      ,
+      "get" : {
+        "tags" : [ "AsynchronousDispatcher" ],
+        "description" : "",
+        "operationId" : "resource_AsynchronousDispatcher_get_GET",
+        "produces" : [ "*/*" ],
+        "parameters" : [
           {
-            "name": "branding",
-            "in": "query",
-            "default": "true",
-            "type": "boolean",
-            "description": ""
+            "name" : "job-id",
+            "in" : "path",
+            "required" : true,
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "invoicedata",
-            "in": "query",
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "mode",
-            "in": "query",
-            "default": "INVOICE_MODE",
-            "type": "string",
-            "enum": [
-              "INVOICE_MODE",
-              "SPAYD_MODE"
-            ],
-            "description": ""
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "type": "integer",
-            "description": ""
+            "name" : "wait",
+            "in" : "query",
+            "default" : "-1",
+            "type" : "number",
+            "description" : ""
           }
         ],
-        "responses": {
-          "200": {
-            "headers": {
+        "responses" : {
+          "200" : {
+            "headers" : {
             },
-            "description": "Success"
+            "description" : "Success"
           },
-          "default": {
-            "description": "Unexpected error."
+          "default" : {
+            "description" : "Unexpected error."
           }
         }
       }
-    },
-    "\/generator/string": {
-      "get": {
-        "tags": [
-          "QRInvoiceGeneratorResource"
-        ],
-        "description": "Returns String representing QR payment, make basic validation of input params",
-        "operationId": "resource_QRInvoiceGeneratorResource_generateInvoiceString_GET",
-        "produces": [
-          "text/plain"
-        ],
-        "parameters": [
+    }
+    ,
+    "\/generator/image" : {
+      "get" : {
+        "tags" : [ "QRInvoiceGeneratorResource" ],
+        "description" : "generate QR code based on invoice data",
+        "operationId" : "resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET",
+        "produces" : [ "image/png" ],
+        "parameters" : [
           {
-            "name": "ACC",
-            "in": "query",
-            "type": "string",
-            "description": "IBAN number"
+            "name" : "ACC",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "AM",
-            "in": "query",
-            "type": "string",
-            "description": "Total amount to pay in @see CC currency"
+            "name" : "AM",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "BIC",
-            "in": "query",
-            "type": "string",
-            "description": "BIC code of bank"
+            "name" : "BIC",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "CC",
-            "in": "query",
-            "default": "CZK",
-            "type": "string",
-            "description": "Currency of total amount"
+            "name" : "CC",
+            "in" : "query",
+            "default" : "CZK",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "DD",
-            "in": "query",
-            "type": "string",
-            "description": "Date of issue of invoice"
+            "name" : "DD",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "DPPD",
-            "in": "query",
-            "type": "string",
-            "description": "Date of duty to declare tax"
+            "name" : "DPPD",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "DT",
-            "in": "query",
-            "type": "string",
-            "description": "Date of due of total amount"
+            "name" : "DT",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "DUZP",
-            "in": "query",
-            "type": "string",
-            "description": "Date of taxable event"
+            "name" : "DUZP",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "FX",
-            "in": "query",
-            "type": "string",
-            "description": "Exchange rate between CZK currency and currency of total amount"
+            "name" : "FX",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "FXA",
-            "in": "query",
-            "default": "1",
-            "type": "string",
-            "description": "Currency units"
+            "name" : "FXA",
+            "in" : "query",
+            "default" : "1",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "INI",
-            "in": "query",
-            "type": "string",
-            "description": "Identification number of issuer - IČO"
+            "name" : "INI",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "INR",
-            "in": "query",
-            "type": "string",
-            "description": "Identification number of recipient - IČO"
+            "name" : "INR",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "MSG",
-            "in": "query",
-            "type": "string",
-            "description": "Text description of subject of invoice"
+            "name" : "MSG",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "NTB",
-            "in": "query",
-            "type": "string",
-            "description": "Amount of non taxable event"
+            "name" : "NTB",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "ON",
-            "in": "query",
-            "type": "string",
-            "description": "Number of order"
+            "name" : "ON",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "SA",
-            "in": "query",
-            "default": "0",
-            "type": "string",
-            "description": "Flag if tax advance payments are on invoice"
+            "name" : "SA",
+            "in" : "query",
+            "default" : "0",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "SPAYD-MSG",
-            "in": "query",
-            "type": "string",
-            "description": "Message for beneficiary from spayd specification"
+            "name" : "SPAYD-MSG",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "SPAYD-URL",
-            "in": "query",
-            "type": "string",
-            "description": "URL from spayd specification"
+            "name" : "SPAYD-URL",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "T0",
-            "in": "query",
-            "type": "string",
-            "description": "Tax amount in base tax rate"
+            "name" : "T0",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "T1",
-            "in": "query",
-            "type": "string",
-            "description": "Tax amount in first reduced rate"
+            "name" : "T1",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "T2",
-            "in": "query",
-            "type": "string",
-            "description": "Tax amount in second reduced rate"
+            "name" : "T2",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "TB0",
-            "in": "query",
-            "type": "string",
-            "description": "Tax base"
+            "name" : "TB0",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "TB1",
-            "in": "query",
-            "type": "string",
-            "description": "Tax base in first reduced rate"
+            "name" : "TB1",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "TB2",
-            "in": "query",
-            "type": "string",
-            "description": "Tax base in second reduced rate"
+            "name" : "TB2",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "TD",
-            "in": "query",
-            "type": "string",
-            "description": "Type of tax document"
+            "name" : "TD",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "TP",
-            "in": "query",
-            "default": "0",
-            "type": "string",
-            "description": "Identification of type of taxable event"
+            "name" : "TP",
+            "in" : "query",
+            "default" : "0",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "VII",
-            "in": "query",
-            "type": "string",
-            "description": "Tax identification number of issuer - DIČ"
+            "name" : "VII",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "VIR",
-            "in": "query",
-            "type": "string",
-            "description": "Tax identification number of recipient - DIČ"
+            "name" : "VIR",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "VS",
-            "in": "query",
-            "type": "string",
-            "description": "Variable symbol"
+            "name" : "VS",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "X-SW",
-            "in": "query",
-            "type": "string",
-            "description": "Identification of Software"
+            "name" : "X-SW",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "X-URL",
-            "in": "query",
-            "type": "string",
-            "description": "URL to electronic document of invoice"
+            "name" : "X-URL",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "accountBase",
-            "in": "query",
-            "type": "string",
-            "description": "Base of account number"
+            "name" : "accountBase",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "accountPrefix",
-            "in": "query",
-            "type": "string",
-            "description": "Account number prefix"
+            "name" : "accountPrefix",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "bankCode",
-            "in": "query",
-            "type": "string",
-            "description": "Code of bank"
+            "name" : "bankCode",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "id",
-            "in": "query",
-            "type": "string",
-            "description": "ID of generated invoice"
+            "name" : "branding",
+            "in" : "query",
+            "default" : "true",
+            "type" : "boolean",
+            "description" : "if resulted image has to have branding labels"
           },
           {
-            "name": "mode",
-            "in": "query",
-            "default": "INVOICE_MODE",
-            "type": "string",
-            "enum": [
-              "INVOICE_MODE",
-              "SPAYD_MODE"
-            ],
-            "description": "indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD"
+            "name" : "id",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "transliterate",
-            "in": "query",
-            "default": "true",
-            "type": "boolean",
-            "description": "identifies if returned string has to have capitalized letters"
+            "name" : "mode",
+            "in" : "query",
+            "default" : "INVOICE_MODE",
+            "type" : "string",
+            "enum" : ["INVOICE_MODE", "SPAYD_MODE"],
+            "description" : "indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD"
+          },
+          {
+            "name" : "size",
+            "in" : "query",
+            "type" : "integer",
+            "description" : ""
+          },
+          {
+            "name" : "transliterate",
+            "in" : "query",
+            "default" : "true",
+            "type" : "boolean",
+            "description" : "identifies if returned string has to have capitalized letters"
           }
         ],
-        "responses": {
-          "200": {
-            "schema": {
-              "description": "",
-              "type": "string"
+        "responses" : {
+          "200" : {
+            "headers" : {
             },
-            "headers": {
-            },
-            "description": "Success"
+            "description" : "Success"
           },
-          "default": {
-            "description": "Unexpected error."
+          "default" : {
+            "description" : "Unexpected error."
           }
         }
       }
-    },
-    "\/generator/validator": {
-      "get": {
-        "tags": [
-          "QRInvoiceGeneratorResource"
-        ],
-        "description": "validate specialities which are not handled by bean validation\r\nTODO create validation for InvoiceModel itself",
-        "operationId": "resource_QRInvoiceGeneratorResource_validateInvoiceString_GET",
-        "produces": [
-          "text/plain"
-        ],
-        "parameters": [
+    }
+    ,
+    "\/generator/imagefromstring" : {
+      "get" : {
+        "tags" : [ "QRInvoiceGeneratorResource" ],
+        "description" : "",
+        "operationId" : "resource_QRInvoiceGeneratorResource_generateInvoiceQR_GET",
+        "produces" : [ "image/png" ],
+        "parameters" : [
           {
-            "name": "ACC",
-            "in": "query",
-            "type": "string",
-            "description": "IBAN number"
+            "name" : "branding",
+            "in" : "query",
+            "default" : "true",
+            "type" : "boolean",
+            "description" : ""
           },
           {
-            "name": "AM",
-            "in": "query",
-            "type": "string",
-            "description": "Total amount to pay in @see CC currency"
+            "name" : "invoicedata",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
           },
           {
-            "name": "BIC",
-            "in": "query",
-            "type": "string",
-            "description": "BIC code of bank"
+            "name" : "mode",
+            "in" : "query",
+            "default" : "INVOICE_MODE",
+            "type" : "string",
+            "enum" : ["INVOICE_MODE", "SPAYD_MODE"],
+            "description" : ""
           },
           {
-            "name": "CC",
-            "in": "query",
-            "default": "CZK",
-            "type": "string",
-            "description": "Currency of total amount"
-          },
-          {
-            "name": "DD",
-            "in": "query",
-            "type": "string",
-            "description": "Date of issue of invoice"
-          },
-          {
-            "name": "DPPD",
-            "in": "query",
-            "type": "string",
-            "description": "Date of duty to declare tax"
-          },
-          {
-            "name": "DT",
-            "in": "query",
-            "type": "string",
-            "description": "Date of due of total amount"
-          },
-          {
-            "name": "DUZP",
-            "in": "query",
-            "type": "string",
-            "description": "Date of taxable event"
-          },
-          {
-            "name": "FX",
-            "in": "query",
-            "type": "string",
-            "description": "Exchange rate between CZK currency and currency of total amount"
-          },
-          {
-            "name": "FXA",
-            "in": "query",
-            "default": "1",
-            "type": "string",
-            "description": "Currency units"
-          },
-          {
-            "name": "INI",
-            "in": "query",
-            "type": "string",
-            "description": "Identification number of issuer - IČO"
-          },
-          {
-            "name": "INR",
-            "in": "query",
-            "type": "string",
-            "description": "Identification number of recipient - IČO"
-          },
-          {
-            "name": "MSG",
-            "in": "query",
-            "type": "string",
-            "description": "Text description of subject of invoice"
-          },
-          {
-            "name": "NTB",
-            "in": "query",
-            "type": "string",
-            "description": "Amount of non taxable event"
-          },
-          {
-            "name": "ON",
-            "in": "query",
-            "type": "string",
-            "description": "Number of order"
-          },
-          {
-            "name": "SA",
-            "in": "query",
-            "default": "0",
-            "type": "string",
-            "description": "Flag if tax advance payments are on invoice"
-          },
-          {
-            "name": "SPAYD-MSG",
-            "in": "query",
-            "type": "string",
-            "description": "Message for beneficiary from spayd specification"
-          },
-          {
-            "name": "SPAYD-URL",
-            "in": "query",
-            "type": "string",
-            "description": "URL from spayd specification"
-          },
-          {
-            "name": "T0",
-            "in": "query",
-            "type": "string",
-            "description": "Tax amount in base tax rate"
-          },
-          {
-            "name": "T1",
-            "in": "query",
-            "type": "string",
-            "description": "Tax amount in first reduced rate"
-          },
-          {
-            "name": "T2",
-            "in": "query",
-            "type": "string",
-            "description": "Tax amount in second reduced rate"
-          },
-          {
-            "name": "TB0",
-            "in": "query",
-            "type": "string",
-            "description": "Tax base"
-          },
-          {
-            "name": "TB1",
-            "in": "query",
-            "type": "string",
-            "description": "Tax base in first reduced rate"
-          },
-          {
-            "name": "TB2",
-            "in": "query",
-            "type": "string",
-            "description": "Tax base in second reduced rate"
-          },
-          {
-            "name": "TD",
-            "in": "query",
-            "type": "string",
-            "description": "Type of tax document"
-          },
-          {
-            "name": "TP",
-            "in": "query",
-            "default": "0",
-            "type": "string",
-            "description": "Identification of type of taxable event"
-          },
-          {
-            "name": "VII",
-            "in": "query",
-            "type": "string",
-            "description": "Tax identification number of issuer - DIČ"
-          },
-          {
-            "name": "VIR",
-            "in": "query",
-            "type": "string",
-            "description": "Tax identification number of recipient - DIČ"
-          },
-          {
-            "name": "VS",
-            "in": "query",
-            "type": "string",
-            "description": "Variable symbol"
-          },
-          {
-            "name": "X-SW",
-            "in": "query",
-            "type": "string",
-            "description": "Identification of Software"
-          },
-          {
-            "name": "X-URL",
-            "in": "query",
-            "type": "string",
-            "description": "URL to electronic document of invoice"
-          },
-          {
-            "name": "accountBase",
-            "in": "query",
-            "type": "string",
-            "description": "Base of account number"
-          },
-          {
-            "name": "accountPrefix",
-            "in": "query",
-            "type": "string",
-            "description": "Account number prefix"
-          },
-          {
-            "name": "bankCode",
-            "in": "query",
-            "type": "string",
-            "description": "Code of bank"
-          },
-          {
-            "name": "id",
-            "in": "query",
-            "type": "string",
-            "description": "ID of generated invoice"
-          },
-          {
-            "name": "mode",
-            "in": "query",
-            "default": "INVOICE_MODE",
-            "type": "string",
-            "enum": [
-              "INVOICE_MODE",
-              "SPAYD_MODE"
-            ],
-            "description": "indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD"
+            "name" : "size",
+            "in" : "query",
+            "type" : "integer",
+            "description" : ""
           }
         ],
-        "responses": {
-          "200": {
-            "schema": {
-              "description": "",
-              "type": "string"
+        "responses" : {
+          "200" : {
+            "headers" : {
             },
-            "headers": {
-            },
-            "description": "Success"
+            "description" : "Success"
           },
-          "default": {
-            "description": "Unexpected error."
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+    }
+    ,
+    "\/generator/string" : {
+      "get" : {
+        "tags" : [ "QRInvoiceGeneratorResource" ],
+        "description" : "Returns String representing QR payment, make basic validation of input params",
+        "operationId" : "resource_QRInvoiceGeneratorResource_generateInvoiceString_GET",
+        "produces" : [ "text/plain" ],
+        "parameters" : [
+          {
+            "name" : "ACC",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "AM",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "BIC",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "CC",
+            "in" : "query",
+            "default" : "CZK",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "DD",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "DPPD",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "DT",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "DUZP",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "FX",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "FXA",
+            "in" : "query",
+            "default" : "1",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "INI",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "INR",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "MSG",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "NTB",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "ON",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "SA",
+            "in" : "query",
+            "default" : "0",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "SPAYD-MSG",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "SPAYD-URL",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "T0",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "T1",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "T2",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "TB0",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "TB1",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "TB2",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "TD",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "TP",
+            "in" : "query",
+            "default" : "0",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "VII",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "VIR",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "VS",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "X-SW",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "X-URL",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "accountBase",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "accountPrefix",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "bankCode",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "id",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "mode",
+            "in" : "query",
+            "default" : "INVOICE_MODE",
+            "type" : "string",
+            "enum" : ["INVOICE_MODE", "SPAYD_MODE"],
+            "description" : "indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD"
+          },
+          {
+            "name" : "transliterate",
+            "in" : "query",
+            "default" : "true",
+            "type" : "boolean",
+            "description" : "identifies if returned string has to have capitalized letters"
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+"description" : "",
+"type" : "string"
+            },
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
+          }
+        }
+      }
+    }
+    ,
+    "\/generator/validator" : {
+      "get" : {
+        "tags" : [ "QRInvoiceGeneratorResource" ],
+        "description" : "validate specialities which are not handled by bean validation\r\nTODO create validation for InvoiceModel itself",
+        "operationId" : "resource_QRInvoiceGeneratorResource_validateInvoiceString_GET",
+        "produces" : [ "text/plain" ],
+        "parameters" : [
+          {
+            "name" : "ACC",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "AM",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "BIC",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "CC",
+            "in" : "query",
+            "default" : "CZK",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "DD",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "DPPD",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "DT",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "DUZP",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "FX",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "FXA",
+            "in" : "query",
+            "default" : "1",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "INI",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "INR",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "MSG",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "NTB",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "ON",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "SA",
+            "in" : "query",
+            "default" : "0",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "SPAYD-MSG",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "SPAYD-URL",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "T0",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "T1",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "T2",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "TB0",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "TB1",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "TB2",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "TD",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "TP",
+            "in" : "query",
+            "default" : "0",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "VII",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "VIR",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "VS",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "X-SW",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "X-URL",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "accountBase",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "accountPrefix",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "bankCode",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "id",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "mode",
+            "in" : "query",
+            "default" : "INVOICE_MODE",
+            "type" : "string",
+            "enum" : ["INVOICE_MODE", "SPAYD_MODE"],
+            "description" : "indicates which mode of QR should be used, pure QR invoice or integrated with SPAYD"
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+"description" : "",
+"type" : "string"
+            },
+            "headers" : {
+            },
+            "description" : "Success"
+          },
+          "default" : {
+            "description" : "Unexpected error."
           }
         }
       }

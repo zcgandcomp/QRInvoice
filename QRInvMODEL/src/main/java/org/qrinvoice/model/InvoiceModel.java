@@ -25,7 +25,13 @@ import java.math.BigDecimal;
 public class InvoiceModel implements Serializable {
 
 
-    //ID
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7343554733583572942L;
+
+
+	//ID
     /**
      * ID of generated invoice
      */

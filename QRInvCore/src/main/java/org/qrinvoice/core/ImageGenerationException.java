@@ -6,7 +6,12 @@ package org.qrinvoice.core;
  */
 public class ImageGenerationException extends Exception {
 
-    public ImageGenerationException(String s) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 44304375987399953L;
+
+	public ImageGenerationException(String s) {
         super(s);
     }
 

@@ -17,4 +17,9 @@ import javax.inject.Named;
 @RequestScoped
 public class InvoiceWebModel extends InvoiceModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5199699913462799919L;
+
 }

@@ -150,25 +150,25 @@ public class Generator {
      * @throws UnsupportedEncodingException Uses UTF-8 Encoding
      */
     public String escapeDisallowedCharacters(String originalString) throws UnsupportedEncodingException {
-        String working = "";
+        StringBuilder working = new StringBuilder();
 
 
         for (int i = 0; i < originalString.length(); i++) {
             if (originalString.charAt(i) > 127) { // escape non-ascii characters
-                working += URLEncoder.encode(Character.toString(originalString.charAt(i)), "UTF-8");
+                working.append(URLEncoder.encode(Character.toString(originalString.charAt(i)), "UTF-8"));
             } else {
                 if (originalString.charAt(i) == '*') { // star is a special character for the SPAYD format
-                    working += "%2A";
+                    working .append( "%2A");
                 } else if (originalString.charAt(i) == '+') { // plus is a special character for URL encode
-                    working += "%2B";
+                    working .append( "%2B");
                 } else if (originalString.charAt(i) == '%') { // percent is an escape character
-                    working += "%25";
+                    working .append( "%25");
                 } else {
-                    working += Character.toString(originalString.charAt(i)); // ascii characters may be used as expected
+                    working .append( originalString.charAt(i)); // ascii characters may be used as expected
                 }
             }
         }
-        return working;
+        return working.toString();
     }
 
 

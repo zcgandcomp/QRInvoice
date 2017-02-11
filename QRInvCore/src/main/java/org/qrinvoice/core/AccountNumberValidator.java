@@ -115,7 +115,7 @@ public class AccountNumberValidator implements ConstraintValidator<CheckAccountN
             return false;
         }
 
-        return (bankCode.length() == 4);
+        return bankCode.length() == 4;
 
     }
 

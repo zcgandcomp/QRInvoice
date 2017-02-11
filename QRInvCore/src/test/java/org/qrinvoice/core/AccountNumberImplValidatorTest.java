@@ -39,7 +39,7 @@ public class AccountNumberImplValidatorTest {
 
     public void testValidatorException() throws Exception {
 
-        AccountNumberImpl number = new AccountNumberImpl("19", null, null);
+        new AccountNumberImpl("19", null, null);
 
     }
 
